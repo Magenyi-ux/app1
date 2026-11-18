@@ -43,6 +43,38 @@ body.welcome-mode .welcome{margin-top:0}
 
 .setting-row{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:15px 0;border-bottom:1px solid var(--line);font-size:13px}.setting-row b,.setting-link b{display:block;font-size:13px}.setting-row small,.setting-link small{display:block;color:var(--muted);font-size:11px;margin-top:4px;line-height:1.45}.setting-row input{width:19px;height:19px;accent-color:var(--green);flex-shrink:0}.settings-menu{display:grid;gap:8px;margin-bottom:22px}.setting-link{display:flex;align-items:center;gap:13px;text-align:left;padding:14px;border:1px solid var(--line);background:#f9f4ff;border-radius:12px;color:var(--ink)}.setting-link>span:first-child{width:36px;height:36px;border-radius:10px;background:var(--green-soft);color:var(--green);display:grid;place-items:center;font-size:19px;flex-shrink:0}.setting-link>span:nth-child(2){flex:1}.setting-link i{font-style:normal;color:var(--muted);font-size:22px}.setting-link:hover{background:var(--green-soft)}#profileDetails{border-top:1px solid var(--line);padding-top:20px}.thread-reply{background:var(--green-soft);border-radius:12px;padding:14px;margin-top:12px}.thread-reply p{white-space:pre-wrap;line-height:1.6;margin:8px 0 0}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+
+/* Subtle motion across the app */
+@keyframes app-view-enter{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@keyframes app-card-enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes app-soft-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes app-modal-enter{from{opacity:0;transform:translateY(12px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+.view.active:not(.welcome){animation:app-view-enter .34s cubic-bezier(.2,.7,.25,1) both}
+.view.active:not(.welcome) .card,.view.active:not(.welcome) .hero,.view.active:not(.welcome) .page-title,.view.active:not(.welcome) .page-sub{animation:app-card-enter .42s cubic-bezier(.2,.7,.25,1) both}
+.view.active:not(.welcome) .card:nth-of-type(2){animation-delay:.045s}
+.view.active:not(.welcome) .card:nth-of-type(3){animation-delay:.085s}
+.entry{transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.entry:hover{transform:translateY(-2px);border-color:#c7a6e8;box-shadow:0 7px 20px rgba(47,26,70,.07)}
+.prompt{transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+.prompt:hover{transform:translateY(-2px);border-color:#c7a6e8;box-shadow:0 8px 22px rgba(47,26,70,.07)}
+.setting-link,.tab,.segmented button,.tiny{transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease}
+.setting-link:hover{transform:translateX(2px)}
+.tab:active,.setting-link:active,.btn:active{transform:scale(.985)}
+.primary{transition:background .18s ease,border-color .18s ease,transform .18s ease,box-shadow .18s ease}
+.primary:hover{box-shadow:0 5px 16px rgba(113,55,184,.2)}
+.field{transition:border-color .18s ease,box-shadow .18s ease,background .18s ease}
+.field:focus{border-color:#b987f4;box-shadow:0 0 0 3px rgba(185,135,244,.15)}
+.write-illustration{transform-origin:center;animation:app-soft-float 5.5s ease-in-out infinite}
+.modalback.open{animation:app-modal-enter .2s ease both}
+.modalback.open .modal{animation:app-modal-enter .24s cubic-bezier(.2,.7,.25,1) both}
+.toast.show{animation:app-modal-enter .2s ease both}
+.entry .dot{transition:transform .22s ease}
+.entry:hover .dot{transform:scale(1.06)}
+@media(prefers-reduced-motion:reduce){
+  .view.active:not(.welcome),.view.active:not(.welcome) .card,.view.active:not(.welcome) .hero,.view.active:not(.welcome) .page-title,.view.active:not(.welcome) .page-sub,.write-illustration,.modalback.open,.modalback.open .modal,.toast.show{animation:none!important}
+  .entry,.prompt,.setting-link,.tab,.segmented button,.tiny,.primary,.field,.entry .dot{transition:none!important}
+  .entry:hover,.prompt:hover,.setting-link:hover,.tab:active,.setting-link:active,.btn:active{transform:none!important;box-shadow:none!important}
+}
 </style></head><body>
 <header class="top"><div class="brand"><div class="mark">♡</div><div>OurJournal<small>Write. Understand. Grow.</small></div></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><a class="download-link" href="https://github.com/Magenyi-ux/app1/actions/runs/44355463315" target="_blank" rel="noopener noreferrer" aria-label="Download OurJournal for Android">Download Android ↓</a><button id="inviteBtn">Invite your person ↗</button><button id="profileBtn" aria-label="Profile">Y</button></div></header>
 <main class="shell">

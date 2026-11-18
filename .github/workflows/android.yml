@@ -1,4 +1,7 @@
 name: Android APK (Android 10–15)
+permissions:
+  contents: write
+
 on:
   workflow_dispatch:
   push:
@@ -44,3 +47,13 @@ jobs:
           name: ourjournal-android-debug
           path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
+      - name: Publish stable Android APK download
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: android-latest
+          name: OurJournal Android — Latest
+          body: Automated latest Android APK build for OurJournal. This rolling release is updated by the Android build workflow.
+          prerelease: true
+          make_latest: false
+          files: android/app/build/outputs/apk/debug/app-debug.apk
+          overwrite_files: true

@@ -212,7 +212,7 @@ html,body{background:#f4edf8;color:#211631;font-family:Inter,-apple-system,Blink
 @media(min-width:721px){.tabs{background:#24172f}.tab{color:#c6b7d1}.tab.active{color:#d7a5ff}}
 @media(max-width:720px){.shell{padding-bottom:calc(100px + env(safe-area-inset-bottom))}.welcome{margin:0 -14px -100px;min-height:calc(100dvh - 52px);padding:24px 25px calc(35px + env(safe-area-inset-bottom))}.welcome-art{height:150px}.card{padding:18px;border-radius:19px}#home .layout{grid-template-columns:1fr}.tabs{background:#24172f}.tab{color:#c6b7d1}.tab.active{background:#4c2c68;color:#d7a5ff}}
 
-</style></head><body>
+body.auth-gate header.top,body.auth-gate .tabs,body.auth-gate nav.bottom-nav,body.auth-gate #inviteBtn,body.auth-gate #profileBtn{display:none!important}body.auth-gate .view:not(.active){display:none!important}body.auth-gate .shell{padding-top:18px}#auth .onboard,#password-reset .onboard{max-width:480px;margin:0 auto}#auth .card,#password-reset .card{display:flex;flex-direction:column;gap:8px}#authBack{display:none!important}#auth .field,#password-reset .field{width:100%;box-sizing:border-box}</style></head><body>
 <header class="top"><div class="brand"><div class="mark">♡</div><div>OurJournal<small>Write. Understand. Grow.</small></div></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><a class="download-link" href="https://github.com/Magenyi-ux/app1/actions/runs/44355463315" target="_blank" rel="noopener noreferrer" aria-label="Download OurJournal for Android">Download Android ↓</a><button id="inviteBtn">Invite your person ↗</button><button id="profileBtn" aria-label="Profile">Y</button></div></header>
 <main class="shell">
 <section class="view welcome active" id="welcome"><div class="welcome-art" aria-hidden="true"><div class="welcome-orbit orbit-one"></div><div class="welcome-orbit orbit-two"></div><div class="welcome-symbol">♡</div></div><div class="welcome-copy"><div class="eyebrow">A space for the two of you</div><h1>Our<span>Journal</span></h1><p class="welcome-tagline">Write. Understand. Grow.</p><p class="welcome-description">A shared journal for two, because understanding makes love stronger.</p><button class="btn primary" id="getStarted">Get Started</button><button class="welcome-signin" id="signInBtn">Sign In</button><p class="welcome-foot">A little more understanding, one page at a time.</p></div></section>
@@ -242,7 +242,7 @@ html,body{background:#f4edf8;color:#211631;font-family:Inter,-apple-system,Blink
   </div>
 </section>
 
-<section class="view" id="onboarding">
+<section class="view" id="password-reset"><div class="onboard"><div class="onboard-avatar" aria-hidden="true">♡</div><div class="onboard-kicker">ACCOUNT SECURITY</div><h1 id="resetHeading">Reset your password.</h1><p class="onboard-copy" id="resetIntro">Enter your account email and we will send a secure reset link.</p><form class="card" id="resetRequestForm"><label class="field-label" for="resetEmail">Email address</label><input class="field" id="resetEmail" type="email" required maxlength="254" autocomplete="email" placeholder="you@example.com"><p class="hint" id="resetRequestHint">If an account exists for that email, we will send a reset link.</p><button class="btn primary" id="resetRequestSubmit" type="submit" style="width:100%;margin-top:12px">Send reset link</button></form><form class="card" id="resetPasswordForm" style="display:none"><label class="field-label" for="resetNewPassword">New password</label><input class="field" id="resetNewPassword" type="password" minlength="8" autocomplete="new-password" required placeholder="At least 8 characters"><label class="field-label" for="resetConfirmPassword">Confirm new password</label><input class="field" id="resetConfirmPassword" type="password" minlength="8" autocomplete="new-password" required placeholder="Repeat your password"><p class="hint" id="resetPasswordHint">Choose a password you do not use elsewhere.</p><button class="btn primary" id="resetPasswordSubmit" type="submit" style="width:100%;margin-top:12px">Save new password</button></form><button class="welcome-signin" id="resetBack" type="button" style="margin-top:16px">Back to sign in</button></div></section><section class="view" id="onboarding">
   <div class="onboard">
     <div class="onboard-progress" aria-label="Setup progress"><span id="progressOne" class="done"></span><span id="progressTwo"></span></div>
     <div class="onboard-step active" id="onboardProfile">
@@ -301,6 +301,29 @@ function loadSettings(){var x=state.settings||{};["dailyReminder","replyNotifica
 $("savePrivacy").onclick=function(){state.settings=state.settings||{};state.settings.hidePreviews=$("hidePreviews").checked;state.settings.confirmClear=$("confirmClear").checked;save();toast("Privacy preferences saved on this device.")};
 $("saveNotifications").onclick=function(){state.settings=state.settings||{};state.settings.dailyReminder=$("dailyReminder").checked;state.settings.replyNotifications=$("replyNotifications").checked;state.settings.promptNotifications=$("promptNotifications").checked;save();toast("Notification preferences saved on this device.")};
 $("sendReply").onclick=function(){var e=state.entries.find(function(x){return x.id===state.threading});var body=$("replyBody").value.trim();if(!e){toast("Choose an entry first.");return}if(!body){toast("Write a response first.");$("replyBody").focus();return}e.replies=e.replies||[];e.replies.push({writer:state.writer,body:body,createdAt:new Date().toISOString()});$("replyBody").value="";save();renderThread();toast("Response saved on this device.")};$("inviteBtn").onclick=function(){$("modal").classList.add("open")};$("closeModal").onclick=function(){$("modal").classList.remove("open")};$("modal").onclick=function(e){if(e.target.id==="modal")$("modal").classList.remove("open")};$("copyAddress").onclick=function(){if(navigator.clipboard){navigator.clipboard.writeText("https://ourjournal.spherelearn.name.ng").then(function(){toast("Website address copied.")}).catch(function(){toast("ourjournal.spherelearn.name.ng")})}else toast("ourjournal.spherelearn.name.ng")};$("export").onclick=function(){var blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});var url=URL.createObjectURL(blob);var a=document.createElement("a");a.href=url;a.download="ourjournal-export.json";a.click();URL.revokeObjectURL(url)};$("clear").onclick=function(){if((!state.settings||state.settings.confirmClear!==false)?confirm("Clear all OurJournal entries and drafts in this browser? This cannot be undone."):true){localStorage.removeItem(KEY);state={entries:[],draft:"",writer:"You",yourName:"You",partnerName:"Your person",filter:"all",reflecting:null};render();go("home");toast("Local journal cleared.")}};render();loadSettings();if(localStorage.getItem("ourjournal-started-v1")==="1"||state.entries.length)go("home");else go("welcome");$("getStarted").onclick=function(){go("onboarding");$("onboardProfile").classList.add("active");$("onboardConnect").classList.remove("active");$("progressOne").classList.add("done");$("progressTwo").classList.remove("done");$("onboardName").value=state.yourName||"";if(new URLSearchParams(location.search).has("invite")){$("inviteLinkPreview").value=location.href;$("inviteLinkHint").textContent="An invite parameter was detected, but it cannot be validated or accepted until secure accounts are connected."}};$("signInBtn").onclick=function(){go("onboarding");$("onboardProfile").classList.remove("active");$("onboardConnect").classList.add("active");$("progressOne").classList.add("done");$("progressTwo").classList.add("done");toast("Sign-in is not connected yet. This is a local preview.")};$("onboardNext").onclick=function(){var n=$("onboardName").value.trim();state.yourName=n||"You";state.writer=state.yourName;save();render();$("onboardProfile").classList.remove("active");$("onboardConnect").classList.add("active");$("progressOne").classList.add("done");$("progressTwo").classList.add("done");window.scrollTo({top:0,behavior:"smooth"})};$("onboardSkip").onclick=function(){go("home");toast("Local preview opened. Account sign-in and invitations are not active yet.")};$("onboardBack").onclick=function(){$("onboardConnect").classList.remove("active");$("onboardProfile").classList.add("active");$("progressTwo").classList.remove("done")};$("onboardPreview").onclick=function(){go("home");toast("Local preview opened. No account or shared connection was created.")};$("onboardPhoto").onchange=function(ev){var f=ev.target.files&&ev.target.files[0];if(!f)return;if(!f.type.startsWith("image/")){toast("Choose an image file.");return}if(f.size>5*1024*1024){toast("Choose an image under 5 MB.");ev.target.value="";return}var reader=new FileReader();reader.onload=function(){var img=new Image();img.onload=function(){var canvas=document.createElement("canvas");var scale=Math.min(1,256/Math.max(img.width,img.height));canvas.width=Math.max(1,Math.round(img.width*scale));canvas.height=Math.max(1,Math.round(img.height*scale));canvas.getContext("2d").drawImage(img,0,0,canvas.width,canvas.height);var data=canvas.toDataURL("image/jpeg",.78);try{state.avatar=data;save();$("avatarPreview").innerHTML='<img alt="Profile picture preview" src="'+data+'">';$("profileBtn").innerHTML='<img alt="" src="'+data+'" style="width:28px;height:28px;border-radius:50%;object-fit:cover;vertical-align:middle">'}catch(e){toast("The picture could not be saved in this browser.")}};img.src=reader.result};reader.readAsDataURL(f)};
+
+let ojProfileComplete=false;
+let ojPendingInvite=new URLSearchParams(location.search).get("invite")||"";
+function ojGate(view){
+ const pub=["welcome","auth","password-reset"];
+ if(!ojUser&&!pub.includes(view))return "auth";
+ if(ojUser&&!ojProfileComplete&&!pub.includes(view)&&view!=="onboarding")return "onboarding";
+ if(ojUser&&ojProfileComplete&&(view==="auth"||view==="welcome"))return "home";
+ return view;
+}
+const ojGoBeforeGate=go;
+go=function(view){const target=ojGate(view);ojGoBeforeGate(target);document.body.classList.toggle("auth-gate",["welcome","auth","password-reset","onboarding"].includes(target));};
+$("authBack").style.display="none";
+const forgot=document.createElement("button");forgot.type="button";forgot.id="forgotPasswordBtn";forgot.className="welcome-signin";forgot.textContent="Forgot password?";forgot.style.cssText="display:block;margin:12px auto 0";$("authForm").appendChild(forgot);
+forgot.onclick=()=>{ojSetResetMode(false);$("resetEmail").value=$("authEmail").value.trim();go("password-reset");};
+function ojSetResetMode(recovery){$("resetRequestForm").style.display=recovery?"none":"flex";$("resetPasswordForm").style.display=recovery?"flex":"none";$("resetHeading").textContent=recovery?"Choose a new password.":"Reset your password."; $("resetIntro").textContent=recovery?"Set a new password for your OurJournal account.":"Enter your account email and we will send a secure reset link."; }
+$("resetBack").onclick=()=>{ojSetAuthMode("signin");go("auth");};
+$("resetRequestForm").addEventListener("submit",async e=>{e.preventDefault();const b=$("resetRequestSubmit");b.disabled=true;b.textContent="Sending…";try{const {error}=await ojSupabase.auth.resetPasswordForEmail($("resetEmail").value.trim().toLowerCase(),{redirectTo:location.origin+location.pathname+"#password-reset"});if(error)throw error;ojMessage("resetRequestHint","If an account exists for that email, a password-reset link has been sent. Check your inbox.");}catch(err){console.error(err);ojMessage("resetRequestHint","We couldn't send the email. Check the address and try again.");}finally{b.disabled=false;b.textContent="Send reset link";}});
+$("resetPasswordForm").addEventListener("submit",async e=>{e.preventDefault();if($("resetNewPassword").value!==$("resetConfirmPassword").value){ojMessage("resetPasswordHint","The passwords do not match.");return;}const b=$("resetPasswordSubmit");b.disabled=true;try{const {error}=await ojSupabase.auth.updateUser({password:$("resetNewPassword").value});if(error)throw error;await ojSupabase.auth.signOut();ojUser=null;ojProfileComplete=false;ojSetAuthMode("signin");go("auth");toast("Password updated. Sign in with your new password.");}catch(err){console.error(err);ojMessage("resetPasswordHint",err.message||"Password update failed. Request a new reset link.");}finally{b.disabled=false;}});
+ojSupabase.auth.onAuthStateChange((event,session)=>{if(event==="PASSWORD_RECOVERY"){ojUser=session?.user||null;ojSetResetMode(true);go("password-reset");}else if(event==="SIGNED_OUT"){ojUser=null;ojProfileComplete=false;go("welcome");}});
+$("inviteBtn").onclick=async function(){if(!ojUser||!ojProfileComplete){go("auth");return;}try{const {data:m,error:me}=await ojSupabase.from("journal_members").select("journal_id,role").eq("user_id",ojUser.id).limit(1);if(me)throw me;if(!m?.length){toast("Create your journal before inviting your person.");return;}const {data,error}=await ojSupabase.rpc("create_journal_invitation",{p_journal_id:m[0].journal_id});if(error)throw error;const inv=data?.[0];if(!inv?.invite_token)throw new Error("No invitation token returned.");const u=new URL(location.href);u.searchParams.set("invite",inv.invite_token);u.hash="";await navigator.clipboard.writeText(u.toString());alert("Invitation link copied. It expires in 20 minutes and can be used once.");}catch(err){console.error(err);toast(err.message||"Could not create invitation.");}};
+async function ojAcceptPendingInvite(){if(!ojPendingInvite||!ojUser||!ojProfileComplete)return;try{const {error}=await ojSupabase.rpc("accept_journal_invitation",{p_token:ojPendingInvite});if(error)throw error;ojPendingInvite="";const u=new URL(location.href);u.searchParams.delete("invite");history.replaceState({},document.title,u.pathname+u.search);toast("You joined the shared journal.");}catch(err){console.error(err);toast(err.message||"This invitation is invalid or expired.");}}
+
 /* Supabase-backed account and onboarding flow */
 const OJ_SUPABASE_URL = "https://qkgzfizenhysoyixmzng.supabase.co";
 const OJ_SUPABASE_KEY = "sb_publishable_DNTt9U4TjT0xS8NL4FEQZQ_TEVHFVun";
@@ -391,11 +414,14 @@ async function ojEnterApp(user) {
   try {
     const profile = await ojLoadProfile(user);
     if (profile?.onboarding_completed) {
+      ojProfileComplete = true;
       state.yourName = profile.display_name || [profile.first_name, profile.last_name].filter(Boolean).join(" ") || "You";
       state.writer = state.yourName;
       render();
+      if (ojPendingInvite) await ojAcceptPendingInvite();
       go("home");
     } else {
+      ojProfileComplete = false;
       ojStartOnboarding(profile);
     }
   } catch (err) {
@@ -499,8 +525,9 @@ $("onboardPreview").onclick = async function() {
     const { error: completeError } = await ojSupabase.from("profiles").update({ onboarding_completed: true, updated_at: new Date().toISOString() }).eq("id", ojUser.id);
     if (completeError) throw completeError;
     localStorage.setItem("ourjournal-started-v1", "1");
+    ojProfileComplete = true;
     toast("Profile and journal setup saved.");
-    go("home");
+    if (ojPendingInvite) { await ojAcceptPendingInvite(); } else { go("home"); }
   } catch (err) {
     console.error("Onboarding completion failed", err);
     toast("We couldn't finish setup. Please retry.");
@@ -517,7 +544,7 @@ $("logoutBtn").onclick = async function() {
 (async function ojRestoreSession() {
   const { data: { session } } = await ojSupabase.auth.getSession();
   if (session?.user) await ojEnterApp(session.user);
-  else go("welcome");
+  else { ojUser=null; ojProfileComplete=false; go("welcome"); }
 })();
 
 if("serviceWorker"in navigator)window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){})});

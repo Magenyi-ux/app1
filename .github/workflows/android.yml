@@ -44,15 +44,15 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: ourjournal-android-debug
+          name: thought-and-feelings-android-debug
           path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
       - name: Publish stable Android APK download
         uses: softprops/action-gh-release@v2
         with:
           tag_name: android-latest
-          name: OurJournal Android — Latest
-          body: Automated latest Android APK build for OurJournal. This rolling release is updated by the Android build workflow.
+          name: Thought & Feelings Android — Latest
+          body: Automated latest Android APK build for Thought & Feelings. This rolling release is updated by the Android build workflow.
           prerelease: true
           make_latest: false
           files: android/app/build/outputs/apk/debug/app-debug.apk

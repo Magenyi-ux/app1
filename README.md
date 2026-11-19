@@ -1,32 +1,57 @@
-# OurJournal by SphereLearn
+# Thought & Feelings
 
-A purple-and-grey, mobile-first journal concept for couples: write an entry, reflect before responding, explore thoughtful prompts, and revisit the shared history.
+Thought & Feelings is a private, two-person journaling app by SphereLearn. The app requires an authenticated account before journal pages are accessible.
 
-## Current prototype status
+## Account and journal flows
 
-- Responsive installable PWA shell with offline app caching.
-- Local prototype interactions: entries, private draft, prompts, reflection, history filters, writer switch, export and local reset.
-- Capacitor configuration for Android package name: name.spherelearn.ourjournal.
-- Important: prototype data is local to one browser/device. It is not secure cross-device collaboration yet. Avoid highly sensitive personal writing until authenticated accounts, private invitations, database access rules and cloud sync are implemented and tested.
+- Email/password sign-up requires a first name and surname.
+- Sign-in, password reset, session persistence, and sign-out use Supabase Auth.
+- Each account opens a private journal by default.
+- Entries are stored in Postgres and loaded for the active journal; journal text is not persisted to browser local storage.
+- Journal members can reflect on entries and reply through security-definer RPCs. Direct row-level update access to another member's entry is not granted.
+- Invitation links are token-based, stored as hashes, expire after seven days, and can be accepted by one other account.
+- Journal membership and entry access are restricted by PostgreSQL row-level security.
+- The old single-device writer switch, skip-onboarding path, and private-draft preview flow have been removed.
 
-## Run locally
+## Supabase setup
 
-1. Install Node.js and npm.
-2. Run npm install.
-3. Run npm run dev for development or npm run build for production output.
+The repository includes migrations under `supabase/migrations/`. Apply all of them to the dedicated Thought & Feelings Supabase project before deploying this branch:
 
-## Android 10–15
+- `20261118180000_initial_private_journals_schema.sql`
+- `20261119090000_require_first_and_last_names.sql`
+- `20261119130000_secure_journal_and_invitation_workflows.sql`
+- `20261119143000_member_reflections_and_replies.sql`
+- `20261119160000_journal_member_profiles.sql`
 
-Capacitor 7 supports Android projects targeting current Android SDKs; configure Android 10/API 29 as the minimum supported version and test API 29 through API 35. Install Android Studio and the Android SDK, then run npm install, npm run build, npx cap add android, npx cap sync android, and npx cap open android. A signed APK/AAB requires Android SDK setup and signing configuration; signing keys must not be committed to this repository.
+```bash
+npm install
+npx supabase login
+npx supabase link --project-ref qkgzfizenhysoyixmzng
+npx supabase db push
+```
 
-## Hosting
+Confirm that the project's Auth email-confirmation settings and allowed redirect URLs include the production domain and its sign-in callback path. Never use the Examply Supabase project for Thought & Feelings.
 
-Deploy the repository root to Vercel with build command npm run build and output directory dist. Proposed dedicated address: ourjournal.spherelearn.name.ng. Add the domain in Vercel and configure DNS only after the project is linked and ready.
+The frontend currently initializes Supabase with the project's public publishable key. A publishable/anon key is expected to be exposed to the browser; database security must rely on RLS and restricted RPCs, never on secrecy of that key.
 
-## Product roadmap
+## Local development and build
 
-1. Supabase Auth with per-person accounts and private journal membership.
-2. Secure invite acceptance and prevent anyone outside the pair from reading entries.
-3. Postgres tables and row-level security for journals, members, entries, and reflections.
-4. Cross-device sync, notifications without sensitive entry previews, account export and deletion.
-5. Android testing and signed release.
+```bash
+npm install
+npm run dev
+npm run build
+```
+
+Deploy the repository root to Vercel with build command `npm run build` and output directory `dist`. The Vercel deployment and real account/journal flows must be verified after applying migrations; a source commit alone does not mean the production app is ready.
+
+## Current boundaries
+
+- Email/password authentication is implemented; Apple and Google OAuth are not configured.
+- Notification settings are preferences only; push delivery is not implemented.
+- Profile-picture upload is not implemented.
+- Legacy entries saved by the previous local-only version are not automatically migrated into an account. They remain in the old browser storage key and are not shown in the authenticated journal.
+- Apply migrations and test sign-up, email confirmation, sign-in, password reset, invite acceptance, RLS isolation, and cross-device entry visibility before treating the release as production-ready.
+
+## Android
+
+Capacitor 7 configuration is retained. After web build verification, run `npx cap sync android` and test the Android app before creating a signed release. Signing keys must not be committed to this repository.

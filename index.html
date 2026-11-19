@@ -133,7 +133,7 @@ body:has(.auth-screen.active) .onboard{min-height:100dvh;padding-top:8px}
 </style></head><body>
 <header class="top"><div class="brand"><div class="mark">♡</div><div>Thought & Feelings<small>Write. Understand. Grow.</small></div></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><a class="download-link" href="https://github.com/Magenyi-ux/app1/actions/runs/44355463315" target="_blank" rel="noopener noreferrer" aria-label="Download Thought & Feelings for Android">Download Android ↓</a><button id="inviteBtn">Invite your person ↗</button><button id="profileBtn" aria-label="Profile">Y</button></div></header>
 <main class="shell">
-<section class="view welcome active" id="welcome"><div class="welcome-art" aria-hidden="true"><div class="welcome-orbit orbit-one"></div><div class="welcome-orbit orbit-two"></div><div class="welcome-symbol">♡</div></div><div class="welcome-copy"><div class="eyebrow">A space for the two of you</div><h1>Our<span>Journal</span></h1><p class="welcome-tagline">Write. Understand. Grow.</p><p class="welcome-description">A shared journal for two, because understanding makes love stronger.</p><button class="btn primary" id="getStarted">Get Started</button><button class="welcome-signin" id="signInBtn">Sign In</button><p class="welcome-foot">A little more understanding, one page at a time.</p></div></section>
+<section class="view welcome active" id="welcome"><div class="welcome-art" aria-hidden="true"><div class="welcome-orbit orbit-one"></div><div class="welcome-orbit orbit-two"></div><div class="welcome-symbol">♡</div></div><div class="welcome-copy"><div class="eyebrow">A space for the two of you</div><h1>Thought &amp; <span>Feelings</span></h1><p class="welcome-tagline">Write. Understand. Grow.</p><p class="welcome-description">A shared journal for two, because understanding makes love stronger.</p><button class="btn primary" id="getStarted">Get Started</button><button class="welcome-signin" id="signInBtn">Sign In</button><p class="welcome-foot">A little more understanding, one page at a time.</p></div></section>
 <section class="view" id="onboarding">
   <div class="onboard">
     <div class="onboard-progress" aria-label="Setup progress"><span id="progressOne" class="done"></span><span id="progressTwo"></span></div>
@@ -162,7 +162,7 @@ body:has(.auth-screen.active) .onboard{min-height:100dvh;padding-top:8px}
       <form class="auth-form" id="authForm">
         <div id="authNameWrap">
           <label class="sr-only" for="authName">Your name</label>
-          <input class="auth-input" id="authName" maxlength="40" autocomplete="name" placeholder="Your Name">
+          <input class="auth-input" id="authName" maxlength="40" autocomplete="name" placeholder="First and last name" required>
         </div>
         <div>
           <label class="sr-only" for="authEmail">Email address</label>
@@ -263,7 +263,7 @@ async function submitAuth() {
   if (authBusy) return;
   const email = document.getElementById("authEmail").value.trim();
   const password = document.getElementById("authPassword").value;
-  if (!email || !password || (authMode === "signup" && !document.getElementById("authName").value.trim())) { setAuthMessage(authMode === "signup" ? "Enter your name, email and password." : "Enter your email and password.", true); return; }
+  if (!email || !password || (authMode === "signup" && !document.getElementById("authName").value.trim())) { setAuthMessage(authMode === "signup" ? "Enter your first and last name, email and password." : "Enter your email and password.", true); return; }
   if (password.length < 8) { setAuthMessage("Use a password with at least 8 characters.", true); return; }
   authBusy = true;
   const button = document.getElementById("authSubmit");
@@ -271,7 +271,7 @@ async function submitAuth() {
   setAuthMessage("Connecting securely to Supabase…");
   try {
     const result = authMode === "signup"
-      ? await supabase.auth.signUp({ email, password, options: { data: { display_name: (document.getElementById("authName").value.trim() || "You"), emailRedirectTo: location.origin + location.pathname } } })
+      ? await supabase.auth.signUp({ email, password, options: { data: { display_name: fullName }, emailRedirectTo: location.origin + location.pathname } })
       : await supabase.auth.signInWithPassword({ email, password });
     if (result.error) throw result.error;
     if (authMode === "signup" && result.data.user && !result.data.session) {
@@ -280,12 +280,12 @@ async function submitAuth() {
       document.getElementById("authEmail").value = email;
     } else if (result.data.user) {
       await refreshAuthUI(result.data.user);
-      state.yourName = document.getElementById("authName").value.trim() || state.yourName || result.data.user.email.split("@")[0];
+      state.yourName = (document.getElementById("authName").value.trim() || result.data.user.user_metadata?.display_name || state.yourName).trim();
       state.writer = state.yourName;
       save();
       render();
       localStorage.setItem("ourjournal-started-v1", "1");
-      setAuthMessage("You're signed in. Cloud journal syncing is the next step; your current entries remain on this device.");
+      setAuthMessage("You're signed in as " + state.yourName + ". Your existing entries remain on this device; cloud syncing is not enabled yet.");
       toast("Supabase authentication connected.");
     }
   } catch (error) {

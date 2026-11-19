@@ -218,6 +218,7 @@ function setAuthMode(mode) {
   const toggle = document.getElementById("authModeToggle");
   const footer = document.getElementById("authFooter");
   const nameWrap = document.getElementById("authNameWrap");
+  const nameInput = document.getElementById("authName");
   const heading = document.getElementById("authHeading");
   const subheading = document.getElementById("authSubheading");
   const password = document.getElementById("authPassword");
@@ -227,6 +228,7 @@ function setAuthMode(mode) {
   const inviteBanner = document.getElementById("authInviteBanner");
   const inviteText = document.getElementById("authInviteText");
   if (nameWrap) nameWrap.hidden = mode !== "signup";
+  if (nameInput) { nameInput.required = mode === "signup"; nameInput.disabled = mode !== "signup"; }
   if (submit) submit.textContent = inviteCode && mode === "signup" ? "Join " + inviterName + "'s Journal" : mode === "signup" ? "Create Account" : "Log In";
   if (heading) heading.textContent = inviteCode && mode === "signup" ? "Join their journal" : mode === "signup" ? "Create an account" : "Welcome back";
   if (subheading) subheading.textContent = inviteCode && mode === "signup" ? "Create your account to start writing together." : mode === "signup" ? "Start writing and growing together. 💜" : "Log in to continue your journey together.";

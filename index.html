@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#26163e"><meta name="description" content="OurJournal — a thoughtful shared journal for two people, on your time."><link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icon.svg"><title>OurJournal — Write. Understand. Grow.</title>
 <style>
-:root{color-scheme:light;--green:#7137b8;--green-hover:#59278f;--green-soft:#eee2fb;--paper:#f4eefb;--white:#fffaff;--ink:#20172c;--muted:#746a80;--line:#ded1ed;--warm:#e9dafa;--deep:#21182e;--shadow:0 1px 2px rgba(32,23,44,.08)}
+:root{color-scheme:dark;--green:#7B51F5;--green-hover:#6337E8;--green-soft:#342856;--paper:#120E20;--white:#221C3E;--ink:#FFFFFF;--muted:#A09CB3;--line:#3B315C;--warm:#2D264D;--deep:#171222;--shadow:0 1px 2px rgba(0,0,0,.18)}
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;background:var(--paper);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:-.12px}
 button,input,textarea,select{font:inherit}button{cursor:pointer;transition:background .16s ease,border-color .16s ease,color .16s ease,transform .16s ease}button:active{transform:translateY(1px)}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid #b987f4;outline-offset:3px}
@@ -94,6 +94,67 @@ body.welcome-mode .welcome{margin-top:0}
 .invite-choice{border:1px solid var(--line);border-radius:11px;padding:15px;background:#fffaff;margin:10px 0}
 .invite-choice b{display:block;font-size:13px}.invite-choice p{font-size:12px;color:var(--muted);line-height:1.6;margin:6px 0 0}
 @media(max-width:720px){.onboard{padding-top:20px;min-height:calc(100dvh - 100px)}.onboard .card{padding:18px}}
+
+
+/* OurJournal dark-plum production UI refresh */
+html,body{background:#120E20;color:#fff}
+.top{background:rgba(18,14,32,.92);color:#fff;border-bottom:1px solid #3B315C}
+.brand small{color:#A09CB3}
+.mark{background:#7B51F5;color:#fff;border-radius:12px}
+.top button,.top .download-link{background:#2D264D;color:#fff;border-color:#3B315C;border-radius:12px}
+.top .download-link,.top .primary{background:#7B51F5;border-color:#7B51F5;color:#fff}
+.top button:hover,.secondary:hover{background:#342856;border-color:#7B51F5}
+.shell{color:#fff}
+.hero h1,.page-title,#home .hero h1{color:#fff}
+.hero p,.page-sub,#home .hero p{color:#A09CB3}
+.eyebrow,.hero .eyebrow,#home .hero .eyebrow{color:#BDA4FF}
+.card,#write .card,#reflect .card,#profile .card,#history .card,#prompts .card{background:#221C3E;color:#fff;border:1px solid #3B315C;border-radius:20px;box-shadow:0 12px 34px rgba(0,0,0,.12)}
+.entry,#home .layout .card:first-child .entry,#history .entry{background:#2D264D;border:1px solid #3B315C;border-radius:16px;color:#fff}
+.entry-body{color:#F5F1FF}
+.entry-foot{border-color:#3B315C}
+.dot{background:#3D2D67;color:#D8C7FF}
+.dot.partner{background:#56345F;color:#F3C7E8}
+.prompt,#prompts .prompt{background:#2D264D;border:1px solid #3B315C;border-radius:16px;color:#fff}
+.prompt p,#prompts .prompt p{color:#fff}
+.field,textarea.field,#reflect textarea.field,#reflect input.field{background:#2D264D;color:#fff;border:1px solid #3B315C;border-radius:12px}
+.field::placeholder{color:#A09CB3}
+.segmented{background:#171222;border-radius:12px}
+.segmented button{color:#A09CB3}
+.segmented button.active{background:#7B51F5;color:#fff;box-shadow:none}
+.btn{border-radius:12px}
+.btn.primary,.primary{background:linear-gradient(135deg,#8F67F7 0%,#6337E8 100%);border-color:#7B51F5;color:#fff}
+.btn.secondary,.secondary{background:#2D264D;border-color:#3B315C;color:#fff}
+.tabs{background:rgba(18,14,32,.94);backdrop-filter:blur(18px);border-color:#3B315C;border-radius:18px;box-shadow:0 8px 30px rgba(0,0,0,.25)}
+.tab{color:#A09CB3;border-radius:12px}
+.tab.active{background:#342856;color:#C7B2FF}
+.timeline{border-color:#7252A5}
+.timeline .entry:before{border-color:#120E20;background:#7B51F5}
+.notice,.onboard-note{background:#2D264D;border-color:#3B315C;color:#D7C9F2;border-radius:12px}
+.stat{background:#2D264D;border-radius:12px}.stat b{color:#C7B2FF}
+.setting-link{background:#2D264D;color:#fff;border-color:#3B315C;border-radius:14px}
+.setting-link>span:first-child{background:#342856;color:#C7B2FF}
+.setting-link:hover{background:#342856}
+.setting-row{border-color:#3B315C}
+#reflect .card{background:#221C3E;color:#fff;border-color:#3B315C}
+#reflect .entry{background:#2D264D;color:#fff}
+#reflect .field-label{color:#E4D8FF}
+#reflect .hint{color:#A09CB3}
+.modalback{background:rgba(5,3,12,.72)}
+.modal{background:#221C3E;color:#fff;border-color:#3B315C;border-radius:20px}
+.thread-reply{background:#2D264D;border-radius:14px}
+.footer{color:#8E86A4}
+.onboard .card,.invite-choice{background:#221C3E;color:#fff;border-color:#3B315C;border-radius:18px}
+.onboard-kicker{color:#BDA4FF}
+.onboard-progress span{background:#3B315C}.onboard-progress span.done{background:#7B51F5}
+.onboard-avatar{background:#342856;color:#D8C7FF;border-color:#7252A5}
+.onboard-note{background:#2D264D;color:#D7C9F2;border-color:#3B315C}
+.invite-choice{background:#2D264D}
+.empty{color:#A09CB3}.empty b{color:#fff}
+#profileDetails{border-color:#3B315C}
+@media(max-width:720px){
+ .tabs{background:rgba(18,14,32,.96);border-color:#3B315C}
+ .welcome{margin:-23px -14px -100px}
+}
 
 </style></head><body>
 <header class="top"><div class="brand"><div class="mark">♡</div><div>OurJournal<small>Write. Understand. Grow.</small></div></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><a class="download-link" href="https://github.com/Magenyi-ux/app1/actions/runs/44355463315" target="_blank" rel="noopener noreferrer" aria-label="Download OurJournal for Android">Download Android ↓</a><button id="inviteBtn">Invite your person ↗</button><button id="profileBtn" aria-label="Profile">Y</button></div></header>

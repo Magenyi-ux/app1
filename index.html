@@ -228,6 +228,127 @@ body.auth-gate header.top,body.auth-gate .tabs,body.auth-gate nav.bottom-nav,bod
 .reader-entry .reader-writer{font-size:11px;color:var(--muted);margin-bottom:12px}
 .reader-entry .reader-mood{display:inline-block;margin-top:14px;border:1px solid var(--line);border-radius:99px;padding:4px 9px;font-size:11px;color:var(--muted)}
 .reader-empty{padding:36px 12px;text-align:center;color:var(--muted);line-height:1.7}
+
+/* OurJournal — refined, native-feeling design system */
+:root{
+ color-scheme:light;
+ --green:#171717;--green-hover:#303030;--green-soft:#f3f3f3;
+ --paper:#f7f7f5;--white:#ffffff;--ink:#191919;--muted:#777873;
+ --line:#e7e7e3;--warm:#f0f0ec;--deep:#20211f;
+ --shadow:0 1px 2px rgba(0,0,0,.025),0 8px 28px rgba(0,0,0,.035);
+}
+html,body{background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif;letter-spacing:-.18px;-webkit-font-smoothing:antialiased}
+::selection{background:#d9e8df;color:#171717}
+button,input,textarea,select{font-family:inherit}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid rgba(40,90,70,.25);outline-offset:3px}
+.top{background:rgba(247,247,245,.86);backdrop-filter:saturate(180%) blur(22px);border-bottom:1px solid rgba(0,0,0,.07);color:var(--ink);padding:13px max(24px,calc((100vw - 1060px)/2))}
+.brand{font-size:16px;font-weight:650;letter-spacing:-.55px;gap:10px}
+.brand small{font-size:10px;letter-spacing:.1px;color:#888a84}
+.mark{width:32px;height:32px;border-radius:10px;background:#20211f;color:#fff;font-size:18px}
+.top button,.top .download-link{border:1px solid #e4e4df;background:#fff;color:#242424;border-radius:999px;padding:9px 14px;font-size:12px;font-weight:600}
+.top .download-link,.top .primary{background:#20211f;color:#fff;border-color:#20211f}
+.top .download-link:hover,.top .primary:hover,.primary:hover{background:#41423f;border-color:#41423f}
+.shell{width:min(1060px,100%);padding:44px 26px 46px}
+.hero{padding:20px 0 38px}
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#74766f}
+.hero h1,#home .hero h1{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;font-size:clamp(42px,6.6vw,72px);font-weight:650;letter-spacing:-3.2px;line-height:.99;max-width:740px;margin:17px 0 19px;color:#191919}
+.hero p,#home .hero p{font-size:15px;line-height:1.75;max-width:490px;color:#70716d}
+.btn{min-height:44px;border-radius:999px;padding:12px 19px;font-size:13px;font-weight:650;box-shadow:none}
+.primary{background:#20211f;color:#fff;border-color:#20211f}
+.secondary{background:#fff;border:1px solid #e4e4df;color:#252525}
+.secondary:hover,.top button:hover{background:#f0f0ec;border-color:#d9d9d3}
+.layout{grid-template-columns:minmax(0,1.45fr) minmax(260px,.8fr);gap:18px;margin-top:8px}
+.card{background:#fff;border:1px solid #e9e9e5;border-radius:18px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,.018)}
+.head h2,.card h2{font-size:15px;font-weight:650;letter-spacing:-.25px}
+.sub,.hint{color:#858680}
+.entry{background:#fafaf8!important;border:1px solid #ededE8;border-radius:13px;padding:17px;box-shadow:none}
+.entry:hover{transform:translateY(-1px);border-color:#d7d7d0;box-shadow:0 6px 18px rgba(0,0,0,.035)}
+.dot,.dot.partner{background:#ecece8;color:#30312e}
+.meta{font-weight:650}.meta small{color:#858680}
+.entry-body{font-family:Georgia,"Times New Roman",serif;font-size:16px;line-height:1.8;color:#282925}
+.entry-foot{border-color:#e9e9e5}
+.tiny{color:#333;font-weight:650}.tiny:hover{color:#000}
+.prompt{background:#f4f4f0;border:1px solid #e9e9e4;border-radius:15px;color:#222;padding:20px}
+.prompt p{font-family:Georgia,"Times New Roman",serif;font-size:18px;line-height:1.55;color:#252622}
+.view.active:not(.welcome){animation:app-view-enter .24s ease both}
+.tabs{background:rgba(255,255,255,.92);border:1px solid #e8e8e3;border-radius:999px;padding:5px;gap:3px;box-shadow:0 5px 22px rgba(0,0,0,.045)}
+.tab{border-radius:999px;color:#777872;font-weight:600}
+.tab.active{background:#20211f;color:#fff}
+.page-title{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;font-weight:650;letter-spacing:-1.4px;font-size:clamp(32px,4vw,44px)}
+.page-sub{color:#73746f}
+.field{background:#fbfbf9;border:1px solid #e3e3dd;border-radius:11px;color:#222;padding:13px 14px}
+.field::placeholder{color:#a0a19b}
+textarea.field{background:#fbfbf9;border-color:#e3e3dd;border-radius:13px;color:#242520}
+.field:focus{border-color:#999b92;box-shadow:0 0 0 4px rgba(30,31,28,.06)}
+.segmented{background:#f0f0ec;border-radius:11px}
+.segmented button{border-radius:8px;color:#72736d}
+.segmented button.active{background:#fff;color:#20211f;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.timeline{border-left-color:#d8d8d1}
+.timeline .entry:before{border-color:var(--paper);background:#30312e}
+.notice{background:#f5f5f1;border:1px solid #e8e8e1;color:#60615b;border-radius:11px}
+.stats{gap:12px}.stat{background:#f5f5f1;border-radius:12px}.stat b{color:#20211f}
+.modalback{background:rgba(20,20,18,.34);backdrop-filter:blur(8px)}
+.modal{background:#fff;border:1px solid #e9e9e5;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.14)}
+.toast{background:#20211f;border-radius:999px;box-shadow:0 8px 28px rgba(0,0,0,.15)}
+.setting-link{background:#fff;border-color:#e9e9e5;border-radius:14px}
+.setting-link>span:first-child{background:#f0f0ec;color:#252622;border-radius:11px}
+.setting-link:hover{background:#f8f8f5;transform:none}
+.thread-reply{background:#f4f4f0}
+.onboard{max-width:500px}
+.onboard-progress span{background:#e7e7e1;border-radius:99px}
+.onboard-progress span.done{background:#242520}
+.onboard-kicker{color:#696a64;letter-spacing:.12em}
+.onboard h1{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;font-weight:650;letter-spacing:-1.8px}
+.onboard .card{border:1px solid #e9e9e5;border-radius:18px;background:#fff}
+.onboard-avatar{background:#f0f0ec;border:1px solid #e4e4df;color:#242520}
+.onboard-note{background:#f6f6f2;border:1px solid #e8e8e2;border-radius:12px;color:#60615a}
+.invite-choice{background:#fff;border-color:#e8e8e2;border-radius:13px}
+.welcome{background:#f7f7f5!important;color:#191919!important}
+.welcome-art{height:155px;margin-bottom:5px}
+.welcome-symbol{color:#20211f!important;text-shadow:none!important;font-size:78px}
+.welcome-orbit{border-color:rgba(0,0,0,.08)!important;background:rgba(0,0,0,.012)!important}
+.welcome .eyebrow{color:#73746e!important}
+.welcome h1{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;font-size:clamp(44px,10vw,62px);font-weight:650;letter-spacing:-2.6px;color:#191919;margin:18px 0 12px}
+.welcome h1 span{color:#73746e}
+.welcome-tagline{color:#454640}
+.welcome-description{color:#777872;line-height:1.8}
+.welcome .primary{background:#20211f;border-color:#20211f;color:#fff;border-radius:999px;min-height:50px}
+.welcome-signin{color:#4b4c46}
+.welcome-foot{color:#92938c}
+#write .card,#reflect .card,#profile .card,#history .card,#prompts .card{border-radius:18px;border:1px solid #e9e9e5;background:#fff}
+#reflect .card{background:#20211f;color:#fff;border-color:#20211f}
+#reflect .entry{background:#fafaf8;color:#20211f}
+#reflect .field-label{color:#e7e7e1}
+#reflect textarea.field,#reflect input.field{background:#fff;color:#222}
+#reflect .hint{color:#bfc0b9}
+#prompts .prompt{background:#f4f4f0;border-color:#e8e8e2}
+#home .layout .card:first-child .entry{background:#fafaf8}
+#home .layout .card:first-child .entry-foot{border-color:#e9e9e5}
+#emailVerificationGate .verify-card{background:#fff!important;color:#20211f!important;border:1px solid #e9e9e5!important;border-radius:24px!important;box-shadow:0 20px 70px rgba(0,0,0,.12)!important}
+#emailVerificationGate .verify-mark{background:#f0f0ec!important;color:#20211f!important;border-radius:14px!important}
+.reader-toolbar{border-color:#e8e8e2}
+.reader-heading{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif!important;font-weight:650!important;letter-spacing:-1.8px!important}
+.reader-search{background:#fff!important;border-color:#e5e5df!important;border-radius:999px!important}
+.reader-entry{border-color:#e9e9e5!important}
+.reader-body{color:#30312d!important;line-height:1.9!important}
+@media(min-width:721px){.shell{padding-top:46px}.tabs{position:static}}
+@media(max-width:720px){
+ .shell{padding:27px 16px calc(104px + env(safe-area-inset-bottom))}
+ .top{padding:10px 16px}
+ .hero h1,#home .hero h1{font-size:clamp(42px,12vw,56px);letter-spacing:-2.5px;line-height:1.02}
+ .layout{grid-template-columns:1fr;gap:13px}
+ .card{padding:19px;border-radius:16px}
+ .tabs{left:12px;right:12px;bottom:calc(9px + env(safe-area-inset-bottom));border-radius:999px;padding:5px}
+ .tab{padding:9px 3px;font-size:10px}
+ .tab span{font-size:17px}
+ .page-title{font-size:34px;letter-spacing:-1.2px}
+ .welcome{margin:-23px -16px -100px;min-height:calc(100dvh - 52px);padding:28px 25px calc(35px + env(safe-area-inset-bottom))}
+ .welcome-art{height:140px}
+ .entry{padding:15px}
+ .row>*{flex-basis:100%}
+}
+@media(prefers-reduced-motion:reduce){.view.active:not(.welcome),.entry:hover,.setting-link:hover{animation:none;transform:none;box-shadow:none}}
+
 </style></head><body>
 <header class="top"><div class="brand"><div class="mark">♡</div><div>OurJournal<small>Write. Understand. Grow.</small></div></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><a class="download-link" href="https://github.com/Magenyi-ux/app1/actions/runs/44355463315" target="_blank" rel="noopener noreferrer" aria-label="Download OurJournal for Android">Download Android ↓</a><button id="inviteBtn">Invite your person ↗</button><button id="profileBtn" aria-label="Profile">Y</button></div></header>
 <main class="shell">

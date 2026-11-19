@@ -57,6 +57,10 @@ revoke all on function public.accept_journal_invitation(text) from public,anon;
 grant execute on function public.create_journal_invitation(uuid) to authenticated;
 grant execute on function public.accept_journal_invitation(text) to authenticated;
 
+-- All invitation mutations must pass through the validated security-definer RPCs.
+revoke insert, update, delete on public.journal_invitations from authenticated, anon;
+grant select on public.journal_invitations to authenticated;
+
 alter table public.profiles enable row level security;
 alter table public.journals enable row level security;
 alter table public.journal_members enable row level security;

@@ -200,7 +200,7 @@ body:has(.auth-screen.active) .onboard{min-height:100dvh;padding-top:8px}
 <nav class="tabs" aria-label="Main navigation"><button class="tab active" data-view="home"><span>⌂</span>Home</button><button class="tab" data-view="prompts"><span>✧</span>Prompts</button><button class="tab" data-view="history"><span>◷</span>History</button><button class="tab" data-view="profile"><span>◉</span>Profile</button></nav>
 </main><div class="modalback" id="modal"><div class="modal"><button id="closeModal" class="btn secondary" style="float:right;padding:5px 10px">×</button><div class="eyebrow">Two people, one journal</div><h2 style="margin-top:10px">Invite your person</h2><p style="font-size:13px;line-height:1.6;color:var(--muted)">Private invitations are planned for the secure shared-account release. This preview does not create a live invitation.</p><label class="field-label">Proposed website</label><input class="field" value="ourjournal.spherelearn.name.ng" readonly><button id="copyAddress" class="btn primary" style="width:100%;margin-top:13px">Copy website address</button></div></div><div id="toast" class="toast" role="status" aria-live="polite"></div>
 <script type="module">
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.57.0";
+import { createClient } from "@supabase/supabase-js";
 const supabase = createClient(
   "https://qkgzfizenhysoyixmzng.supabase.co",
   "sb_publishable_DNTt9U4TjT0xS8NL4FEQZQ_TEVHFVun",

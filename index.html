@@ -76,6 +76,36 @@ body.welcome-mode .welcome{margin-top:0}
   .entry:hover,.prompt:hover,.setting-link:hover,.tab:active,.setting-link:active,.btn:active{transform:none!important;box-shadow:none!important}
 }
 
+/* Dedicated account screens */
+:root{--auth-purple:#7B3FE4;--auth-purple-dark:#6530c2;--auth-bg:#F8F9FA;--auth-field:#EFEFEF;--auth-muted:#8E8E93}
+.auth-screen{max-width:430px!important;min-height:calc(100dvh - 115px)!important;margin:0 auto!important;padding:18px 4px 26px!important;display:none;flex-direction:column}
+.auth-screen.active{display:flex!important}
+.auth-back{align-self:flex-start;border:0;background:transparent;color:#1A1A1A;font-size:27px;line-height:1;padding:8px 10px;margin:0 0 16px -8px}
+.auth-logo{width:42px;height:42px;display:grid;place-items:center;align-self:center;border-radius:14px;background:#eee5fb;color:var(--auth-purple);font:32px/1 Georgia,serif;margin:0 auto 24px}
+.auth-heading h1{font:700 28px/1.2 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:-.7px;color:#1A1A1A;margin:0 0 9px}
+.auth-heading .onboard-copy{font-size:14px;color:var(--auth-muted);line-height:1.6;margin:0 0 28px}
+.auth-invite{background:#E8E0F5;border-radius:20px;padding:15px 16px;display:flex;align-items:center;gap:10px;color:#6530a7;font-size:13px;line-height:1.5;margin:0 0 24px}
+.auth-invite[hidden]{display:none}.auth-invite>span:first-child{font-size:21px}
+.auth-form{display:grid;gap:14px}
+.auth-input{width:100%;height:56px;border:1px solid transparent;border-radius:16px;background:var(--auth-field);padding:0 17px;color:#1A1A1A;font-size:15px;outline:none}
+.auth-input::placeholder{color:#8E8E93}.auth-input:focus{border-color:#b69ae9;box-shadow:0 0 0 3px rgba(123,63,228,.1)}
+.auth-password-wrap{position:relative}.auth-password-wrap .auth-input{padding-right:54px}
+.auth-eye{position:absolute;right:9px;top:8px;width:40px;height:40px;border:0;background:transparent;color:#8E8E93;font-size:18px;border-radius:10px}
+.auth-forgot{justify-self:end;border:0;background:transparent;color:var(--auth-purple);font-size:12px;padding:0 2px;margin-top:-3px}
+.auth-submit{width:100%;height:56px;border:0;border-radius:28px;background:var(--auth-purple);color:white;font-size:15px;font-weight:650;margin-top:5px}
+.auth-submit:hover{background:var(--auth-purple-dark)}.auth-submit:disabled{opacity:.65;cursor:wait}
+.auth-message{font-size:12px;line-height:1.55;color:#6c5b7c;margin:0}
+.auth-divider{display:flex;align-items:center;gap:12px;color:#8E8E93;font-size:12px;margin:23px 0 9px}.auth-divider:before,.auth-divider:after{content:"";height:1px;background:#e2e2e6;flex:1}
+.auth-social-note{text-align:center;color:#8E8E93;font-size:11px;line-height:1.5;margin:0}
+.auth-footer{text-align:center;color:#777780;font-size:13px;margin:28px 0 0}.auth-footer button{border:0;background:transparent;color:var(--auth-purple);font-weight:700;padding:4px}
+.auth-privacy{font-size:10px;line-height:1.6;text-align:center;color:#9a9aa1;margin:auto 10px 0;padding-top:26px}
+.auth-signout{align-self:center;border:0;background:transparent;color:var(--auth-purple);padding:10px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+body:has(.auth-screen.active) .onboard-progress,body:has(.auth-screen.active) #onboardProfile{display:none!important}
+body:has(.auth-screen.active) .onboard{max-width:430px;padding-top:12px}
+body:has(.auth-screen.active) .shell{background:var(--auth-bg)}
+@media(max-width:720px){.auth-screen{min-height:calc(100dvh - 40px)!important;padding:12px 4px calc(22px + env(safe-area-inset-bottom))!important}.auth-back{margin-bottom:12px}.auth-logo{margin-bottom:25px}.auth-privacy{padding-top:22px}}
+
 /* Account and connection onboarding — transparent local-preview mode */
 .onboard{min-height:calc(100dvh - 140px);max-width:520px;margin:0 auto;padding:clamp(24px,6vh,54px) 0}
 .onboard-progress{display:flex;gap:6px;margin:0 0 28px}
@@ -116,25 +146,38 @@ body.welcome-mode .welcome{margin-top:0}
       </div>
       <div class="onboard-actions"><button class="btn primary" id="onboardNext">Continue</button><button class="btn secondary" id="onboardSkip">Skip setup</button></div>
     </div>
-    <div class="onboard-step" id="onboardConnect">
-      <div class="onboard-kicker">Step 2 of 2 · Your person</div>
-      <h1>Two sides. One journal.</h1>
-      <p class="onboard-copy">Either of you can start a journal and invite the other. An invitation should only connect accounts after both people accept.</p>
-      <div class="invite-choice">
-        <b>Sign in or create your account</b>
-        <p>Use an email and password to secure your account. This step connects authentication only; journal syncing and invitations are separate features still being built.</p>
-        <label class="field-label" for="authEmail">Email address</label>
-        <input class="field" id="authEmail" type="email" autocomplete="email" placeholder="you@example.com" required>
-        <label class="field-label" for="authPassword">Password</label>
-        <input class="field" id="authPassword" type="password" autocomplete="current-password" minlength="8" placeholder="At least 8 characters" required>
-        <p class="hint" id="authMessage" role="status" aria-live="polite">Your existing local entries will remain on this device.</p>
-        <button class="btn primary" id="authSubmit" style="width:100%;margin-top:10px">Create account</button>
-        <button class="tiny" id="authModeToggle" type="button">Already have an account? Sign in</button>
-        <button class="tiny" id="authSignOut" type="button" style="display:none">Sign out</button>
+    <div class="onboard-step auth-screen" id="onboardConnect">
+      <button class="auth-back" id="authBack" type="button" aria-label="Back to welcome">←</button>
+      <div class="auth-logo" aria-hidden="true">∞</div>
+      <div class="auth-invite" id="authInviteBanner" hidden><span aria-hidden="true">♡</span><span id="authInviteText"></span></div>
+      <div class="auth-heading">
+        <h1 id="authHeading">Create an account</h1>
+        <p class="onboard-copy" id="authSubheading">Start writing and growing together.</p>
       </div>
-      <div class="onboard-note"><b>Privacy first.</b> Signing in does not share your journal with another person. A journal stays private until both people accept a valid invitation.</div>
-      <div class="onboard-actions"><button class="btn secondary" id="onboardBack">Back</button></div>
-    </div>
+      <form class="auth-form" id="authForm">
+        <div id="authNameWrap">
+          <label class="sr-only" for="authName">Your name</label>
+          <input class="auth-input" id="authName" maxlength="40" autocomplete="name" placeholder="Your Name">
+        </div>
+        <div>
+          <label class="sr-only" for="authEmail">Email address</label>
+          <input class="auth-input" id="authEmail" type="email" autocomplete="email" placeholder="Email address" required>
+        </div>
+        <div class="auth-password-wrap">
+          <label class="sr-only" for="authPassword">Password</label>
+          <input class="auth-input" id="authPassword" type="password" autocomplete="new-password" minlength="8" placeholder="Password" required>
+          <button class="auth-eye" id="authPasswordToggle" type="button" aria-label="Show password" aria-pressed="false">◉</button>
+        </div>
+        <button class="auth-forgot" id="authForgot" type="button" hidden>Forgot password?</button>
+        <p class="auth-message" id="authMessage" role="status" aria-live="polite">Your entries already saved on this device will be preserved.</p>
+        <button class="auth-submit" id="authSubmit" type="submit">Create Account</button>
+      </form>
+      <div class="auth-divider"><span>or</span></div>
+      <p class="auth-social-note">Email sign-in is available now. Apple and Google sign-in are not configured.</p>
+      <p class="auth-footer" id="authFooter">Already have an account? <button id="authModeToggle" type="button">Log In</button></p>
+      <button class="auth-signout" id="authSignOut" type="button" style="display:none">Sign out</button>
+      <p class="auth-privacy">Your journal stays private. Signing in does not connect or share it with another person.</p>
+    </div>    </div>
   </div>
 </section>
 <section class="view" id="home"><div class="hero"><div class="eyebrow">A little space for the two of you</div><h1>Better together,<br>one page at a time.</h1><p>A shared journal for thoughts that deserve more than a quick text. Write when you're ready. Read with care.</p><button class="btn primary" id="start">Write an entry ↗</button></div>
@@ -168,11 +211,26 @@ function setAuthMode(mode) {
   authMode = mode;
   const submit = document.getElementById("authSubmit");
   const toggle = document.getElementById("authModeToggle");
+  const footer = document.getElementById("authFooter");
+  const nameWrap = document.getElementById("authNameWrap");
+  const heading = document.getElementById("authHeading");
+  const subheading = document.getElementById("authSubheading");
   const password = document.getElementById("authPassword");
-  if (submit) submit.textContent = mode === "signup" ? "Create account" : "Sign in";
-  if (toggle) toggle.textContent = mode === "signup" ? "Already have an account? Sign in" : "New here? Create an account";
-  if (password) password.autocomplete = mode === "signup" ? "new-password" : "current-password";
-  setAuthMessage(mode === "signup" ? "Create an account with your email and a password." : "Sign in to your existing account.");
+  const forgot = document.getElementById("authForgot");
+  const inviteCode = new URLSearchParams(location.search).get("invite");
+  const inviterName = new URLSearchParams(location.search).get("inviter") || "Your person";
+  const inviteBanner = document.getElementById("authInviteBanner");
+  const inviteText = document.getElementById("authInviteText");
+  if (nameWrap) nameWrap.hidden = mode !== "signup";
+  if (submit) submit.textContent = inviteCode && mode === "signup" ? "Join " + inviterName + "'s Journal" : mode === "signup" ? "Create Account" : "Log In";
+  if (heading) heading.textContent = inviteCode && mode === "signup" ? "Join their journal" : mode === "signup" ? "Create an account" : "Welcome back";
+  if (subheading) subheading.textContent = inviteCode && mode === "signup" ? "Create your account to start writing together." : mode === "signup" ? "Start writing and growing together. 💜" : "Log in to continue your journey together.";
+  if (forgot) forgot.hidden = mode !== "signin";
+  if (password) { password.autocomplete = mode === "signup" ? "new-password" : "current-password"; password.placeholder = "Password"; }
+  if (footer) footer.innerHTML = mode === "signup" ? 'Already have an account? <button id="authModeToggle" type="button">Log In</button>' : 'Don\'t have an account? <button id="authModeToggle" type="button">Sign Up</button>';
+  if (inviteBanner) inviteBanner.hidden = !(inviteCode && mode === "signup");
+  if (inviteText) inviteText.textContent = inviterName + " has invited you to share a journal. This link still needs server-side validation.";
+  setAuthMessage(mode === "signup" ? "Your entries already saved on this device will be preserved." : "Log in to continue to your account.");
 }
 async function refreshAuthUI(user) {
   const status = document.getElementById("authMessage");
@@ -185,7 +243,8 @@ async function refreshAuthUI(user) {
     if (toggle) toggle.style.display = "none";
     if (signOut) signOut.style.display = "inline-block";
     const nameInput = document.getElementById("onboardName");
-    const displayName = (nameInput && nameInput.value.trim()) || state.yourName || user.email.split("@")[0];
+    const authNameInput = document.getElementById("authName");
+    const displayName = (authNameInput && authNameInput.value.trim()) || state.yourName || user.email.split("@")[0];
     try {
       await supabase.from("profiles").update({ display_name: displayName }).eq("id", user.id);
     } catch (_) {}
@@ -199,7 +258,7 @@ async function submitAuth() {
   if (authBusy) return;
   const email = document.getElementById("authEmail").value.trim();
   const password = document.getElementById("authPassword").value;
-  if (!email || !password) { setAuthMessage("Enter your email and password.", true); return; }
+  if (!email || !password || (authMode === "signup" && !document.getElementById("authName").value.trim())) { setAuthMessage(authMode === "signup" ? "Enter your name, email and password." : "Enter your email and password.", true); return; }
   if (password.length < 8) { setAuthMessage("Use a password with at least 8 characters.", true); return; }
   authBusy = true;
   const button = document.getElementById("authSubmit");
@@ -207,16 +266,16 @@ async function submitAuth() {
   setAuthMessage("Connecting securely to Supabase…");
   try {
     const result = authMode === "signup"
-      ? await supabase.auth.signUp({ email, password, options: { data: { display_name: (document.getElementById("onboardName").value.trim() || "You") } } })
+      ? await supabase.auth.signUp({ email, password, options: { data: { display_name: (document.getElementById("authName").value.trim() || "You"), emailRedirectTo: location.origin + location.pathname } } })
       : await supabase.auth.signInWithPassword({ email, password });
     if (result.error) throw result.error;
     if (authMode === "signup" && result.data.user && !result.data.session) {
-      setAuthMessage("Account created. Check your email for the confirmation link, then return here to sign in.");
+      setAuthMessage("Account created. Check your email for the confirmation link, then return here to log in.");
       setAuthMode("signin");
       document.getElementById("authEmail").value = email;
     } else if (result.data.user) {
       await refreshAuthUI(result.data.user);
-      state.yourName = document.getElementById("onboardName").value.trim() || state.yourName || result.data.user.email.split("@")[0];
+      state.yourName = document.getElementById("authName").value.trim() || state.yourName || result.data.user.email.split("@")[0];
       state.writer = state.yourName;
       save();
       render();
@@ -228,7 +287,7 @@ async function submitAuth() {
     setAuthMessage(error && error.message ? error.message : "Authentication failed. Please try again.", true);
   } finally {
     authBusy = false;
-    if (button) { button.disabled = false; button.textContent = authMode === "signup" ? "Create account" : "Sign in"; }
+    if (button) { button.disabled = false; button.textContent = authMode === "signup" ? "Create Account" : "Log In"; }
   }
 }
 
@@ -237,8 +296,12 @@ function renderReflection(){var e=state.entries.find(function(x){return x.id===s
 function loadSettings(){var x=state.settings||{};["dailyReminder","replyNotifications","promptNotifications","hidePreviews","confirmClear"].forEach(function(id){if($(id))$(id).checked=!!x[id]});}
 $("savePrivacy").onclick=function(){state.settings=state.settings||{};state.settings.hidePreviews=$("hidePreviews").checked;state.settings.confirmClear=$("confirmClear").checked;save();toast("Privacy preferences saved on this device.")};
 $("saveNotifications").onclick=function(){state.settings=state.settings||{};state.settings.dailyReminder=$("dailyReminder").checked;state.settings.replyNotifications=$("replyNotifications").checked;state.settings.promptNotifications=$("promptNotifications").checked;save();toast("Notification preferences saved on this device.")};
-$("sendReply").onclick=function(){var e=state.entries.find(function(x){return x.id===state.threading});var body=$("replyBody").value.trim();if(!e){toast("Choose an entry first.");return}if(!body){toast("Write a response first.");$("replyBody").focus();return}e.replies=e.replies||[];e.replies.push({writer:state.writer,body:body,createdAt:new Date().toISOString()});$("replyBody").value="";save();renderThread();toast("Response saved on this device.")};$("inviteBtn").onclick=function(){$("modal").classList.add("open")};$("closeModal").onclick=function(){$("modal").classList.remove("open")};$("modal").onclick=function(e){if(e.target.id==="modal")$("modal").classList.remove("open")};$("copyAddress").onclick=function(){if(navigator.clipboard){navigator.clipboard.writeText("https://ourjournal.spherelearn.name.ng").then(function(){toast("Website address copied.")}).catch(function(){toast("ourjournal.spherelearn.name.ng")})}else toast("ourjournal.spherelearn.name.ng")};$("export").onclick=function(){var blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});var url=URL.createObjectURL(blob);var a=document.createElement("a");a.href=url;a.download="ourjournal-export.json";a.click();URL.revokeObjectURL(url)};$("clear").onclick=function(){if((!state.settings||state.settings.confirmClear!==false)?confirm("Clear all Thought & Feelings entries and drafts in this browser? This cannot be undone."):true){localStorage.removeItem(KEY);state={entries:[],draft:"",writer:"You",yourName:"You",partnerName:"Your person",filter:"all",reflecting:null};render();go("home");toast("Local journal cleared.")}};render();loadSettings();if(localStorage.getItem("ourjournal-started-v1")==="1"||state.entries.length)go("home");else go("welcome");$("getStarted").onclick=function(){go("onboarding");$("onboardProfile").classList.add("active");$("onboardConnect").classList.remove("active");$("progressOne").classList.add("done");$("progressTwo").classList.remove("done");$("onboardName").value=state.yourName||"";setAuthMode("signup");};$("signInBtn").onclick=function(){go("onboarding");$("onboardProfile").classList.remove("active");$("onboardConnect").classList.add("active");$("progressOne").classList.add("done");$("progressTwo").classList.add("done");setAuthMode("signin");};$("onboardNext").onclick=function(){var n=$("onboardName").value.trim();state.yourName=n||"You";state.writer=state.yourName;save();render();$("onboardProfile").classList.remove("active");$("onboardConnect").classList.add("active");$("progressOne").classList.add("done");$("progressTwo").classList.add("done");window.scrollTo({top:0,behavior:"smooth"})};$("onboardSkip").onclick=function(){setAuthMessage("Create an account or sign in to continue. Your local entries are preserved.");$("onboardProfile").classList.remove("active");$("onboardConnect").classList.add("active");$("progressOne").classList.add("done");$("progressTwo").classList.add("done");};$("onboardBack").onclick=function(){$("onboardConnect").classList.remove("active");$("onboardProfile").classList.add("active");$("progressTwo").classList.remove("done")};
-$("authSubmit").onclick=submitAuth;$("authModeToggle").onclick=function(){setAuthMode(authMode==="signup"?"signin":"signup")};$("authSignOut").onclick=async function(){const {error}=await supabase.auth.signOut();if(error){setAuthMessage(error.message,true);return}setAuthMode("signin");setAuthMessage("You are signed out. Your local journal entries have not been deleted.");toast("Signed out.");};
+$("sendReply").onclick=function(){var e=state.entries.find(function(x){return x.id===state.threading});var body=$("replyBody").value.trim();if(!e){toast("Choose an entry first.");return}if(!body){toast("Write a response first.");$("replyBody").focus();return}e.replies=e.replies||[];e.replies.push({writer:state.writer,body:body,createdAt:new Date().toISOString()});$("replyBody").value="";save();renderThread();toast("Response saved on this device.")};$("inviteBtn").onclick=function(){$("modal").classList.add("open")};$("closeModal").onclick=function(){$("modal").classList.remove("open")};$("modal").onclick=function(e){if(e.target.id==="modal")$("modal").classList.remove("open")};$("copyAddress").onclick=function(){if(navigator.clipboard){navigator.clipboard.writeText("https://ourjournal.spherelearn.name.ng").then(function(){toast("Website address copied.")}).catch(function(){toast("ourjournal.spherelearn.name.ng")})}else toast("ourjournal.spherelearn.name.ng")};$("export").onclick=function(){var blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});var url=URL.createObjectURL(blob);var a=document.createElement("a");a.href=url;a.download="ourjournal-export.json";a.click();URL.revokeObjectURL(url)};$("clear").onclick=function(){if((!state.settings||state.settings.confirmClear!==false)?confirm("Clear all Thought & Feelings entries and drafts in this browser? This cannot be undone."):true){localStorage.removeItem(KEY);state={entries:[],draft:"",writer:"You",yourName:"You",partnerName:"Your person",filter:"all",reflecting:null};render();go("home");toast("Local journal cleared.")}};render();loadSettings();if(localStorage.getItem("ourjournal-started-v1")==="1"||state.entries.length)go("home");else go("welcome");$("getStarted").onclick=function(){go("onboarding");$("onboardProfile").classList.add("active");$("onboardConnect").classList.remove("active");$("progressOne").classList.add("done");$("progressTwo").classList.remove("done");$("onboardName").value=state.yourName||"";$("authName").value=state.yourName||"";setAuthMode("signup");$("onboardProfile").classList.remove("active");$("onboardConnect").classList.add("active");};$("signInBtn").onclick=function(){go("onboarding");$("onboardProfile").classList.remove("active");$("onboardConnect").classList.add("active");$("progressOne").classList.add("done");$("progressTwo").classList.add("done");setAuthMode("signin");go("onboarding");$("onboardProfile").classList.remove("active");$("onboardConnect").classList.add("active");};$("onboardNext").onclick=function(){var n=$("onboardName").value.trim();state.yourName=n||"You";state.writer=state.yourName;save();render();$("onboardProfile").classList.remove("active");$("onboardConnect").classList.add("active");$("progressOne").classList.add("done");$("progressTwo").classList.add("done");window.scrollTo({top:0,behavior:"smooth"})};$("onboardSkip").onclick=function(){setAuthMessage("Create an account or sign in to continue. Your local entries are preserved.");$("onboardProfile").classList.remove("active");$("onboardConnect").classList.add("active");$("progressOne").classList.add("done");$("progressTwo").classList.add("done");};$("onboardBack").onclick=function(){$("onboardConnect").classList.remove("active");$("onboardProfile").classList.add("active");$("progressTwo").classList.remove("done")};
+$("authForm").addEventListener("submit",function(ev){ev.preventDefault();submitAuth()});
+document.addEventListener("click",function(ev){if(ev.target&&ev.target.id==="authModeToggle")setAuthMode(authMode==="signup"?"signin":"signup")});
+$("authBack").onclick=function(){go("welcome");$("onboardConnect").classList.remove("active");$("onboardProfile").classList.add("active")};
+$("authPasswordToggle").onclick=function(){var p=$("authPassword");var show=p.type==="password";p.type=show?"text":"password";this.setAttribute("aria-label",show?"Hide password":"Show password");this.setAttribute("aria-pressed",String(show));this.textContent=show?"◎":"◉"};
+$("authForgot").onclick=async function(){var email=$("authEmail").value.trim();if(!email){setAuthMessage("Enter your email address first, then select Forgot password?",true);$("authEmail").focus();return}const {error}=await supabase.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});setAuthMessage(error?error.message:"If an account exists for that email, a password reset link has been sent.");};$("authSignOut").onclick=async function(){const {error}=await supabase.auth.signOut();if(error){setAuthMessage(error.message,true);return}setAuthMode("signin");setAuthMessage("You are signed out. Your local journal entries have not been deleted.");toast("Signed out.");};
 supabase.auth.getSession().then(({data,error})=>{if(error){setAuthMessage(error.message,true);return}refreshAuthUI(data.session&&data.session.user)}).catch(()=>setAuthMessage("Could not check your Supabase session. Check your connection and reload.",true));
 supabase.auth.onAuthStateChange((_event,session)=>{refreshAuthUI(session&&session.user)});$("onboardPhoto").onchange=function(ev){var f=ev.target.files&&ev.target.files[0];if(!f)return;if(!f.type.startsWith("image/")){toast("Choose an image file.");return}if(f.size>5*1024*1024){toast("Choose an image under 5 MB.");ev.target.value="";return}var reader=new FileReader();reader.onload=function(){var img=new Image();img.onload=function(){var canvas=document.createElement("canvas");var scale=Math.min(1,256/Math.max(img.width,img.height));canvas.width=Math.max(1,Math.round(img.width*scale));canvas.height=Math.max(1,Math.round(img.height*scale));canvas.getContext("2d").drawImage(img,0,0,canvas.width,canvas.height);var data=canvas.toDataURL("image/jpeg",.78);try{state.avatar=data;save();$("avatarPreview").innerHTML='<img alt="Profile picture preview" src="'+data+'">';$("profileBtn").innerHTML='<img alt="" src="'+data+'" style="width:28px;height:28px;border-radius:50%;object-fit:cover;vertical-align:middle">'}catch(e){toast("The picture could not be saved in this browser.")}};img.src=reader.result};reader.readAsDataURL(f)};if("serviceWorker"in navigator)window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){})});
 </script></body></html>

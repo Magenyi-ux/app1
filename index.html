@@ -212,7 +212,7 @@ html,body{background:#f4edf8;color:#211631;font-family:Inter,-apple-system,Blink
 @media(min-width:721px){.tabs{background:#24172f}.tab{color:#c6b7d1}.tab.active{color:#d7a5ff}}
 @media(max-width:720px){.shell{padding-bottom:calc(100px + env(safe-area-inset-bottom))}.welcome{margin:0 -14px -100px;min-height:calc(100dvh - 52px);padding:24px 25px calc(35px + env(safe-area-inset-bottom))}.welcome-art{height:150px}.card{padding:18px;border-radius:19px}#home .layout{grid-template-columns:1fr}.tabs{background:#24172f}.tab{color:#c6b7d1}.tab.active{background:#4c2c68;color:#d7a5ff}}
 
-body.auth-gate header.top,body.auth-gate .tabs,body.auth-gate nav.bottom-nav,body.auth-gate #inviteBtn,body.auth-gate #profileBtn{display:none!important}body.auth-gate .view:not(.active){display:none!important}body.auth-gate .shell{padding-top:18px}#auth .onboard,#password-reset .onboard{max-width:480px;margin:0 auto}#auth .card,#password-reset .card{display:flex;flex-direction:column;gap:8px}#authBack{display:none!important}#auth .field,#password-reset .field{width:100%;box-sizing:border-box}</style></head><body>
+body.auth-gate header.top,body.auth-gate .tabs,body.auth-gate nav.bottom-nav,body.auth-gate #inviteBtn,body.auth-gate #profileBtn{display:none!important}body.auth-gate .view:not(.active){display:none!important}body.auth-gate .shell{padding-top:18px}#auth .onboard,#password-reset .onboard{max-width:480px;margin:0 auto}#auth .card,#password-reset .card{display:flex;flex-direction:column;gap:8px}#authBack{display:none!important}#auth .field,#password-reset .field{width:100%;box-sizing:border-box}#emailVerificationGate[hidden]{display:none!important}#emailVerificationGate{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;overflow:auto;overscroll-behavior:contain;background:rgba(17,10,29,.97);backdrop-filter:blur(18px);padding:22px;box-sizing:border-box}#emailVerificationGate .verify-card{width:min(100%,460px);max-height:calc(100dvh - 44px);overflow:auto;box-sizing:border-box;border:1px solid #5b426f;border-radius:28px;background:#fbf6ff;color:#211631;padding:clamp(24px,6vw,38px);text-align:center;box-shadow:0 24px 90px rgba(0,0,0,.38)}#emailVerificationGate .verify-mark{display:grid;place-items:center;margin:0 auto 18px;width:68px;height:68px;border-radius:22px;background:#eee0fb;color:#7540b6;font-size:30px}#emailVerificationGate h1{font-size:clamp(26px,7vw,34px);line-height:1.15;margin:12px 0}#emailVerificationGate #verifyCopy{line-height:1.65;color:#574966}#emailVerificationGate .verify-address{font-weight:700;overflow-wrap:anywhere;color:#7540b6}#emailVerificationGate .btn{width:100%;margin-top:10px}#emailVerificationGate .verify-small{font-size:12px;color:#766b84;margin:18px 0 0}body.email-verification-required{overflow:hidden!important}</style></head><body>
 <header class="top"><div class="brand"><div class="mark">♡</div><div>OurJournal<small>Write. Understand. Grow.</small></div></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><a class="download-link" href="https://github.com/Magenyi-ux/app1/actions/runs/44355463315" target="_blank" rel="noopener noreferrer" aria-label="Download OurJournal for Android">Download Android ↓</a><button id="inviteBtn">Invite your person ↗</button><button id="profileBtn" aria-label="Profile">Y</button></div></header>
 <main class="shell">
 <section class="view welcome active" id="welcome"><div class="welcome-art" aria-hidden="true"><div class="welcome-orbit orbit-one"></div><div class="welcome-orbit orbit-two"></div><div class="welcome-symbol">♡</div></div><div class="welcome-copy"><div class="eyebrow">A space for the two of you</div><h1>Our<span>Journal</span></h1><p class="welcome-tagline">Write. Understand. Grow.</p><p class="welcome-description">A shared journal for two, because understanding makes love stronger.</p><button class="btn primary" id="getStarted">Get Started</button><button class="welcome-signin" id="signInBtn">Sign In</button><p class="welcome-foot">A little more understanding, one page at a time.</p></div></section>
@@ -427,15 +427,14 @@ $("authForm").addEventListener("submit", async function(ev) {
         options: { data: { email, first_name: firstName, last_name: lastName, display_name: [firstName, lastName].filter(Boolean).join(" ") } }
       });
       if (error) throw error;
-      if (!data.session) {
-        ojMessage("authHint", "Account created. Check your email and confirm your address, then return here to sign in.");
-        toast("Check your email to confirm your account.");
-      } else {
-        await ojEnterApp(data.user);
-      }
+      ojVerificationEmail=data.user?.email||email;
+      if(!data.user?.email_confirmed_at){ojSetVerificationGate(true,ojVerificationEmail);ojMessage("verifyHint","A confirmation email has been sent. Open its link to unlock your account.");}
+      else if(data.session){await ojEnterApp(data.user);}
     } else {
       const { data, error } = await ojSupabase.auth.signInWithPassword({ email, password });
-      if (error) throw error;
+      if(error){if(/email not confirmed/i.test(error.message||"")){ojVerificationEmail=email;ojSetVerificationGate(true,email);ojMessage("verifyHint","Confirm your email before accessing OurJournal. Resend the confirmation email below.");return;}throw error;}
+      ojVerificationEmail=data.user?.email||email;
+      if(!data.user?.email_confirmed_at){ojSetVerificationGate(true,ojVerificationEmail);return;}
       await ojEnterApp(data.user);
     }
   } catch (err) {
@@ -521,8 +520,8 @@ $("logoutBtn").onclick = async function() {
 };
 (async function ojRestoreSession() {
   const { data: { session } } = await ojSupabase.auth.getSession();
-  if (session?.user) await ojEnterApp(session.user);
-  else { ojUser=null; ojProfileComplete=false; go("welcome"); }
+  if(session?.user){ojVerificationEmail=session.user.email||"";if(!session.user.email_confirmed_at)ojSetVerificationGate(true,ojVerificationEmail);else await ojEnterApp(session.user);}
+  else{ojUser=null;ojProfileComplete=false;go("welcome");}
 })();
 
 document.body.classList.add("auth-gate");
@@ -549,5 +548,44 @@ $("inviteBtn").onclick=async function(){if(!ojUser||!ojProfileComplete){go("auth
 async function ojAcceptPendingInvite(){if(!ojPendingInvite||!ojUser||!ojProfileComplete)return;try{const {error}=await ojSupabase.rpc("accept_journal_invitation",{p_token:ojPendingInvite});if(error)throw error;ojPendingInvite="";const u=new URL(location.href);u.searchParams.delete("invite");history.replaceState({},document.title,u.pathname+u.search);toast("You joined the shared journal.");}catch(err){console.error(err);toast(err.message||"This invitation is invalid or expired.");}}
 
 
+
+// Mandatory email-confirmation gate: no close, back, or dismiss action.
+let ojVerificationRequired=false;
+let ojVerificationEmail="";
+function ojSetVerificationGate(required,email){
+ ojVerificationRequired=required;
+ if(email)ojVerificationEmail=email;
+ $("emailVerificationGate").hidden=!required;
+ document.body.classList.toggle("email-verification-required",required);
+ if(required){$("verifyAddress").textContent=ojVerificationEmail;document.body.classList.add("auth-gate");}
+}
+async function ojCheckEmailVerification(){
+ const {data,error}=await ojSupabase.auth.getUser();if(error)throw error;
+ const user=data?.user;
+ if(user?.email_confirmed_at){ojSetVerificationGate(false);ojUser=user;await ojEnterApp(user);return true;}
+ if(user){ojSetVerificationGate(true,user.email);return false;}
+ return false;
+}
+$("verifyResend").addEventListener("click",async()=>{
+ if(!ojVerificationEmail){ojMessage("verifyHint","Return to sign in and enter your email address first.");return;}
+ const b=$("verifyResend");b.disabled=true;b.textContent="Sending…";
+ try{const {error}=await ojSupabase.auth.resend({type:"signup",email:ojVerificationEmail,options:{emailRedirectTo:location.origin+location.pathname}});if(error)throw error;ojMessage("verifyHint","If your account is awaiting confirmation, a new email has been sent. Check your inbox and spam folder.");}
+ catch(err){console.error(err);ojMessage("verifyHint",err.message||"Could not resend the email. Please try again shortly.");}
+ finally{b.disabled=false;b.textContent="Resend confirmation email";}
+});
+$("verifyCheck").addEventListener("click",async()=>{
+ const b=$("verifyCheck");b.disabled=true;b.textContent="Checking…";
+ try{if(!await ojCheckEmailVerification())ojMessage("verifyHint","Your email is not confirmed yet. Open the confirmation link in your email, then check again.");}
+ catch(err){console.error(err);ojMessage("verifyHint","Could not check verification status. Try again.");}
+ finally{b.disabled=false;b.textContent="I've confirmed my email";}
+});
+const ojGoBeforeVerification=go;
+go=function(view){if(ojVerificationRequired){ojSetVerificationGate(true);return;}ojGoBeforeVerification(view);};
+const ojEnterBeforeVerification=ojEnterApp;
+ojEnterApp=async function(user){
+ if(!user?.email_confirmed_at){ojSetVerificationGate(true,user?.email||ojVerificationEmail);return;}
+ ojSetVerificationGate(false);return ojEnterBeforeVerification(user);
+};
+
 if("serviceWorker"in navigator)window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){})});
-</script></body></html>
+</script><div id="emailVerificationGate" role="dialog" aria-modal="true" aria-labelledby="verifyTitle" hidden><div class="verify-card"><div class="verify-mark" aria-hidden="true">✉</div><div class="onboard-kicker">ONE LAST STEP</div><h1 id="verifyTitle">Verify your email</h1><p id="verifyCopy">We sent a confirmation link to your email address. Open that email and confirm your account to unlock OurJournal.</p><p class="verify-address" id="verifyAddress"></p><p class="hint" id="verifyHint" aria-live="polite">You cannot access the journal until your email is confirmed.</p><button class="btn primary" id="verifyResend" type="button">Resend confirmation email</button><button class="btn secondary" id="verifyCheck" type="button">I've confirmed my email</button><p class="verify-small">Check your spam or junk folder if the email is missing.</p></div></div></body></html>

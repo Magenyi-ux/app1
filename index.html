@@ -525,6 +525,7 @@ $("logoutBtn").onclick = async function() {
   else { ojUser=null; ojProfileComplete=false; go("welcome"); }
 })();
 
+document.body.classList.add("auth-gate");
 let ojProfileComplete=false;
 let ojPendingInvite=new URLSearchParams(location.search).get("invite")||"";
 function ojGate(view){

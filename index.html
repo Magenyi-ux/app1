@@ -224,7 +224,13 @@ html,body{background:#f4edf8;color:#211631;font-family:Inter,-apple-system,Blink
     <h1 id="authHeading">Create your account.</h1>
     <p class="onboard-copy" id="authIntro">Your profile and journal will be saved securely to your account.</p>
     <form class="card" id="authForm">
-      <label class="field-label" for="authEmail">Email address</label>
+      <div id="authNameFields">
+      <label class="field-label" for="authFirstName">First name</label>
+      <input class="field" id="authFirstName" maxlength="80" autocomplete="given-name" placeholder="Your first name">
+      <label class="field-label" for="authLastName">Last name</label>
+      <input class="field" id="authLastName" maxlength="80" autocomplete="family-name" placeholder="Your surname">
+    </div>
+    <label class="field-label" for="authEmail">Email address</label>
       <input class="field" id="authEmail" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com">
       <label class="field-label" for="authPassword">Password</label>
       <input class="field" id="authPassword" type="password" autocomplete="new-password" minlength="8" required placeholder="At least 8 characters">
@@ -306,6 +312,8 @@ let ojUser = null;
 function ojMessage(id, message) { const el = $(id); if (el) el.textContent = message; }
 function ojSetAuthMode(mode) {
   ojAuthMode = mode;
+  $("authNameFields").style.display = mode === "signup" ? "block" : "none";
+  $("authFirstName").required = mode === "signup"; $("authLastName").required = mode === "signup";
   $("authHeading").textContent = mode === "signup" ? "Create your account." : "Welcome back.";
   $("authIntro").textContent = mode === "signup" ? "Your profile and journal will be saved securely to your account." : "Sign in to continue setting up your profile and journal.";
   $("authSubmit").textContent = mode === "signup" ? "Create account" : "Sign in";
@@ -403,6 +411,8 @@ $("authForm").addEventListener("submit", async function(ev) {
   ev.preventDefault();
   const email = $("authEmail").value.trim().toLowerCase();
   const password = $("authPassword").value;
+  const firstName = $("authFirstName").value.trim();
+  const lastName = $("authLastName").value.trim();
   const submit = $("authSubmit");
   submit.disabled = true;
   submit.textContent = ojAuthMode === "signup" ? "Creating account…" : "Signing in…";
@@ -410,7 +420,7 @@ $("authForm").addEventListener("submit", async function(ev) {
     if (ojAuthMode === "signup") {
       const { data, error } = await ojSupabase.auth.signUp({
         email, password,
-        options: { data: { email } }
+        options: { data: { email, first_name: firstName, last_name: lastName, display_name: [firstName, lastName].filter(Boolean).join(" ") } }
       });
       if (error) throw error;
       if (!data.session) {

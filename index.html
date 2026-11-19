@@ -156,6 +156,62 @@ html,body{background:#120E20;color:#fff}
  .welcome{margin:-23px -14px -100px}
 }
 
+
+/* Locked OurJournal reference redesign — mobile-first, lavender and plum */
+:root{color-scheme:light;--paper:#f4edf8;--white:#fffaff;--ink:#211631;--muted:#766b84;--line:#e3d8ed;--green:#7540b6;--green-hover:#603091;--green-soft:#e8d9f3;--warm:#eee2f5;--deep:#171121;--shadow:0 8px 24px rgba(48,24,68,.08)}
+html,body{background:#f4edf8;color:#211631;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:-.18px}
+.top{background:rgba(244,237,248,.94);border-color:#e3d8ed;color:#211631}
+.brand .mark{border-radius:50%;background:linear-gradient(135deg,#a96be7,#5e2d91)}
+.shell{max-width:1120px}
+.hero h1,.page-title{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-weight:760;letter-spacing:-1.1px}
+.card{background:#fffaff;border:1px solid #e8ddef;border-radius:20px;box-shadow:0 6px 22px rgba(48,24,68,.055);padding:22px}
+.btn,.top button,.top .download-link{border-radius:999px}
+.primary{background:linear-gradient(110deg,#a56be5,#6735a3);border-color:transparent;color:#fff;box-shadow:0 5px 14px rgba(103,53,163,.14)}
+.primary:hover{background:linear-gradient(110deg,#9255d5,#572789)}
+.secondary{background:#f1e6f7;border-color:#e5d8ef;color:#3b2a4d}
+.entry{background:#f1e7f7;border:1px solid #e7d9f0;border-radius:17px;padding:17px}
+.entry-body{font:15px/1.65 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.dot{background:#e6d5f5;color:#6e3aab}
+.dot.partner{background:#d7c2eb;color:#4b286d}
+.prompt{background:#21152f;border:0;border-radius:18px;color:#fff;box-shadow:0 8px 22px rgba(31,17,46,.12)}
+.prompt p,.prompt .eyebrow{color:#f4eafa}
+.tabs{background:#24172f;border-color:#352344;border-radius:22px;padding:7px;box-shadow:0 8px 25px rgba(28,15,40,.15)}
+.tab{color:#c6b7d1;border-radius:16px}.tab.active{background:#4c2c68;color:#d7a5ff}
+.field,textarea.field{background:#f1e7f7;border:1px solid #e4d7ee;border-radius:16px;color:#211631}
+.field::placeholder{color:#9988a7}
+.segmented{background:#e9def1;border-radius:999px}.segmented button{border-radius:999px;color:#766b84}.segmented button.active{background:#fffaff;color:#68339c}
+.setting-link{background:#f5edf9;border-color:#e6d9ef;border-radius:16px;color:#211631}
+.setting-link>span:first-child{border-radius:12px;background:#e9d9f5;color:#7040a3}
+.notice{background:#f0e1fa;border-color:#e2cff2;color:#604578;border-radius:14px}
+#home .hero{padding:8px 0 22px}
+#home .hero h1{font-size:clamp(34px,5vw,46px);line-height:1.05}
+#home .layout{grid-template-columns:minmax(0,1.2fr) minmax(270px,.8fr);gap:15px}
+#home .layout .card:first-child .entry{background:#f0e5f7}
+#write .card,#reflect .card,#profile .card,#history .card,#prompts .card{background:#fffaff;border-radius:20px;border-color:#e8ddef}
+#write .primary{border-radius:999px;min-height:48px}
+#write textarea.field{min-height:170px}
+#prompts .prompt{background:#eee2f5;border:1px solid #e1d2ec;color:#211631;box-shadow:none}
+#prompts .prompt p,#prompts .prompt .eyebrow{color:#211631}
+#reflect .card{background:#191222;color:#fff;border-color:#2b1d37;border-radius:20px}
+#reflect .entry{background:#f0e5f7;color:#211631}
+#reflect textarea.field,#reflect input.field{background:#fffaff;color:#211631}
+#reflect .hint{color:#d0c0dc}
+#history .entry{background:#f0e5f7}
+.timeline{border-left:2px solid #c7a4e3}
+.timeline .entry:before{background:#7540b6}
+.welcome{background:radial-gradient(ellipse at 85% 10%,#563176 0%,transparent 34%),radial-gradient(ellipse at 15% 80%,#38204f 0%,transparent 40%),linear-gradient(145deg,#21152f,#110d1a 72%);border-radius:0;color:#fff}
+.welcome:before{content:"";position:absolute;inset:-12% -20% auto auto;width:290px;height:300px;border:1px solid rgba(202,151,255,.22);border-radius:48% 52% 58% 42%;background:linear-gradient(135deg,rgba(163,99,224,.18),transparent);transform:rotate(28deg);pointer-events:none}
+.welcome-art{height:160px}
+.welcome-symbol{font-family:Inter,sans-serif;font-size:86px;color:#d3a0ff;text-shadow:0 0 30px rgba(172,104,255,.3)}
+.welcome h1{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:clamp(38px,9vw,54px);font-weight:780;letter-spacing:-1.7px}
+.welcome h1 span{color:#b77aff}
+.welcome-description{margin:30px auto 26px}
+.welcome .primary{background:linear-gradient(110deg,#b77aff,#8b4bd1);color:#fff;border:0;min-height:50px}
+.welcome-signin{color:#d3a0ff}
+.onboard,.modal{border-radius:22px}
+@media(min-width:721px){.tabs{background:#24172f}.tab{color:#c6b7d1}.tab.active{color:#d7a5ff}}
+@media(max-width:720px){.shell{padding-bottom:calc(100px + env(safe-area-inset-bottom))}.welcome{margin:0 -14px -100px;min-height:calc(100dvh - 52px);padding:24px 25px calc(35px + env(safe-area-inset-bottom))}.welcome-art{height:150px}.card{padding:18px;border-radius:19px}#home .layout{grid-template-columns:1fr}.tabs{background:#24172f}.tab{color:#c6b7d1}.tab.active{background:#4c2c68;color:#d7a5ff}}
+
 </style></head><body>
 <header class="top"><div class="brand"><div class="mark">♡</div><div>OurJournal<small>Write. Understand. Grow.</small></div></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><a class="download-link" href="https://github.com/Magenyi-ux/app1/actions/runs/44355463315" target="_blank" rel="noopener noreferrer" aria-label="Download OurJournal for Android">Download Android ↓</a><button id="inviteBtn">Invite your person ↗</button><button id="profileBtn" aria-label="Profile">Y</button></div></header>
 <main class="shell">

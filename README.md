@@ -1,12 +1,12 @@
-# OurJournal by SphereLearn
+# Thought & Feelings by SphereLearn
 
-A purple-and-grey, mobile-first journal concept for couples: write an entry, reflect before responding, explore thoughtful prompts, and revisit the shared history.
+A mobile-first private journaling app for two people: write an entry, reflect before responding, explore thoughtful prompts, and revisit the shared history.
 
 ## Current prototype status
 
 - Responsive installable PWA shell with offline app caching.
 - Local prototype interactions: entries, private draft, prompts, reflection, history filters, writer switch, export and local reset.
-- Capacitor configuration for Android package name: name.spherelearn.ourjournal.
+- Capacitor configuration uses the Android app ID name.spherelearn.ourjournal. The display name is Thought & Feelings.
 - Important: prototype data is local to one browser/device. It is not secure cross-device collaboration yet. Avoid highly sensitive personal writing until authenticated accounts, private invitations, database access rules and cloud sync are implemented and tested.
 
 ## Run locally
@@ -25,7 +25,7 @@ Deploy the repository root to Vercel with build command npm run build and output
 
 ## Product roadmap
 
-1. Supabase Auth with per-person accounts and private journal membership.
+1. Supabase Auth with required first and last names, per-person accounts, and private journal membership.
 2. Secure invite acceptance and prevent anyone outside the pair from reading entries.
 3. Postgres tables and row-level security for journals, members, entries, and reflections.
 4. Cross-device sync, notifications without sensitive entry previews, account export and deletion.

@@ -216,6 +216,26 @@ html,body{background:#f4edf8;color:#211631;font-family:Inter,-apple-system,Blink
 <header class="top"><div class="brand"><div class="mark">♡</div><div>OurJournal<small>Write. Understand. Grow.</small></div></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><a class="download-link" href="https://github.com/Magenyi-ux/app1/actions/runs/44355463315" target="_blank" rel="noopener noreferrer" aria-label="Download OurJournal for Android">Download Android ↓</a><button id="inviteBtn">Invite your person ↗</button><button id="profileBtn" aria-label="Profile">Y</button></div></header>
 <main class="shell">
 <section class="view welcome active" id="welcome"><div class="welcome-art" aria-hidden="true"><div class="welcome-orbit orbit-one"></div><div class="welcome-orbit orbit-two"></div><div class="welcome-symbol">♡</div></div><div class="welcome-copy"><div class="eyebrow">A space for the two of you</div><h1>Our<span>Journal</span></h1><p class="welcome-tagline">Write. Understand. Grow.</p><p class="welcome-description">A shared journal for two, because understanding makes love stronger.</p><button class="btn primary" id="getStarted">Get Started</button><button class="welcome-signin" id="signInBtn">Sign In</button><p class="welcome-foot">A little more understanding, one page at a time.</p></div></section>
+
+<section class="view" id="auth">
+  <div class="onboard">
+    <div class="onboard-avatar" aria-hidden="true">♡</div>
+    <div class="onboard-kicker">OURJOURNAL ACCOUNT</div>
+    <h1 id="authHeading">Create your account.</h1>
+    <p class="onboard-copy" id="authIntro">Your profile and journal will be saved securely to your account.</p>
+    <form class="card" id="authForm">
+      <label class="field-label" for="authEmail">Email address</label>
+      <input class="field" id="authEmail" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com">
+      <label class="field-label" for="authPassword">Password</label>
+      <input class="field" id="authPassword" type="password" autocomplete="new-password" minlength="8" required placeholder="At least 8 characters">
+      <p class="hint" id="authHint">Use an email you can access to confirm your account.</p>
+      <button class="btn primary" id="authSubmit" type="submit" style="width:100%;margin-top:12px">Create account</button>
+      <button class="btn secondary" id="authSwitch" type="button" style="width:100%;margin-top:10px">Already have an account? Sign in</button>
+    </form>
+    <button class="welcome-signin" id="authBack" type="button" style="margin-top:16px">Back to welcome</button>
+  </div>
+</section>
+
 <section class="view" id="onboarding">
   <div class="onboard">
     <div class="onboard-progress" aria-label="Setup progress"><span id="progressOne" class="done"></span><span id="progressTwo"></span></div>
@@ -225,11 +245,21 @@ html,body{background:#f4edf8;color:#211631;font-family:Inter,-apple-system,Blink
       <h1>Make it yours.</h1>
       <p class="onboard-copy">Choose how you want to appear in OurJournal. You can change this later.</p>
       <div class="card">
+        <label class="field-label" for="onboardFirstName">First name</label>
+        <input class="field" id="onboardFirstName" maxlength="80" autocomplete="given-name" required placeholder="Your first name">
+        <label class="field-label" for="onboardLastName">Last name</label>
+        <input class="field" id="onboardLastName" maxlength="80" autocomplete="family-name" required placeholder="Your last name">
         <label class="field-label" for="onboardName">Display name</label>
-        <input class="field" id="onboardName" maxlength="40" autocomplete="nickname" placeholder="What should your person call you?">
+        <input class="field" id="onboardName" maxlength="40" autocomplete="nickname" placeholder="How should your person see you?">
+        <label class="field-label" for="onboardStatus">Profile status</label>
+        <select class="field" id="onboardStatus">
+          <option>Getting to know myself</option><option>Learning to communicate better</option><option>Here to listen and understand</option><option>Growing together</option><option>Taking things one day at a time</option><option>Prefer not to say</option>
+        </select>
+        <label class="field-label" for="onboardBio">A little about you (optional)</label>
+        <textarea class="field" id="onboardBio" maxlength="280" rows="3" placeholder="What would you like your person to know?"></textarea>
         <label class="field-label" for="onboardPhoto">Profile picture (optional)</label>
         <input class="field" id="onboardPhoto" type="file" accept="image/*">
-        <p class="hint">In this preview, your profile is saved only in this browser. No account is created.</p>
+        <p class="hint" id="profileSaveHint">Your profile is saved securely to your account.</p>
       </div>
       <div class="onboard-actions"><button class="btn primary" id="onboardNext">Continue</button><button class="btn secondary" id="onboardSkip">Skip setup</button></div>
     </div>
@@ -237,10 +267,9 @@ html,body{background:#f4edf8;color:#211631;font-family:Inter,-apple-system,Blink
       <div class="onboard-kicker">Step 2 of 2 · Your person</div>
       <h1>Two sides. One journal.</h1>
       <p class="onboard-copy">Either of you can start a journal and invite the other. An invitation should only connect accounts after both people accept.</p>
-      <div class="invite-choice"><b>I have an invitation link</b><p>When secure accounts are enabled, opening an invite will carry you through sign-in and then ask you to accept the connection.</p><label class="field-label" for="inviteLinkPreview">Invitation link</label><input class="field" id="inviteLinkPreview" type="url" placeholder="Paste your OurJournal invitation link" autocomplete="url"><p class="hint" id="inviteLinkHint">Invitation links are not active yet because account sign-in and server-side invitation validation are not connected.</p></div>
-      <div class="invite-choice"><b>I'll invite my person later</b><p>Continue exploring the local preview. It won't create or send an invitation.</p></div>
-      <div class="onboard-note"><b>Privacy first.</b> Your journal entries stay on this device in this prototype. No real account is connected, and no invitation will be accepted or shared until the secure backend is implemented.</div>
-      <div class="onboard-actions"><button class="btn primary" id="onboardPreview">Continue to local preview</button><button class="btn secondary" id="onboardBack">Back</button></div>
+      <div class="invite-choice"><b>Start a new journal</b><p>Create your private journal space. You can invite your person after setup.</p><label class="field-label" for="journalTitle">Journal name</label><input class="field" id="journalTitle" maxlength="120" value="Our Journal" placeholder="Give your journal a name"></div>
+      <div class="invite-choice"><b>I already have an invitation</b><p>Invitation acceptance will be available once the invite workflow is connected. Your profile will still be saved to your account.</p><label class="field-label" for="inviteLinkPreview">Invitation link (optional)</label><input class="field" id="inviteLinkPreview" type="url" placeholder="Paste your invitation link" autocomplete="url"><p class="hint" id="inviteLinkHint">We will not connect you to a journal until the invitation can be securely validated.</p></div>
+      <div class="onboard-actions"><button class="btn primary" id="onboardPreview">Save profile and continue</button><button class="btn secondary" id="onboardBack">Back</button></div>
     </div>
   </div>
 </section>
@@ -258,11 +287,196 @@ html,body{background:#f4edf8;color:#211631;font-family:Inter,-apple-system,Blink
 <div class="footer">Made for listening, not keeping score.<br>OurJournal by SphereLearn · Early prototype</div>
 <nav class="tabs" aria-label="Main navigation"><button class="tab active" data-view="home"><span>⌂</span>Home</button><button class="tab" data-view="prompts"><span>✧</span>Prompts</button><button class="tab" data-view="history"><span>◷</span>History</button><button class="tab" data-view="profile"><span>◉</span>Profile</button></nav>
 </main><div class="modalback" id="modal"><div class="modal"><button id="closeModal" class="btn secondary" style="float:right;padding:5px 10px">×</button><div class="eyebrow">Two people, one journal</div><h2 style="margin-top:10px">Invite your person</h2><p style="font-size:13px;line-height:1.6;color:var(--muted)">Private invitations are planned for the secure shared-account release. This preview does not create a live invitation.</p><label class="field-label">Proposed website</label><input class="field" value="ourjournal.spherelearn.name.ng" readonly><button id="copyAddress" class="btn primary" style="width:100%;margin-top:13px">Copy website address</button></div></div><div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 var PROMPTS=["What is something you wish I understood about you?","When did you feel most appreciated recently?","What have you wanted to tell me but haven't found the words for?","What helps you feel safe during a difficult conversation?","What is one small thing I do that matters to you?","What memory of us do you return to?","When you feel overwhelmed, what support helps most?","What would you like us to learn about each other?","What does being listened to feel like for you?","What are you grateful for about us today?"];var KEY="ourjournal-prototype-v1";var state={entries:[],draft:"",writer:"You",yourName:"You",partnerName:"Your person",filter:"all",reflecting:null,settings:{dailyReminder:false,replyNotifications:false,promptNotifications:true,hidePreviews:false,confirmClear:true}};try{state=Object.assign(state,JSON.parse(localStorage.getItem(KEY)||"{}"))}catch(e){}function $(id){return document.getElementById(id)}function esc(s){return String(s||"").replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}function name(w){return w==="You"?(state.yourName||"You"):(state.partnerName||"Your person")}function initial(w){return (name(w).trim()[0]||"?").toUpperCase()}function save(){localStorage.setItem(KEY,JSON.stringify(state))}function toast(t){$("toast").textContent=t;$("toast").classList.add("show");setTimeout(function(){$("toast").classList.remove("show")},2500)}function go(v){if(v==="profile-details")v="profile";document.body.classList.toggle("welcome-mode",v==="welcome");document.querySelectorAll(".view").forEach(function(x){x.classList.toggle("active",x.id===v)});document.querySelectorAll(".tab").forEach(function(x){x.classList.toggle("active",v!=="welcome"&&x.dataset.view===v)});if(v==="history")renderHistory();if(v==="prompts")renderPrompts();if(v==="reflect")renderReflection();if(v==="thread")renderThread();window.scrollTo({top:0,behavior:"smooth"})}function date(d){return new Date(d).toLocaleString(undefined,{month:"short",day:"numeric",year:"numeric",hour:"numeric",minute:"2-digit"})}function entryHTML(e){var w=e.writer||"You";var refs=(e.reflections||[]).map(function(r){return '<div style="margin-top:12px;padding:12px;background:#e9d8fb;border-radius:12px"><div class="meta">'+esc(name(r.writer))+' · reflection</div><p style="font:14px/1.55 Georgia,serif;white-space:pre-wrap">'+esc(r.body)+'</p>'+(r.question?'<p class="hint">Question: '+esc(r.question)+'</p>':'')+'</div>'}).join("");return '<article class="entry"><div class="entry-top"><div class="dot '+(w==="Your person"?"partner":"")+'">'+esc(initial(w))+'</div><div class="meta">'+esc(name(w))+'<small>'+esc(date(e.createdAt))+' · '+esc(e.mood||"Reflective")+'</small></div></div>'+(e.title?'<h3 style="font-size:14px;margin:0 0 8px">'+esc(e.title)+'</h3>':'')+'<div class="entry-body">'+esc(e.body)+'</div>'+(e.prompt?'<p class="hint">Prompt: '+esc(e.prompt)+'</p>':'')+refs+'<div class="entry-foot"><button class="tiny" data-open="'+e.id+'">View entry →</button><button class="tiny" data-reflect="'+e.id+'">↳ Reflect & respond</button><button class="tiny" data-save="'+e.id+'">'+(e.saved?"♥ Saved":"♡ Save")+'</button></div></article>'}function renderHome(){var es=state.entries.slice().sort(function(a,b){return new Date(b.createdAt)-new Date(a.createdAt)});$("count").textContent=es.length+" shared "+(es.length===1?"entry":"entries")+" so far";$("recent").innerHTML=es.length?es.slice(0,3).map(entryHTML).join(""):'<div class="empty"><div style="font-size:34px">♡</div><b>Your first page is waiting.</b><p>Start with one honest thought.</p><button class="btn primary" id="emptyStart">Write your first entry</button></div>';var ix=Math.floor(Date.now()/86400000)%PROMPTS.length;$("dailyPrompt").textContent=PROMPTS[ix]}function renderHistory(){var es=state.entries.slice().sort(function(a,b){return new Date(b.createdAt)-new Date(a.createdAt)}).filter(function(e){return state.filter==="all"||(state.filter==="mine"?e.writer===state.writer:e.writer!==(state.writer))});$("historyList").innerHTML=es.length?es.map(entryHTML).join(""):'<div class="empty"><div style="font-size:32px">◷</div><b>No entries in this view yet.</b><p>Shared reflections will appear here.</p></div>';document.querySelectorAll("#filters button").forEach(function(b){b.classList.toggle("active",b.dataset.filter===state.filter)})}function renderPrompts(){$("promptList").innerHTML=PROMPTS.map(function(p,i){return '<div class="prompt"><div class="eyebrow">Prompt '+(i+1)+'</div><p>'+esc(p)+'</p><button class="btn secondary" data-prompt="'+i+'">Write about this ↗</button></div>'}).join("")}function renderThread(){var e=state.entries.find(function(x){return x.id===state.threading});$("threadEntry").innerHTML=e?entryHTML(e):'<div class="empty">Entry not found.</div>';if(e){$("threadEntry").querySelectorAll("[data-open]").forEach(function(b){b.remove()});$("threadEntry").querySelectorAll("[data-reflect]").forEach(function(b){b.remove()});$("threadEntry").querySelectorAll("[data-save]").forEach(function(b){b.remove()});var replies=(e.replies||[]).map(function(r){return '<div class="thread-reply"><div class="meta">'+esc(name(r.writer))+'<small>'+esc(date(r.createdAt))+'</small></div><p>'+esc(r.body)+'</p></div>'}).join("");$("threadEntry").insertAdjacentHTML("beforeend",replies)}}
 function renderReflection(){var e=state.entries.find(function(x){return x.id===state.reflecting});$("target").innerHTML=e?'<div class="entry"><div class="meta">'+esc(name(e.writer))+' wrote</div><p class="entry-body">'+esc(e.body)+'</p></div>':'<p class="hint">Choose an entry from history to reflect on.</p>'}function render(){renderHome();renderHistory();renderPrompts();$("profileBtn").textContent=initial(state.writer);if(state.avatar){$("avatarPreview").innerHTML='<img alt="Profile picture preview" src="'+state.avatar+'">';$("profileBtn").innerHTML='<img alt="" src="'+state.avatar+'" style="width:28px;height:28px;border-radius:50%;object-fit:cover;vertical-align:middle">'}$("yourName").value=state.yourName;$("partnerName").value=state.partnerName;document.querySelectorAll("#writerSwitch button").forEach(function(b){b.classList.toggle("active",b.dataset.writer===state.writer)});$("promptChoice").innerHTML='<option value="">No prompt today</option>'+PROMPTS.map(function(p){return '<option>'+esc(p)+'</option>'}).join("")}function startWrite(p){go("write");$("title").value="";$("body").value=state.draft||"";$("mood").value="Reflective";$("promptChoice").value=p||""}function write(shared){var body=$("body").value.trim();if(!body){toast("Write a thought before saving.");$("body").focus();return}if(!shared){state.draft=body;save();$("draftNote").textContent="Private draft saved on this device.";toast("Draft saved on this device.");return}state.entries.push({id:String(Date.now())+Math.random().toString(16).slice(2),writer:state.writer,title:$("title").value.trim(),body:body,mood:$("mood").value,prompt:$("promptChoice").value,createdAt:new Date().toISOString(),reflections:[],saved:false});state.draft="";save();$("body").value="";$("title").value="";render();go("home");toast("Entry saved to this device's journal.")}document.addEventListener("click",function(ev){var b=ev.target.closest("button");if(!b)return;if(b.dataset.view)go(b.dataset.view);if(b.id==="logoutBtn"){if(confirm("Leave this local preview? Your saved entries remain in this browser.")){go("home");toast("You are back at the home screen.")}}if(b.dataset.open){state.threading=b.dataset.open;renderThread();go("thread")}if(b.id==="start"||b.id==="emptyStart")startWrite("");if(b.id==="allHistory")go("history");if(b.id==="usePrompt")startWrite($("dailyPrompt").textContent);if(b.dataset.prompt!==undefined)startWrite(PROMPTS[Number(b.dataset.prompt)]);if(b.dataset.filter){state.filter=b.dataset.filter;renderHistory()}if(b.dataset.writer){state.writer=b.dataset.writer;save();render();toast("Writing as "+name(state.writer))}if(b.dataset.reflect){state.reflecting=b.dataset.reflect;$("reflection").value="";$("question").value="";go("reflect")}if(b.dataset.save){var en=state.entries.find(function(x){return x.id===b.dataset.save});if(en){en.saved=!en.saved;save();render()}}});$("share").onclick=function(){write(true)};$("saveDraft").onclick=function(){write(false)};$("saveReflection").onclick=function(){var e=state.entries.find(function(x){return x.id===state.reflecting});var body=$("reflection").value.trim();if(!e){toast("Choose an entry first.");return}if(!body){toast("Write what you understood first.");return}e.reflections=e.reflections||[];e.reflections.push({writer:state.writer,body:body,question:$("question").value.trim(),createdAt:new Date().toISOString()});save();render();go("history");toast("Reflection saved on this device.")};$("saveProfile").onclick=function(){state.yourName=$("yourName").value.trim()||"You";state.partnerName=$("partnerName").value.trim()||"Your person";save();render();toast("Preferences saved.")};$("profileBtn").onclick=function(){go("profile")};
 function loadSettings(){var x=state.settings||{};["dailyReminder","replyNotifications","promptNotifications","hidePreviews","confirmClear"].forEach(function(id){if($(id))$(id).checked=!!x[id]});}
 $("savePrivacy").onclick=function(){state.settings=state.settings||{};state.settings.hidePreviews=$("hidePreviews").checked;state.settings.confirmClear=$("confirmClear").checked;save();toast("Privacy preferences saved on this device.")};
 $("saveNotifications").onclick=function(){state.settings=state.settings||{};state.settings.dailyReminder=$("dailyReminder").checked;state.settings.replyNotifications=$("replyNotifications").checked;state.settings.promptNotifications=$("promptNotifications").checked;save();toast("Notification preferences saved on this device.")};
-$("sendReply").onclick=function(){var e=state.entries.find(function(x){return x.id===state.threading});var body=$("replyBody").value.trim();if(!e){toast("Choose an entry first.");return}if(!body){toast("Write a response first.");$("replyBody").focus();return}e.replies=e.replies||[];e.replies.push({writer:state.writer,body:body,createdAt:new Date().toISOString()});$("replyBody").value="";save();renderThread();toast("Response saved on this device.")};$("inviteBtn").onclick=function(){$("modal").classList.add("open")};$("closeModal").onclick=function(){$("modal").classList.remove("open")};$("modal").onclick=function(e){if(e.target.id==="modal")$("modal").classList.remove("open")};$("copyAddress").onclick=function(){if(navigator.clipboard){navigator.clipboard.writeText("https://ourjournal.spherelearn.name.ng").then(function(){toast("Website address copied.")}).catch(function(){toast("ourjournal.spherelearn.name.ng")})}else toast("ourjournal.spherelearn.name.ng")};$("export").onclick=function(){var blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});var url=URL.createObjectURL(blob);var a=document.createElement("a");a.href=url;a.download="ourjournal-export.json";a.click();URL.revokeObjectURL(url)};$("clear").onclick=function(){if((!state.settings||state.settings.confirmClear!==false)?confirm("Clear all OurJournal entries and drafts in this browser? This cannot be undone."):true){localStorage.removeItem(KEY);state={entries:[],draft:"",writer:"You",yourName:"You",partnerName:"Your person",filter:"all",reflecting:null};render();go("home");toast("Local journal cleared.")}};render();loadSettings();if(localStorage.getItem("ourjournal-started-v1")==="1"||state.entries.length)go("home");else go("welcome");$("getStarted").onclick=function(){go("onboarding");$("onboardProfile").classList.add("active");$("onboardConnect").classList.remove("active");$("progressOne").classList.add("done");$("progressTwo").classList.remove("done");$("onboardName").value=state.yourName||"";if(new URLSearchParams(location.search).has("invite")){$("inviteLinkPreview").value=location.href;$("inviteLinkHint").textContent="An invite parameter was detected, but it cannot be validated or accepted until secure accounts are connected."}};$("signInBtn").onclick=function(){go("onboarding");$("onboardProfile").classList.remove("active");$("onboardConnect").classList.add("active");$("progressOne").classList.add("done");$("progressTwo").classList.add("done");toast("Sign-in is not connected yet. This is a local preview.")};$("onboardNext").onclick=function(){var n=$("onboardName").value.trim();state.yourName=n||"You";state.writer=state.yourName;save();render();$("onboardProfile").classList.remove("active");$("onboardConnect").classList.add("active");$("progressOne").classList.add("done");$("progressTwo").classList.add("done");window.scrollTo({top:0,behavior:"smooth"})};$("onboardSkip").onclick=function(){go("home");toast("Local preview opened. Account sign-in and invitations are not active yet.")};$("onboardBack").onclick=function(){$("onboardConnect").classList.remove("active");$("onboardProfile").classList.add("active");$("progressTwo").classList.remove("done")};$("onboardPreview").onclick=function(){go("home");toast("Local preview opened. No account or shared connection was created.")};$("onboardPhoto").onchange=function(ev){var f=ev.target.files&&ev.target.files[0];if(!f)return;if(!f.type.startsWith("image/")){toast("Choose an image file.");return}if(f.size>5*1024*1024){toast("Choose an image under 5 MB.");ev.target.value="";return}var reader=new FileReader();reader.onload=function(){var img=new Image();img.onload=function(){var canvas=document.createElement("canvas");var scale=Math.min(1,256/Math.max(img.width,img.height));canvas.width=Math.max(1,Math.round(img.width*scale));canvas.height=Math.max(1,Math.round(img.height*scale));canvas.getContext("2d").drawImage(img,0,0,canvas.width,canvas.height);var data=canvas.toDataURL("image/jpeg",.78);try{state.avatar=data;save();$("avatarPreview").innerHTML='<img alt="Profile picture preview" src="'+data+'">';$("profileBtn").innerHTML='<img alt="" src="'+data+'" style="width:28px;height:28px;border-radius:50%;object-fit:cover;vertical-align:middle">'}catch(e){toast("The picture could not be saved in this browser.")}};img.src=reader.result};reader.readAsDataURL(f)};if("serviceWorker"in navigator)window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){})});
+$("sendReply").onclick=function(){var e=state.entries.find(function(x){return x.id===state.threading});var body=$("replyBody").value.trim();if(!e){toast("Choose an entry first.");return}if(!body){toast("Write a response first.");$("replyBody").focus();return}e.replies=e.replies||[];e.replies.push({writer:state.writer,body:body,createdAt:new Date().toISOString()});$("replyBody").value="";save();renderThread();toast("Response saved on this device.")};$("inviteBtn").onclick=function(){$("modal").classList.add("open")};$("closeModal").onclick=function(){$("modal").classList.remove("open")};$("modal").onclick=function(e){if(e.target.id==="modal")$("modal").classList.remove("open")};$("copyAddress").onclick=function(){if(navigator.clipboard){navigator.clipboard.writeText("https://ourjournal.spherelearn.name.ng").then(function(){toast("Website address copied.")}).catch(function(){toast("ourjournal.spherelearn.name.ng")})}else toast("ourjournal.spherelearn.name.ng")};$("export").onclick=function(){var blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});var url=URL.createObjectURL(blob);var a=document.createElement("a");a.href=url;a.download="ourjournal-export.json";a.click();URL.revokeObjectURL(url)};$("clear").onclick=function(){if((!state.settings||state.settings.confirmClear!==false)?confirm("Clear all OurJournal entries and drafts in this browser? This cannot be undone."):true){localStorage.removeItem(KEY);state={entries:[],draft:"",writer:"You",yourName:"You",partnerName:"Your person",filter:"all",reflecting:null};render();go("home");toast("Local journal cleared.")}};render();loadSettings();if(localStorage.getItem("ourjournal-started-v1")==="1"||state.entries.length)go("home");else go("welcome");$("getStarted").onclick=function(){go("onboarding");$("onboardProfile").classList.add("active");$("onboardConnect").classList.remove("active");$("progressOne").classList.add("done");$("progressTwo").classList.remove("done");$("onboardName").value=state.yourName||"";if(new URLSearchParams(location.search).has("invite")){$("inviteLinkPreview").value=location.href;$("inviteLinkHint").textContent="An invite parameter was detected, but it cannot be validated or accepted until secure accounts are connected."}};$("signInBtn").onclick=function(){go("onboarding");$("onboardProfile").classList.remove("active");$("onboardConnect").classList.add("active");$("progressOne").classList.add("done");$("progressTwo").classList.add("done");toast("Sign-in is not connected yet. This is a local preview.")};$("onboardNext").onclick=function(){var n=$("onboardName").value.trim();state.yourName=n||"You";state.writer=state.yourName;save();render();$("onboardProfile").classList.remove("active");$("onboardConnect").classList.add("active");$("progressOne").classList.add("done");$("progressTwo").classList.add("done");window.scrollTo({top:0,behavior:"smooth"})};$("onboardSkip").onclick=function(){go("home");toast("Local preview opened. Account sign-in and invitations are not active yet.")};$("onboardBack").onclick=function(){$("onboardConnect").classList.remove("active");$("onboardProfile").classList.add("active");$("progressTwo").classList.remove("done")};$("onboardPreview").onclick=function(){go("home");toast("Local preview opened. No account or shared connection was created.")};$("onboardPhoto").onchange=function(ev){var f=ev.target.files&&ev.target.files[0];if(!f)return;if(!f.type.startsWith("image/")){toast("Choose an image file.");return}if(f.size>5*1024*1024){toast("Choose an image under 5 MB.");ev.target.value="";return}var reader=new FileReader();reader.onload=function(){var img=new Image();img.onload=function(){var canvas=document.createElement("canvas");var scale=Math.min(1,256/Math.max(img.width,img.height));canvas.width=Math.max(1,Math.round(img.width*scale));canvas.height=Math.max(1,Math.round(img.height*scale));canvas.getContext("2d").drawImage(img,0,0,canvas.width,canvas.height);var data=canvas.toDataURL("image/jpeg",.78);try{state.avatar=data;save();$("avatarPreview").innerHTML='<img alt="Profile picture preview" src="'+data+'">';$("profileBtn").innerHTML='<img alt="" src="'+data+'" style="width:28px;height:28px;border-radius:50%;object-fit:cover;vertical-align:middle">'}catch(e){toast("The picture could not be saved in this browser.")}};img.src=reader.result};reader.readAsDataURL(f)};
+/* Supabase-backed account and onboarding flow */
+const OJ_SUPABASE_URL = "https://qkgzfizenhysoyixmzng.supabase.co";
+const OJ_SUPABASE_KEY = "sb_publishable_DNTt9U4TjT0xS8NL4FEQZQ_TEVHFVun";
+const ojSupabase = window.supabase.createClient(OJ_SUPABASE_URL, OJ_SUPABASE_KEY, {
+  auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
+});
+let ojAuthMode = "signup";
+let ojUser = null;
+function ojMessage(id, message) { const el = $(id); if (el) el.textContent = message; }
+function ojSetAuthMode(mode) {
+  ojAuthMode = mode;
+  $("authHeading").textContent = mode === "signup" ? "Create your account." : "Welcome back.";
+  $("authIntro").textContent = mode === "signup" ? "Your profile and journal will be saved securely to your account." : "Sign in to continue setting up your profile and journal.";
+  $("authSubmit").textContent = mode === "signup" ? "Create account" : "Sign in";
+  $("authPassword").autocomplete = mode === "signup" ? "new-password" : "current-password";
+  $("authSwitch").textContent = mode === "signup" ? "Already have an account? Sign in" : "New to OurJournal? Create an account";
+  ojMessage("authHint", mode === "signup" ? "Use an email you can access to confirm your account." : "Use the email address and password for your account.");
+}
+async function ojLoadProfile(user) {
+  const { data, error } = await ojSupabase.from("profiles").select("*").eq("id", user.id).maybeSingle();
+  if (error) throw error;
+  if (!data) {
+    const meta = user.user_metadata || {};
+    const { error: insertError } = await ojSupabase.from("profiles").insert({
+      id: user.id,
+      display_name: meta.display_name || "",
+      first_name: meta.first_name || "",
+      last_name: meta.last_name || "",
+      status: "Getting to know myself",
+      bio: "",
+      onboarding_completed: false
+    });
+    if (insertError) throw insertError;
+    return null;
+  }
+  return data;
+}
+function ojStartOnboarding(profile) {
+  go("onboarding");
+  $("onboardProfile").classList.add("active");
+  $("onboardConnect").classList.remove("active");
+  $("progressOne").classList.add("done");
+  $("progressTwo").classList.remove("done");
+  $("onboardFirstName").value = profile?.first_name || ojUser?.user_metadata?.first_name || "";
+  $("onboardLastName").value = profile?.last_name || ojUser?.user_metadata?.last_name || "";
+  $("onboardName").value = profile?.display_name || "";
+  $("onboardStatus").value = profile?.status || "Getting to know myself";
+  $("onboardBio").value = profile?.bio || "";
+  $("journalTitle").value = "Our Journal";
+  ojMessage("profileSaveHint", "Your profile is saved securely to your account when you continue.");
+}
+async function ojEnterApp(user) {
+  ojUser = user;
+  try {
+    const profile = await ojLoadProfile(user);
+    if (profile?.onboarding_completed) {
+      state.yourName = profile.display_name || [profile.first_name, profile.last_name].filter(Boolean).join(" ") || "You";
+      state.writer = state.yourName;
+      render();
+      go("home");
+    } else {
+      ojStartOnboarding(profile);
+    }
+  } catch (err) {
+    console.error("Profile load failed", err);
+    toast("We couldn't load your profile. Please try again.");
+  }
+}
+$("getStarted").onclick = function() { ojSetAuthMode("signup"); go("auth"); $("authEmail").focus(); };
+$("signInBtn").onclick = function() { ojSetAuthMode("signin"); go("auth"); $("authEmail").focus(); };
+$("authSwitch").onclick = function() { ojSetAuthMode(ojAuthMode === "signup" ? "signin" : "signup"); };
+$("authBack").onclick = function() { go("welcome"); };
+$("authForm").addEventListener("submit", async function(ev) {
+  ev.preventDefault();
+  const email = $("authEmail").value.trim().toLowerCase();
+  const password = $("authPassword").value;
+  const submit = $("authSubmit");
+  submit.disabled = true;
+  submit.textContent = ojAuthMode === "signup" ? "Creating account…" : "Signing in…";
+  try {
+    if (ojAuthMode === "signup") {
+      const { data, error } = await ojSupabase.auth.signUp({
+        email, password,
+        options: { data: { email } }
+      });
+      if (error) throw error;
+      if (!data.session) {
+        ojMessage("authHint", "Account created. Check your email and confirm your address, then return here to sign in.");
+        toast("Check your email to confirm your account.");
+      } else {
+        await ojEnterApp(data.user);
+      }
+    } else {
+      const { data, error } = await ojSupabase.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+      await ojEnterApp(data.user);
+    }
+  } catch (err) {
+    console.error("Authentication failed", err);
+    ojMessage("authHint", err.message || "We couldn't authenticate you. Check your details and try again.");
+    toast("Account action failed. Check the message below the form.");
+  } finally {
+    submit.disabled = false;
+    submit.textContent = ojAuthMode === "signup" ? "Create account" : "Sign in";
+  }
+});
+$("onboardNext").onclick = async function() {
+  if (!ojUser) { toast("Please sign in first."); go("auth"); return; }
+  const first = $("onboardFirstName").value.trim();
+  const last = $("onboardLastName").value.trim();
+  if (!first || !last) { toast("Enter your first and last name."); (!first ? $("onboardFirstName") : $("onboardLastName")).focus(); return; }
+  const display = $("onboardName").value.trim() || first;
+  const saveBtn = $("onboardNext");
+  saveBtn.disabled = true; saveBtn.textContent = "Saving profile…";
+  try {
+    const payload = {
+      id: ojUser.id,
+      first_name: first,
+      last_name: last,
+      display_name: display,
+      status: $("onboardStatus").value,
+      bio: $("onboardBio").value.trim(),
+      onboarding_completed: false,
+      updated_at: new Date().toISOString()
+    };
+    const { error } = await ojSupabase.from("profiles").upsert(payload, { onConflict: "id" });
+    if (error) throw error;
+    state.yourName = display; state.writer = display; save(); render();
+    $("onboardProfile").classList.remove("active");
+    $("onboardConnect").classList.add("active");
+    $("progressOne").classList.add("done"); $("progressTwo").classList.add("done");
+    window.scrollTo({top:0,behavior:"smooth"});
+  } catch (err) {
+    console.error("Profile save failed", err);
+    toast("Profile could not be saved. Check your connection and try again.");
+    ojMessage("profileSaveHint", err.message || "Profile save failed.");
+  } finally {
+    saveBtn.disabled = false; saveBtn.textContent = "Continue";
+  }
+};
+$("onboardSkip").onclick = function() { toast("Please complete your profile to continue."); };
+$("onboardBack").onclick = function() {
+  $("onboardConnect").classList.remove("active"); $("onboardProfile").classList.add("active"); $("progressTwo").classList.remove("done");
+};
+$("onboardPreview").onclick = async function() {
+  if (!ojUser) { toast("Please sign in first."); go("auth"); return; }
+  const btn = $("onboardPreview"); btn.disabled = true; btn.textContent = "Saving setup…";
+  try {
+    const { data: profile, error: profileError } = await ojSupabase.from("profiles").select("*").eq("id", ojUser.id).single();
+    if (profileError) throw profileError;
+    const title = $("journalTitle").value.trim() || "Our Journal";
+    const { data: memberships, error: membershipError } = await ojSupabase.from("journal_members").select("journal_id").eq("user_id", ojUser.id).limit(1);
+    if (membershipError) throw membershipError;
+    if (!memberships || memberships.length === 0) {
+      const { data: journal, error: journalError } = await ojSupabase.from("journals").insert({ title, created_by: ojUser.id }).select("id").single();
+      if (journalError) throw journalError;
+      const { error: joinError } = await ojSupabase.from("journal_members").insert({ journal_id: journal.id, user_id: ojUser.id, role: "owner" });
+      if (joinError) throw joinError;
+    }
+    const { error: completeError } = await ojSupabase.from("profiles").update({ onboarding_completed: true, updated_at: new Date().toISOString() }).eq("id", ojUser.id);
+    if (completeError) throw completeError;
+    localStorage.setItem("ourjournal-started-v1", "1");
+    toast("Profile and journal setup saved.");
+    go("home");
+  } catch (err) {
+    console.error("Onboarding completion failed", err);
+    toast("We couldn't finish setup. Please retry.");
+    ojMessage("inviteLinkHint", err.message || "Setup failed.");
+  } finally {
+    btn.disabled = false; btn.textContent = "Save profile and continue";
+  }
+};
+$("logoutBtn").onclick = async function() {
+  const { error } = await ojSupabase.auth.signOut();
+  if (error) { toast("Could not sign out. Try again."); return; }
+  ojUser = null; go("welcome"); toast("You have signed out.");
+};
+(async function ojRestoreSession() {
+  const { data: { session } } = await ojSupabase.auth.getSession();
+  if (session?.user) await ojEnterApp(session.user);
+  else go("welcome");
+})();
+
+if("serviceWorker"in navigator)window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){})});
 </script></body></html>

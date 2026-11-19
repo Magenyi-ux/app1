@@ -376,7 +376,7 @@ async function submitAuth() {
   setAuthMessage("Connecting securely to Supabase…");
   try {
     const result = authMode === "signup"
-      ? await supabase.auth.signUp({ email, password, options: { data: { display_name: fullName }, emailRedirectTo: location.origin + location.pathname + location.search } })
+      ? await supabase.auth.signUp({ email, password, options: { data: { display_name: fullName }, emailRedirectTo: "https://ourjournal.spherelearn.name.ng/" + (new URLSearchParams(location.search).has("invite") ? "?invite=" + encodeURIComponent(new URLSearchParams(location.search).get("invite")) : "") } })
       : await supabase.auth.signInWithPassword({ email, password });
     if (result.error) throw result.error;
     if (authMode === "signup" && result.data.user && !result.data.session) {

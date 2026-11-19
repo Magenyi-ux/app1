@@ -15,7 +15,13 @@ Thought & Feelings is a private, two-person journaling app by SphereLearn. The a
 
 ## Supabase setup
 
-The repository includes migrations under `supabase/migrations/`. Apply them to the dedicated Thought & Feelings Supabase project before deploying this branch:
+The repository includes migrations under `supabase/migrations/`. Apply all of them to the dedicated Thought & Feelings Supabase project before deploying this branch:
+
+- `20261118180000_initial_private_journals_schema.sql`
+- `20261119090000_require_first_and_last_names.sql`
+- `20261119130000_secure_journal_and_invitation_workflows.sql`
+- `20261119143000_member_reflections_and_replies.sql`
+- `20261119160000_journal_member_profiles.sql`
 
 ```bash
 npm install

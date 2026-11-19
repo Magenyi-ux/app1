@@ -76,6 +76,67 @@ body.welcome-mode .welcome{margin-top:0}
   .entry:hover,.prompt:hover,.setting-link:hover,.tab:active,.setting-link:active,.btn:active{transform:none!important;box-shadow:none!important}
 }
 
+/* OurJournal dark-plum production UI refresh */
+html,body{background:#120E20;color:#fff}
+.top{background:rgba(18,14,32,.92);color:#fff;border-bottom:1px solid #3B315C}
+.brand small{color:#A09CB3}
+.mark{background:#7B51F5;color:#fff;border-radius:12px}
+.top button,.top .download-link{background:#2D264D;color:#fff;border-color:#3B315C;border-radius:12px}
+.top .download-link,.top .primary{background:#7B51F5;border-color:#7B51F5;color:#fff}
+.top button:hover,.secondary:hover{background:#342856;border-color:#7B51F5}
+.shell{color:#fff}
+.hero h1,.page-title,#home .hero h1{color:#fff}
+.hero p,.page-sub,#home .hero p{color:#A09CB3}
+.eyebrow,.hero .eyebrow,#home .hero .eyebrow{color:#BDA4FF}
+.card,#write .card,#reflect .card,#profile .card,#history .card,#prompts .card{background:#221C3E;color:#fff;border:1px solid #3B315C;border-radius:20px;box-shadow:0 12px 34px rgba(0,0,0,.12)}
+.entry,#home .layout .card:first-child .entry,#history .entry{background:#2D264D;border:1px solid #3B315C;border-radius:16px;color:#fff}
+.entry-body{color:#F5F1FF}
+.entry-foot{border-color:#3B315C}
+.dot{background:#3D2D67;color:#D8C7FF}
+.dot.partner{background:#56345F;color:#F3C7E8}
+.prompt,#prompts .prompt{background:#2D264D;border:1px solid #3B315C;border-radius:16px;color:#fff}
+.prompt p,#prompts .prompt p{color:#fff}
+.field,textarea.field,#reflect textarea.field,#reflect input.field{background:#2D264D;color:#fff;border:1px solid #3B315C;border-radius:12px}
+.field::placeholder{color:#A09CB3}
+.segmented{background:#171222;border-radius:12px}
+.segmented button{color:#A09CB3}
+.segmented button.active{background:#7B51F5;color:#fff;box-shadow:none}
+.btn{border-radius:12px}
+.btn.primary,.primary{background:linear-gradient(135deg,#8F67F7 0%,#6337E8 100%);border-color:#7B51F5;color:#fff}
+.btn.secondary,.secondary{background:#2D264D;border-color:#3B315C;color:#fff}
+.tabs{background:rgba(18,14,32,.94);backdrop-filter:blur(18px);border-color:#3B315C;border-radius:18px;box-shadow:0 8px 30px rgba(0,0,0,.25)}
+.tab{color:#A09CB3;border-radius:12px}
+.tab.active{background:#342856;color:#C7B2FF}
+.timeline{border-color:#7252A5}
+.timeline .entry:before{border-color:#120E20;background:#7B51F5}
+.notice,.onboard-note{background:#2D264D;border-color:#3B315C;color:#D7C9F2;border-radius:12px}
+.stat{background:#2D264D;border-radius:12px}.stat b{color:#C7B2FF}
+.setting-link{background:#2D264D;color:#fff;border-color:#3B315C;border-radius:14px}
+.setting-link>span:first-child{background:#342856;color:#C7B2FF}
+.setting-link:hover{background:#342856}
+.setting-row{border-color:#3B315C}
+#reflect .card{background:#221C3E;color:#fff;border-color:#3B315C}
+#reflect .entry{background:#2D264D;color:#fff}
+#reflect .field-label{color:#E4D8FF}
+#reflect .hint{color:#A09CB3}
+.modalback{background:rgba(5,3,12,.72)}
+.modal{background:#221C3E;color:#fff;border-color:#3B315C;border-radius:20px}
+.thread-reply{background:#2D264D;border-radius:14px}
+.footer{color:#8E86A4}
+.onboard .card,.invite-choice{background:#221C3E;color:#fff;border-color:#3B315C;border-radius:18px}
+.onboard-kicker{color:#BDA4FF}
+.onboard-progress span{background:#3B315C}.onboard-progress span.done{background:#7B51F5}
+.onboard-avatar{background:#342856;color:#D8C7FF;border-color:#7252A5}
+.onboard-note{background:#2D264D;color:#D7C9F2;border-color:#3B315C}
+.invite-choice{background:#2D264D}
+.empty{color:#A09CB3}.empty b{color:#fff}
+#profileDetails{border-color:#3B315C}
+@media(max-width:720px){
+ .tabs{background:rgba(18,14,32,.96);border-color:#3B315C}
+ .welcome{margin:-23px -14px -100px}
+}
+
+
 /* Dedicated account screens */
 :root{--auth-purple:#7B3FE4;--auth-purple-dark:#6530c2;--auth-bg:#F8F9FA;--auth-field:#EFEFEF;--auth-muted:#8E8E93}
 .auth-screen{max-width:430px!important;min-height:calc(100dvh - 115px)!important;margin:0 auto!important;padding:18px 4px 26px!important;display:none;flex-direction:column}

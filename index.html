@@ -249,10 +249,11 @@ async function refreshAuthUI(user) {
     if (signOut) signOut.style.display = "inline-block";
     const nameInput = document.getElementById("onboardName");
     const authNameInput = document.getElementById("authName");
-    const displayName = (authNameInput && authNameInput.value.trim()) || state.yourName || user.email.split("@")[0];
-    try {
-      await supabase.from("profiles").update({ display_name: displayName }).eq("id", user.id);
-    } catch (_) {}
+    const displayName = (authNameInput && authNameInput.value.trim()) || user.user_metadata?.display_name || state.yourName;
+    if (displayName && displayName.trim().split(/\\s+/).filter(Boolean).length >= 2) {
+      const { error } = await supabase.from("profiles").update({ display_name: displayName.trim() }).eq("id", user.id);
+      if (error) setAuthMessage("Signed in, but your profile name could not be saved. Please try again.", true);
+    }
   } else {
     if (submit) submit.style.display = "";
     if (toggle) toggle.style.display = "";
@@ -263,7 +264,9 @@ async function submitAuth() {
   if (authBusy) return;
   const email = document.getElementById("authEmail").value.trim();
   const password = document.getElementById("authPassword").value;
-  if (!email || !password || (authMode === "signup" && !document.getElementById("authName").value.trim())) { setAuthMessage(authMode === "signup" ? "Enter your first and last name, email and password." : "Enter your email and password.", true); return; }
+  const fullName = document.getElementById("authName").value.trim().replace(/\\s+/g, " ");
+  const nameParts = fullName.split(" ").filter(Boolean);
+  if (!email || !password || (authMode === "signup" && nameParts.length < 2)) { setAuthMessage(authMode === "signup" ? "Enter your first name and surname, email and password." : "Enter your email and password.", true); return; }
   if (password.length < 8) { setAuthMessage("Use a password with at least 8 characters.", true); return; }
   authBusy = true;
   const button = document.getElementById("authSubmit");

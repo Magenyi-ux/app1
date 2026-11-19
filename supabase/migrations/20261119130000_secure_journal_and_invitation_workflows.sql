@@ -126,6 +126,13 @@ begin
     raise exception 'You cannot accept your own invitation.';
   end if;
 
+  -- Serialize accepts for this journal so concurrent invitation tokens cannot
+  -- add a third member.
+  perform 1 from public.journals j where j.id = invitation.journal_id for update;
+  if not found then
+    raise exception 'This journal is no longer available.';
+  end if;
+
   if exists (
     select 1 from public.journal_members jm
      where jm.journal_id = invitation.journal_id and jm.user_id = caller_id

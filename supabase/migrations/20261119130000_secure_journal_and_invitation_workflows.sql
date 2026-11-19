@@ -19,7 +19,7 @@ begin
     into selected_journal_id
     from public.journal_members jm
    where jm.user_id = caller_id
-   order by case when jm.role = 'owner' then 0 else 1 end, jm.accepted_at asc
+   order by jm.accepted_at desc, case when jm.role = 'owner' then 0 else 1 end
    limit 1;
 
   if selected_journal_id is not null then

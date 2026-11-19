@@ -4,10 +4,10 @@ A purple-and-grey, mobile-first journal concept for couples: write an entry, ref
 
 ## Current prototype status
 
-- Responsive installable PWA shell with offline app caching.
-- Local prototype interactions: entries, private draft, prompts, reflection, history filters, writer switch, export and local reset.
+- Cloud-only enforcement: no offline journal storage or service-worker caching.
+- Journal writes are blocked until authenticated Supabase persistence is connected; this build does not pretend local saves are cloud saves.
 - Capacitor configuration for Android package name: name.spherelearn.ourjournal.
-- Important: prototype data is local to one browser/device. It is not secure cross-device collaboration yet. Avoid highly sensitive personal writing until authenticated accounts, private invitations, database access rules and cloud sync are implemented and tested.
+- Important: local prototype data is cleared and offline caching is disabled. Authenticated cloud persistence, private invitations, database access rules and cross-device sync must be implemented and tested before journal writing is enabled.
 
 ## Run locally
 

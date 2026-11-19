@@ -332,6 +332,38 @@ async function ojLoadProfile(user) {
   }
   return data;
 }
+
+async function ojShowAvatar(path) {
+  if (!path || !ojUser) return;
+  const { data, error } = await ojSupabase.storage.from("profile-avatars").createSignedUrl(path, 3600);
+  if (error || !data?.signedUrl) return;
+  $("avatarPreview").innerHTML = '<img alt="Profile picture preview" src="' + esc(data.signedUrl) + '">';
+  $("profileBtn").innerHTML = '<img alt="" src="' + esc(data.signedUrl) + '" style="width:28px;height:28px;border-radius:50%;object-fit:cover;vertical-align:middle">';
+}
+$("onboardPhoto").onchange = async function(ev) {
+  const file = ev.target.files && ev.target.files[0];
+  if (!file) return;
+  if (!ojUser) { toast("Sign in before uploading a profile picture."); ev.target.value = ""; return; }
+  if (!["image/jpeg","image/png","image/webp"].includes(file.type) || file.size > 5 * 1024 * 1024) {
+    toast("Choose a JPG, PNG or WebP image under 5 MB."); ev.target.value = ""; return;
+  }
+  const safeName = file.name.toLowerCase().replace(/[^a-z0-9._-]/g, "-").slice(-80) || "avatar.jpg";
+  const path = ojUser.id + "/" + Date.now() + "-" + safeName;
+  const input = ev.target;
+  input.disabled = true;
+  try {
+    const { error: uploadError } = await ojSupabase.storage.from("profile-avatars").upload(path, file, { upsert: false, contentType: file.type });
+    if (uploadError) throw uploadError;
+    const { error: profileError } = await ojSupabase.from("profiles").update({ avatar_path: path, updated_at: new Date().toISOString() }).eq("id", ojUser.id);
+    if (profileError) throw profileError;
+    await ojShowAvatar(path);
+    toast("Profile picture saved securely.");
+  } catch (err) {
+    console.error("Avatar upload failed", err);
+    toast("Profile picture upload failed. Try again.");
+  } finally { input.disabled = false; }
+};
+
 function ojStartOnboarding(profile) {
   go("onboarding");
   $("onboardProfile").classList.add("active");
@@ -344,7 +376,7 @@ function ojStartOnboarding(profile) {
   $("onboardStatus").value = profile?.status || "Getting to know myself";
   $("onboardBio").value = profile?.bio || "";
   $("journalTitle").value = "Our Journal";
-  ojMessage("profileSaveHint", "Your profile is saved securely to your account when you continue.");
+  ojMessage("profileSaveHint", "Your profile is saved securely to your account when you continue."); if (profile?.avatar_path) ojShowAvatar(profile.avatar_path);
 }
 async function ojEnterApp(user) {
   ojUser = user;

@@ -104,6 +104,11 @@ body.welcome-mode .welcome{margin-top:0}
 body:has(.auth-screen.active) .onboard-progress,body:has(.auth-screen.active) #onboardProfile{display:none!important}
 body:has(.auth-screen.active) .onboard{max-width:430px;padding-top:12px}
 body:has(.auth-screen.active) .shell{background:var(--auth-bg)}
+body:has(.auth-screen.active){background:var(--auth-bg)}
+body:has(.auth-screen.active) .top,body:has(.auth-screen.active) .tabs,body:has(.auth-screen.active) .footer{display:none!important}
+body:has(.auth-screen.active) .shell{width:100%;max-width:520px;padding:0 24px 22px;margin:0 auto}
+body:has(.auth-screen.active) .onboard{min-height:100dvh;padding-top:8px}
+
 @media(max-width:720px){.auth-screen{min-height:calc(100dvh - 40px)!important;padding:12px 4px calc(22px + env(safe-area-inset-bottom))!important}.auth-back{margin-bottom:12px}.auth-logo{margin-bottom:25px}.auth-privacy{padding-top:22px}}
 
 /* Account and connection onboarding — transparent local-preview mode */

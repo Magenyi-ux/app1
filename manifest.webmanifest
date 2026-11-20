@@ -1,11 +1,14 @@
 {
+  "id": "/",
   "name": "OurJournal — Two People, One Story",
   "short_name": "OurJournal",
-  "description": "A thoughtful journal for two people.",
+  "description": "A thoughtful, private shared journal for two people.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#f7f4fb",
-  "theme_color": "#26163e",
+  "display_override": ["standalone", "minimal-ui"],
+  "background_color": "#120E20",
+  "theme_color": "#120E20",
   "orientation": "portrait",
   "icons": [
     {

@@ -1,32 +1,52 @@
-# OurJournal by SphereLearn
+# Thought & Feelings by SphereLearn
 
-A purple-and-grey, mobile-first journal concept for couples: write an entry, reflect before responding, explore thoughtful prompts, and revisit the shared history.
+A mobile-first shared journal for two people. The app uses Supabase Auth, Postgres row-level security, secure one-time invitations, and private profile storage.
 
-## Current prototype status
+## Implemented application flows
 
-- Responsive installable PWA shell with offline app caching.
-- Local prototype interactions: entries, private draft, prompts, reflection, history filters, writer switch, export and local reset.
-- Capacitor configuration for Android package name: name.spherelearn.ourjournal.
-- Important: prototype data is local to one browser/device. It is not secure cross-device collaboration yet. Avoid highly sensitive personal writing until authenticated accounts, private invitations, database access rules and cloud sync are implemented and tested.
+- Welcome-first onboarding, email/password registration and sign-in.
+- Email confirmation and password recovery redirects back to the app.
+- Profile display name, compressed profile photo, appearance and reminder preferences.
+- Create a journal, then generate a single-use invitation link.
+- Accept an invitation after account creation or sign-in; invitation context is retained through email confirmation.
+- Share/copy a link or prepare an email invitation in the user's email app.
+- Shared entries and author-only private entries, with database RLS enforcing visibility.
+- Shared reflections and replies through authenticated RPCs.
+- Profile and preference persistence; shared journal entries load from Supabase across devices.
+- Local-only private drafts and export.
 
-## Run locally
+## Required Vercel environment variables
+
+Set these for Preview and Production:
+
+- `VITE_SUPABASE_URL` — the Supabase project URL.
+- `VITE_SUPABASE_PUBLISHABLE_KEY` — the project's publishable key (or the legacy `VITE_SUPABASE_ANON_KEY`).
+
+Never put a Supabase service-role key in frontend environment variables.
+
+## Authentication configuration
+
+In Supabase Auth URL configuration, allow the app's actual production origin (intended domain: `https://tf.spherelearn.name.ng`) and any preview URLs needed for testing. Configure the email templates and SMTP sender so confirmation and password-reset emails return to the requested redirect URL.
+
+## Invitation behaviour
+
+Invitation tokens are random, single-use, hashed in the database, and expire after 20 minutes. Opening an invitation link shows the welcome/account flow, not a journal preview. After authentication and any required email confirmation, the invitee must accept the invitation. The creator can share the link or open an email draft containing it; this email-draft option uses the device's mail app and is not a server-sent email service.
+
+## Privacy and limitations
+
+- RLS restricts journal data to members; private entries are visible only to their author.
+- Profile photos are resized before upload to the private `profile-avatars` bucket.
+- Private drafts are stored locally on the current device and do not sync.
+- Reminder preferences are stored, but push notifications are not implemented.
+- A complete production release still requires end-to-end testing of confirmation/reset redirects on the live domain, both participant accounts, private-entry isolation, and invitation expiry/revocation.
+
+## Local development
 
 1. Install Node.js and npm.
-2. Run npm install.
-3. Run npm run dev for development or npm run build for production output.
+2. Set the two Vite environment variables above.
+3. Run `npm install`.
+4. Run `npm run dev` or `npm run build`.
 
-## Android 10–15
+## Android
 
-Capacitor 7 supports Android projects targeting current Android SDKs; configure Android 10/API 29 as the minimum supported version and test API 29 through API 35. Install Android Studio and the Android SDK, then run npm install, npm run build, npx cap add android, npx cap sync android, and npx cap open android. A signed APK/AAB requires Android SDK setup and signing configuration; signing keys must not be committed to this repository.
-
-## Hosting
-
-Deploy the repository root to Vercel with build command npm run build and output directory dist. Proposed dedicated address: ourjournal.spherelearn.name.ng. Add the domain in Vercel and configure DNS only after the project is linked and ready.
-
-## Product roadmap
-
-1. Supabase Auth with per-person accounts and private journal membership.
-2. Secure invite acceptance and prevent anyone outside the pair from reading entries.
-3. Postgres tables and row-level security for journals, members, entries, and reflections.
-4. Cross-device sync, notifications without sensitive entry previews, account export and deletion.
-5. Android testing and signed release.
+Capacitor is configured for Android package `name.spherelearn.ourjournal`. Run `npm run android:sync` after installing dependencies and configuring the Android SDK. A signed APK/AAB requires signing configuration; never commit signing keys.

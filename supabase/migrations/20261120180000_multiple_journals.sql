@@ -1,7 +1,17 @@
 -- Multiple personal/shared journals and safe multi-journal invitation acceptance.
 -- Apply this migration to the linked Supabase project before enabling the UI in production.
 
-create or replace function public.create_journal(p_title text default 'Untitled journal')
+alter table public.journals
+  add column if not exists journal_type text not null default 'shared'
+  check (journal_type in ('personal', 'shared'));
+
+create index if not exists journals_created_by_updated_at_idx
+  on public.journals (created_by, updated_at desc);
+
+create or replace function public.create_journal(
+  p_title text default 'Untitled journal',
+  p_type text default 'shared'
+)
 returns uuid
 language plpgsql
 security definer
@@ -10,7 +20,7 @@ as $function$
 declare
   caller_id uuid := auth.uid();
   new_journal_id uuid;
-  clean_title text := btrim(coalesce(p_title, ''));
+  clean_title text := left(btrim(coalesce(p_title, '')), 120);\n  clean_type text := lower(btrim(coalesce(p_type, 'shared')));
 begin
   if caller_id is null then
     raise exception 'Authentication is required.';

@@ -384,7 +384,7 @@ if($("entrySearch"))$("entrySearch").addEventListener("input",renderHistory);
 ["title","body","mood","promptChoice","entryVisibility"].forEach(function(id){if($(id))$(id).addEventListener("input",autosaveEditorDraft);if($(id)&&id!=="body")$(id).addEventListener("change",autosaveEditorDraft)});
 window.addEventListener("online",function(){syncPendingEntries().catch(function(e){console.warn("Offline sync pending",e)})});
 window.addEventListener("offline",function(){if($("autosaveStatus"))$("autosaveStatus").textContent="Offline · drafts stay on this device"});
-if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/service-worker.js").catch(function(e){console.warn("Offline shell unavailable",e)})})}
+if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(e){console.warn("Offline shell unavailable",e)})})}
 state.entries=[];render();loadSettings();
 if(!navigator.onLine){var cached=readJSON(OFFLINE_CACHE_KEY,null);if(cached&&cached.entries){currentJournalId=cached.journalId||currentJournalId;state.entries=cached.entries;render();}}
 

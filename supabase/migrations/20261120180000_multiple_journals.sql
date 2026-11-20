@@ -20,7 +20,8 @@ as $function$
 declare
   caller_id uuid := auth.uid();
   new_journal_id uuid;
-  clean_title text := left(btrim(coalesce(p_title, '')), 120);\n  clean_type text := lower(btrim(coalesce(p_type, 'shared')));
+  clean_title text := left(btrim(coalesce(p_title, '')), 120);
+  clean_type text := lower(btrim(coalesce(p_type, 'shared')));
 begin
   if caller_id is null then
     raise exception 'Authentication is required.';

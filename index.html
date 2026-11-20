@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#26163e"><meta name="description" content="OurJournal — a thoughtful shared journal for two people, on your time."><link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icon.svg"><title>OurJournal — Write. Understand. Grow.</title>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#120E20"><meta name="description" content="OurJournal — a thoughtful, private shared journal for two people."><meta name="application-name" content="OurJournal"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="OurJournal"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/icon.svg"><title>OurJournal — Write. Understand. Grow.</title>
 <style>
 :root{color-scheme:dark;--green:#7B51F5;--green-hover:#6337E8;--green-soft:#342856;--paper:#120E20;--white:#221C3E;--ink:#FFFFFF;--muted:#A09CB3;--line:#3B315C;--warm:#2D264D;--deep:#171222;--shadow:0 1px 2px rgba(0,0,0,.18)}
 *{box-sizing:border-box}
@@ -156,11 +156,232 @@ html,body{background:#120E20;color:#fff}
  .welcome{margin:-23px -14px -100px}
 }
 
+
+/* Locked OurJournal reference redesign — mobile-first, lavender and plum */
+:root{color-scheme:light;--paper:#f4edf8;--white:#fffaff;--ink:#211631;--muted:#766b84;--line:#e3d8ed;--green:#7540b6;--green-hover:#603091;--green-soft:#e8d9f3;--warm:#eee2f5;--deep:#171121;--shadow:0 8px 24px rgba(48,24,68,.08)}
+html,body{background:#f4edf8;color:#211631;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:-.18px}
+.top{background:rgba(244,237,248,.94);border-color:#e3d8ed;color:#211631}
+.brand .mark{border-radius:50%;background:linear-gradient(135deg,#a96be7,#5e2d91)}
+.shell{max-width:1120px}
+.hero h1,.page-title{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-weight:760;letter-spacing:-1.1px}
+.card{background:#fffaff;border:1px solid #e8ddef;border-radius:20px;box-shadow:0 6px 22px rgba(48,24,68,.055);padding:22px}
+.btn,.top button,.top .download-link{border-radius:999px}
+.primary{background:linear-gradient(110deg,#a56be5,#6735a3);border-color:transparent;color:#fff;box-shadow:0 5px 14px rgba(103,53,163,.14)}
+.primary:hover{background:linear-gradient(110deg,#9255d5,#572789)}
+.secondary{background:#f1e6f7;border-color:#e5d8ef;color:#3b2a4d}
+.entry{background:#f1e7f7;border:1px solid #e7d9f0;border-radius:17px;padding:17px}
+.entry-body{font:15px/1.65 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.dot{background:#e6d5f5;color:#6e3aab}
+.dot.partner{background:#d7c2eb;color:#4b286d}
+.prompt{background:#21152f;border:0;border-radius:18px;color:#fff;box-shadow:0 8px 22px rgba(31,17,46,.12)}
+.prompt p,.prompt .eyebrow{color:#f4eafa}
+.tabs{background:#24172f;border-color:#352344;border-radius:22px;padding:7px;box-shadow:0 8px 25px rgba(28,15,40,.15)}
+.tab{color:#c6b7d1;border-radius:16px}.tab.active{background:#4c2c68;color:#d7a5ff}
+.field,textarea.field{background:#f1e7f7;border:1px solid #e4d7ee;border-radius:16px;color:#211631}
+.field::placeholder{color:#9988a7}
+.segmented{background:#e9def1;border-radius:999px}.segmented button{border-radius:999px;color:#766b84}.segmented button.active{background:#fffaff;color:#68339c}
+.setting-link{background:#f5edf9;border-color:#e6d9ef;border-radius:16px;color:#211631}
+.setting-link>span:first-child{border-radius:12px;background:#e9d9f5;color:#7040a3}
+.notice{background:#f0e1fa;border-color:#e2cff2;color:#604578;border-radius:14px}
+#home .hero{padding:8px 0 22px}
+#home .hero h1{font-size:clamp(34px,5vw,46px);line-height:1.05}
+#home .layout{grid-template-columns:minmax(0,1.2fr) minmax(270px,.8fr);gap:15px}
+#home .layout .card:first-child .entry{background:#f0e5f7}
+#write .card,#reflect .card,#profile .card,#history .card,#prompts .card{background:#fffaff;border-radius:20px;border-color:#e8ddef}
+#write .primary{border-radius:999px;min-height:48px}
+#write textarea.field{min-height:170px}
+#prompts .prompt{background:#eee2f5;border:1px solid #e1d2ec;color:#211631;box-shadow:none}
+#prompts .prompt p,#prompts .prompt .eyebrow{color:#211631}
+#reflect .card{background:#191222;color:#fff;border-color:#2b1d37;border-radius:20px}
+#reflect .entry{background:#f0e5f7;color:#211631}
+#reflect textarea.field,#reflect input.field{background:#fffaff;color:#211631}
+#reflect .hint{color:#d0c0dc}
+#history .entry{background:#f0e5f7}
+.timeline{border-left:2px solid #c7a4e3}
+.timeline .entry:before{background:#7540b6}
+.welcome{background:radial-gradient(ellipse at 85% 10%,#563176 0%,transparent 34%),radial-gradient(ellipse at 15% 80%,#38204f 0%,transparent 40%),linear-gradient(145deg,#21152f,#110d1a 72%);border-radius:0;color:#fff}
+.welcome:before{content:"";position:absolute;inset:-12% -20% auto auto;width:290px;height:300px;border:1px solid rgba(202,151,255,.22);border-radius:48% 52% 58% 42%;background:linear-gradient(135deg,rgba(163,99,224,.18),transparent);transform:rotate(28deg);pointer-events:none}
+.welcome-art{height:160px}
+.welcome-symbol{font-family:Inter,sans-serif;font-size:86px;color:#d3a0ff;text-shadow:0 0 30px rgba(172,104,255,.3)}
+.welcome h1{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:clamp(38px,9vw,54px);font-weight:780;letter-spacing:-1.7px}
+.welcome h1 span{color:#b77aff}
+.welcome-description{margin:30px auto 26px}
+.welcome .primary{background:linear-gradient(110deg,#b77aff,#8b4bd1);color:#fff;border:0;min-height:50px}
+.welcome-signin{color:#d3a0ff}
+.onboard,.modal{border-radius:22px}
+@media(min-width:721px){.tabs{background:#24172f}.tab{color:#c6b7d1}.tab.active{color:#d7a5ff}}
+@media(max-width:720px){.shell{padding-bottom:calc(100px + env(safe-area-inset-bottom))}.welcome{margin:0 -14px -100px;min-height:calc(100dvh - 52px);padding:24px 25px calc(35px + env(safe-area-inset-bottom))}.welcome-art{height:150px}.card{padding:18px;border-radius:19px}#home .layout{grid-template-columns:1fr}.tabs{background:#24172f}.tab{color:#c6b7d1}.tab.active{background:#4c2c68;color:#d7a5ff}}
+
+body.auth-gate header.top,body.auth-gate .tabs,body.auth-gate nav.bottom-nav,body.auth-gate #inviteBtn,body.auth-gate #profileBtn{display:none!important}body.auth-gate .view:not(.active){display:none!important}body.auth-gate .shell{padding-top:18px}#auth .onboard,#password-reset .onboard{max-width:480px;margin:0 auto}#auth .card,#password-reset .card{display:flex;flex-direction:column;gap:8px}#authBack{display:none!important}#auth .field,#password-reset .field{width:100%;box-sizing:border-box}#emailVerificationGate[hidden]{display:none!important}#emailVerificationGate{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;overflow:auto;overscroll-behavior:contain;background:rgba(17,10,29,.97);backdrop-filter:blur(18px);padding:22px;box-sizing:border-box}#emailVerificationGate .verify-card{width:min(100%,460px);max-height:calc(100dvh - 44px);overflow:auto;box-sizing:border-box;border:1px solid #5b426f;border-radius:28px;background:#fbf6ff;color:#211631;padding:clamp(24px,6vw,38px);text-align:center;box-shadow:0 24px 90px rgba(0,0,0,.38)}#emailVerificationGate .verify-mark{display:grid;place-items:center;margin:0 auto 18px;width:68px;height:68px;border-radius:22px;background:#eee0fb;color:#7540b6;font-size:30px}#emailVerificationGate h1{font-size:clamp(26px,7vw,34px);line-height:1.15;margin:12px 0}#emailVerificationGate #verifyCopy{line-height:1.65;color:#574966}#emailVerificationGate .verify-address{font-weight:700;overflow-wrap:anywhere;color:#7540b6}#emailVerificationGate .btn{width:100%;margin-top:10px}#emailVerificationGate .verify-small{font-size:12px;color:#766b84;margin:18px 0 0}body.email-verification-required{overflow:hidden!important}
+.reader-toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.reader-heading{max-width:760px;margin:0 auto 28px}
+.reader-heading h1{font:400 clamp(38px,7vw,58px)/1.05 Georgia,"Times New Roman",serif;letter-spacing:-1.4px;margin:12px 0}
+.reader-heading .page-sub{line-height:1.7;color:var(--muted);margin:0 0 20px}
+.reader-search{width:100%;max-width:100%;margin-top:12px;background:var(--white);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.reader-meta{font-size:12px;color:var(--muted);margin-top:12px}
+.reader-entries{max-width:760px;margin:0 auto}
+.reader-entry{padding:24px 0;border-bottom:1px solid var(--line)}
+.reader-entry:first-child{border-top:1px solid var(--line)}
+.reader-entry time{display:block;color:var(--muted);font-size:12px;margin-bottom:9px}
+.reader-entry h2{font:600 20px/1.35 Georgia,"Times New Roman",serif;margin:0 0 12px;letter-spacing:-.25px}
+.reader-entry .reader-body{font:var(--reader-font-size,17px)/1.9 Georgia,"Times New Roman",serif;white-space:pre-wrap;overflow-wrap:anywhere;color:var(--ink)}
+.reader-entry .reader-writer{font-size:11px;color:var(--muted);margin-bottom:12px}
+.reader-entry .reader-mood{display:inline-block;margin-top:14px;border:1px solid var(--line);border-radius:99px;padding:4px 9px;font-size:11px;color:var(--muted)}
+.reader-images{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:20px}.reader-images figure{margin:0}.reader-images img,.entry-attachment img{display:block;width:100%;max-height:420px;object-fit:contain;background:var(--paper,#f6f2ea);border:1px solid var(--line);border-radius:12px}.reader-images figcaption{font-size:11px;color:var(--muted);margin-top:6px;overflow-wrap:anywhere}.entry-attachment{margin-top:14px;max-width:560px}.entry-attachment img{max-height:360px}
+.reader-empty{padding:36px 12px;text-align:center;color:var(--muted);line-height:1.7}
+
+/* OurJournal — refined, native-feeling design system */
+:root{
+ color-scheme:light;
+ --green:#171717;--green-hover:#303030;--green-soft:#f3f3f3;
+ --paper:#f7f7f5;--white:#ffffff;--ink:#191919;--muted:#777873;
+ --line:#e7e7e3;--warm:#f0f0ec;--deep:#20211f;
+ --shadow:0 1px 2px rgba(0,0,0,.025),0 8px 28px rgba(0,0,0,.035);
+}
+html,body{background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif;letter-spacing:-.18px;-webkit-font-smoothing:antialiased}
+::selection{background:#d9e8df;color:#171717}
+button,input,textarea,select{font-family:inherit}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid rgba(40,90,70,.25);outline-offset:3px}
+.top{background:rgba(247,247,245,.86);backdrop-filter:saturate(180%) blur(22px);border-bottom:1px solid rgba(0,0,0,.07);color:var(--ink);padding:13px max(24px,calc((100vw - 1060px)/2))}
+.brand{font-size:16px;font-weight:650;letter-spacing:-.55px;gap:10px}
+.brand small{font-size:10px;letter-spacing:.1px;color:#888a84}
+.mark{width:32px;height:32px;border-radius:10px;background:#20211f;color:#fff;font-size:18px}
+.top button,.top .download-link{border:1px solid #e4e4df;background:#fff;color:#242424;border-radius:999px;padding:9px 14px;font-size:12px;font-weight:600}
+.top .download-link,.top .primary{background:#20211f;color:#fff;border-color:#20211f}
+.top .download-link:hover,.top .primary:hover,.primary:hover{background:#41423f;border-color:#41423f}
+.shell{width:min(1060px,100%);padding:44px 26px 46px}
+.hero{padding:20px 0 38px}
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#74766f}
+.hero h1,#home .hero h1{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;font-size:clamp(42px,6.6vw,72px);font-weight:650;letter-spacing:-3.2px;line-height:.99;max-width:740px;margin:17px 0 19px;color:#191919}
+.hero p,#home .hero p{font-size:15px;line-height:1.75;max-width:490px;color:#70716d}
+.btn{min-height:44px;border-radius:999px;padding:12px 19px;font-size:13px;font-weight:650;box-shadow:none}
+.primary{background:#20211f;color:#fff;border-color:#20211f}
+.secondary{background:#fff;border:1px solid #e4e4df;color:#252525}
+.secondary:hover,.top button:hover{background:#f0f0ec;border-color:#d9d9d3}
+.layout{grid-template-columns:minmax(0,1.45fr) minmax(260px,.8fr);gap:18px;margin-top:8px}
+.card{background:#fff;border:1px solid #e9e9e5;border-radius:18px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,.018)}
+.head h2,.card h2{font-size:15px;font-weight:650;letter-spacing:-.25px}
+.sub,.hint{color:#858680}
+.entry{background:#fafaf8!important;border:1px solid #ededE8;border-radius:13px;padding:17px;box-shadow:none}
+.entry:hover{transform:translateY(-1px);border-color:#d7d7d0;box-shadow:0 6px 18px rgba(0,0,0,.035)}
+.dot,.dot.partner{background:#ecece8;color:#30312e}
+.meta{font-weight:650}.meta small{color:#858680}
+.entry-body{font-family:Georgia,"Times New Roman",serif;font-size:16px;line-height:1.8;color:#282925}
+.entry-foot{border-color:#e9e9e5}
+.tiny{color:#333;font-weight:650}.tiny:hover{color:#000}
+.prompt{background:#f4f4f0;border:1px solid #e9e9e4;border-radius:15px;color:#222;padding:20px}
+.prompt p{font-family:Georgia,"Times New Roman",serif;font-size:18px;line-height:1.55;color:#252622}
+.view.active:not(.welcome){animation:app-view-enter .24s ease both}
+.tabs{background:rgba(255,255,255,.92);border:1px solid #e8e8e3;border-radius:999px;padding:5px;gap:3px;box-shadow:0 5px 22px rgba(0,0,0,.045)}
+.tab{border-radius:999px;color:#777872;font-weight:600}
+.tab.active{background:#20211f;color:#fff}
+.page-title{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;font-weight:650;letter-spacing:-1.4px;font-size:clamp(32px,4vw,44px)}
+.page-sub{color:#73746f}
+.field{background:#fbfbf9;border:1px solid #e3e3dd;border-radius:11px;color:#222;padding:13px 14px}
+.field::placeholder{color:#a0a19b}
+textarea.field{background:#fbfbf9;border-color:#e3e3dd;border-radius:13px;color:#242520}
+.field:focus{border-color:#999b92;box-shadow:0 0 0 4px rgba(30,31,28,.06)}
+.segmented{background:#f0f0ec;border-radius:11px}
+.segmented button{border-radius:8px;color:#72736d}
+.segmented button.active{background:#fff;color:#20211f;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.timeline{border-left-color:#d8d8d1}
+.timeline .entry:before{border-color:var(--paper);background:#30312e}
+.notice{background:#f5f5f1;border:1px solid #e8e8e1;color:#60615b;border-radius:11px}
+.stats{gap:12px}.stat{background:#f5f5f1;border-radius:12px}.stat b{color:#20211f}
+.modalback{background:rgba(20,20,18,.34);backdrop-filter:blur(8px)}
+.modal{background:#fff;border:1px solid #e9e9e5;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.14)}
+.toast{background:#20211f;border-radius:999px;box-shadow:0 8px 28px rgba(0,0,0,.15)}
+.setting-link{background:#fff;border-color:#e9e9e5;border-radius:14px}
+.setting-link>span:first-child{background:#f0f0ec;color:#252622;border-radius:11px}
+.setting-link:hover{background:#f8f8f5;transform:none}
+.thread-reply{background:#f4f4f0}
+.onboard{max-width:500px}
+.onboard-progress span{background:#e7e7e1;border-radius:99px}
+.onboard-progress span.done{background:#242520}
+.onboard-kicker{color:#696a64;letter-spacing:.12em}
+.onboard h1{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;font-weight:650;letter-spacing:-1.8px}
+.onboard .card{border:1px solid #e9e9e5;border-radius:18px;background:#fff}
+.onboard-avatar{background:#f0f0ec;border:1px solid #e4e4df;color:#242520}
+.onboard-note{background:#f6f6f2;border:1px solid #e8e8e2;border-radius:12px;color:#60615a}
+.invite-choice{background:#fff;border-color:#e8e8e2;border-radius:13px}
+.welcome{background:#f7f7f5!important;color:#191919!important}
+.welcome-art{height:155px;margin-bottom:5px}
+.welcome-symbol{color:#20211f!important;text-shadow:none!important;font-size:78px}
+.welcome-orbit{border-color:rgba(0,0,0,.08)!important;background:rgba(0,0,0,.012)!important}
+.welcome .eyebrow{color:#73746e!important}
+.welcome h1{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;font-size:clamp(44px,10vw,62px);font-weight:650;letter-spacing:-2.6px;color:#191919;margin:18px 0 12px}
+.welcome h1 span{color:#73746e}
+.welcome-tagline{color:#454640}
+.welcome-description{color:#777872;line-height:1.8}
+.welcome .primary{background:#20211f;border-color:#20211f;color:#fff;border-radius:999px;min-height:50px}
+.welcome-signin{color:#4b4c46}
+.welcome-foot{color:#92938c}
+#write .card,#reflect .card,#profile .card,#history .card,#prompts .card{border-radius:18px;border:1px solid #e9e9e5;background:#fff}
+#reflect .card{background:#20211f;color:#fff;border-color:#20211f}
+#reflect .entry{background:#fafaf8;color:#20211f}
+#reflect .field-label{color:#e7e7e1}
+#reflect textarea.field,#reflect input.field{background:#fff;color:#222}
+#reflect .hint{color:#bfc0b9}
+#prompts .prompt{background:#f4f4f0;border-color:#e8e8e2}
+#home .layout .card:first-child .entry{background:#fafaf8}
+#home .layout .card:first-child .entry-foot{border-color:#e9e9e5}
+#emailVerificationGate .verify-card{background:#fff!important;color:#20211f!important;border:1px solid #e9e9e5!important;border-radius:24px!important;box-shadow:0 20px 70px rgba(0,0,0,.12)!important}
+#emailVerificationGate .verify-mark{background:#f0f0ec!important;color:#20211f!important;border-radius:14px!important}
+.reader-toolbar{border-color:#e8e8e2}
+.reader-heading{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif!important;font-weight:650!important;letter-spacing:-1.8px!important}
+.reader-search{background:#fff!important;border-color:#e5e5df!important;border-radius:999px!important}
+.reader-entry{border-color:#e9e9e5!important}
+.reader-body{color:#30312d!important;line-height:1.9!important}
+@media(min-width:721px){.shell{padding-top:46px}.tabs{position:static}}
+@media(max-width:720px){
+ .shell{padding:27px 16px calc(104px + env(safe-area-inset-bottom))}
+ .top{padding:10px 16px}
+ .hero h1,#home .hero h1{font-size:clamp(42px,12vw,56px);letter-spacing:-2.5px;line-height:1.02}
+ .layout{grid-template-columns:1fr;gap:13px}
+ .card{padding:19px;border-radius:16px}
+ .tabs{left:12px;right:12px;bottom:calc(9px + env(safe-area-inset-bottom));border-radius:999px;padding:5px}
+ .tab{padding:9px 3px;font-size:10px}
+ .tab span{font-size:17px}
+ .page-title{font-size:34px;letter-spacing:-1.2px}
+ .welcome{margin:-23px -16px -100px;min-height:calc(100dvh - 52px);padding:28px 25px calc(35px + env(safe-area-inset-bottom))}
+ .welcome-art{height:140px}
+ .entry{padding:15px}
+ .row>*{flex-basis:100%}
+}
+@media(prefers-reduced-motion:reduce){.view.active:not(.welcome),.entry:hover,.setting-link:hover{animation:none;transform:none;box-shadow:none}}
+
+#emailCallbackResult{position:fixed;inset:0;z-index:100000;display:grid;place-items:center;padding:20px;background:rgba(20,16,26,.72);backdrop-filter:blur(12px)}#emailCallbackResult[hidden]{display:none!important}#emailCallbackResult .verify-card{width:min(100%,440px);background:var(--surface,#fff);color:var(--ink,#211b27);border:1px solid var(--line,#e5dfea);border-radius:24px;padding:clamp(24px,6vw,36px);box-shadow:0 24px 80px rgba(0,0,0,.2)}#emailCallbackMessage{line-height:1.7;margin:18px 0}
 </style></head><body>
 <header class="top"><div class="brand"><div class="mark">♡</div><div>OurJournal<small>Write. Understand. Grow.</small></div></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><a class="download-link" href="https://github.com/Magenyi-ux/app1/actions/runs/44355463315" target="_blank" rel="noopener noreferrer" aria-label="Download OurJournal for Android">Download Android ↓</a><button id="inviteBtn">Invite your person ↗</button><button id="profileBtn" aria-label="Profile">Y</button></div></header>
 <main class="shell">
-<section class="view welcome active" id="welcome"><div class="welcome-art" aria-hidden="true"><div class="welcome-orbit orbit-one"></div><div class="welcome-orbit orbit-two"></div><div class="welcome-symbol">♡</div></div><div class="welcome-copy"><div class="eyebrow">A space for the two of you</div><h1>Our<span>Journal</span></h1><p class="welcome-tagline">Write. Understand. Grow.</p><p class="welcome-description">A shared journal for two, because understanding makes love stronger.</p><button class="btn primary" id="getStarted">Get Started</button><button class="welcome-signin" id="signInBtn">Sign In</button><p class="welcome-foot">A little more understanding, one page at a time.</p></div></section>
-<section class="view" id="onboarding">
+<section class="view welcome active" id="welcome"><div class="welcome-art" aria-hidden="true"><div class="welcome-orbit orbit-one"></div><div class="welcome-orbit orbit-two"></div><div class="welcome-symbol">♡</div></div><div class="welcome-copy"><div class="eyebrow">A space for the two of you</div><h1>Our<span>Journal</span></h1><p class="welcome-tagline">Write. Understand. Grow.</p><p class="welcome-description">A shared journal for two, because understanding makes love stronger.</p><div id="inviteWelcomeNotice" class="notice" hidden></div><button class="btn primary" id="getStarted">Get Started</button><button class="welcome-signin" id="signInBtn">Sign In</button><p class="welcome-foot">A little more understanding, one page at a time.</p></div></section>
+
+<section class="view" id="auth">
+  <div class="onboard">
+    <div class="onboard-avatar" aria-hidden="true">♡</div>
+    <div class="onboard-kicker">OURJOURNAL ACCOUNT</div>
+    <h1 id="authHeading">Create your account.</h1>
+    <p class="onboard-copy" id="authIntro">Your profile and journal will be saved securely to your account.</p><div id="inviteAuthNotice" class="notice" hidden></div>
+    <form class="card" id="authForm">
+      <div id="authNameFields">
+      <label class="field-label" for="authFirstName">First name</label>
+      <input class="field" id="authFirstName" maxlength="80" autocomplete="given-name" placeholder="Your first name">
+      <label class="field-label" for="authLastName">Last name</label>
+      <input class="field" id="authLastName" maxlength="80" autocomplete="family-name" placeholder="Your surname">
+    </div>
+    <label class="field-label" for="authEmail">Email address</label>
+      <input class="field" id="authEmail" type="email" autocomplete="email" required maxlength="254" placeholder="you@example.com">
+      <label class="field-label" for="authPassword">Password</label>
+      <input class="field" id="authPassword" type="password" autocomplete="new-password" minlength="8" required placeholder="At least 8 characters">
+      <p class="hint" id="authHint">Use an email you can access to confirm your account.</p>
+      <button class="btn primary" id="authSubmit" type="submit" style="width:100%;margin-top:12px">Create account</button>
+      <button class="btn secondary" id="authSwitch" type="button" style="width:100%;margin-top:10px">Already have an account? Sign in</button>
+    </form>
+    <button class="welcome-signin" id="authBack" type="button" style="margin-top:16px">Back to welcome</button>
+  </div>
+</section>
+
+<section class="view" id="password-reset"><div class="onboard"><div class="onboard-avatar" aria-hidden="true">♡</div><div class="onboard-kicker">ACCOUNT SECURITY</div><h1 id="resetHeading">Reset your password.</h1><p class="onboard-copy" id="resetIntro">Enter your account email and we will send a secure reset link.</p><form class="card" id="resetRequestForm"><label class="field-label" for="resetEmail">Email address</label><input class="field" id="resetEmail" type="email" required maxlength="254" autocomplete="email" placeholder="you@example.com"><p class="hint" id="resetRequestHint">If an account exists for that email, we will send a reset link.</p><button class="btn primary" id="resetRequestSubmit" type="submit" style="width:100%;margin-top:12px">Send reset link</button></form><form class="card" id="resetPasswordForm" style="display:none"><label class="field-label" for="resetNewPassword">New password</label><input class="field" id="resetNewPassword" type="password" minlength="8" autocomplete="new-password" required placeholder="At least 8 characters"><label class="field-label" for="resetConfirmPassword">Confirm new password</label><input class="field" id="resetConfirmPassword" type="password" minlength="8" autocomplete="new-password" required placeholder="Repeat your password"><p class="hint" id="resetPasswordHint">Choose a password you do not use elsewhere.</p><button class="btn primary" id="resetPasswordSubmit" type="submit" style="width:100%;margin-top:12px">Save new password</button></form><button class="welcome-signin" id="resetBack" type="button" style="margin-top:16px">Back to sign in</button></div></section><section class="view" id="onboarding">
   <div class="onboard">
     <div class="onboard-progress" aria-label="Setup progress"><span id="progressOne" class="done"></span><span id="progressTwo"></span></div>
     <div class="onboard-step active" id="onboardProfile">
@@ -169,11 +390,21 @@ html,body{background:#120E20;color:#fff}
       <h1>Make it yours.</h1>
       <p class="onboard-copy">Choose how you want to appear in OurJournal. You can change this later.</p>
       <div class="card">
+        <label class="field-label" for="onboardFirstName">First name</label>
+        <input class="field" id="onboardFirstName" maxlength="80" autocomplete="given-name" required placeholder="Your first name">
+        <label class="field-label" for="onboardLastName">Last name</label>
+        <input class="field" id="onboardLastName" maxlength="80" autocomplete="family-name" required placeholder="Your last name">
         <label class="field-label" for="onboardName">Display name</label>
-        <input class="field" id="onboardName" maxlength="40" autocomplete="nickname" placeholder="What should your person call you?">
+        <input class="field" id="onboardName" maxlength="40" autocomplete="nickname" placeholder="How should your person see you?">
+        <label class="field-label" for="onboardStatus">Profile status</label>
+        <select class="field" id="onboardStatus">
+          <option>Getting to know myself</option><option>Learning to communicate better</option><option>Here to listen and understand</option><option>Growing together</option><option>Taking things one day at a time</option><option>Prefer not to say</option>
+        </select>
+        <label class="field-label" for="onboardBio">A little about you (optional)</label>
+        <textarea class="field" id="onboardBio" maxlength="280" rows="3" placeholder="What would you like your person to know?"></textarea>
         <label class="field-label" for="onboardPhoto">Profile picture (optional)</label>
         <input class="field" id="onboardPhoto" type="file" accept="image/*">
-        <p class="hint">In this preview, your profile is saved only in this browser. No account is created.</p>
+        <p class="hint" id="profileSaveHint">Your profile is saved securely to your account.</p>
       </div>
       <div class="onboard-actions"><button class="btn primary" id="onboardNext">Continue</button><button class="btn secondary" id="onboardSkip">Skip setup</button></div>
     </div>
@@ -181,32 +412,401 @@ html,body{background:#120E20;color:#fff}
       <div class="onboard-kicker">Step 2 of 2 · Your person</div>
       <h1>Two sides. One journal.</h1>
       <p class="onboard-copy">Either of you can start a journal and invite the other. An invitation should only connect accounts after both people accept.</p>
-      <div class="invite-choice"><b>I have an invitation link</b><p>When secure accounts are enabled, opening an invite will carry you through sign-in and then ask you to accept the connection.</p><label class="field-label" for="inviteLinkPreview">Invitation link</label><input class="field" id="inviteLinkPreview" type="url" placeholder="Paste your OurJournal invitation link" autocomplete="url"><p class="hint" id="inviteLinkHint">Invitation links are not active yet because account sign-in and server-side invitation validation are not connected.</p></div>
-      <div class="invite-choice"><b>I'll invite my person later</b><p>Continue exploring the local preview. It won't create or send an invitation.</p></div>
-      <div class="onboard-note"><b>Privacy first.</b> Your journal entries stay on this device in this prototype. No real account is connected, and no invitation will be accepted or shared until the secure backend is implemented.</div>
-      <div class="onboard-actions"><button class="btn primary" id="onboardPreview">Continue to local preview</button><button class="btn secondary" id="onboardBack">Back</button></div>
+      <div id="inviteRoomNotice" class="notice" hidden></div><div class="invite-choice"><b>Start a new journal</b><p>Create your private journal space. You can invite your person after setup.</p><label class="field-label" for="journalTitle">Journal name</label><input class="field" id="journalTitle" maxlength="120" value="Our Journal" placeholder="Give your journal a name"></div>
+      <div class="invite-choice"><b>I already have an invitation</b><p>Paste a valid invitation link to join that journal. Your own private journal is created automatically when you register.</p><label class="field-label" for="inviteLinkPreview">Invitation link (optional)</label><input class="field" id="inviteLinkPreview" type="url" placeholder="Paste your invitation link" autocomplete="url"><p class="hint" id="inviteLinkHint">Your invitation is validated securely before you join the shared journal.</p></div>
+      <div class="onboard-actions"><button class="btn primary" id="onboardPreview">Save profile and continue</button><button class="btn secondary" id="onboardBack">Back</button></div>
     </div>
   </div>
 </section>
 <section class="view" id="home"><div class="hero"><div class="eyebrow">A little space for the two of you</div><h1>Better together,<br>one page at a time.</h1><p>A shared journal for thoughts that deserve more than a quick text. Write when you're ready. Read with care.</p><button class="btn primary" id="start">Write an entry ↗</button></div>
-<div class="layout"><section class="card"><div class="head"><div><h2>Our Journal</h2><p class="sub" id="count">Your story, one entry at a time.</p></div><button class="tiny" id="allHistory">View all →</button></div><div id="recent"></div></section><aside class="card"><div class="head"><div><h2>Today’s Prompt</h2><p class="sub">No perfect answers needed.</p></div><span style="font-size:22px;color:#9c5ee5">✧</span></div><div class="prompt"><div class="eyebrow">A gentle prompt</div><p id="dailyPrompt"></p><button class="btn secondary" id="usePrompt">Write about this</button></div><p class="hint" style="margin-top:15px">No streaks. No rush to reply. Just space to listen.</p></aside></div></section>
-<section class="view" id="write"><div class="card"><div class="write-illustration" aria-hidden="true"><svg viewBox="0 0 260 120" width="250" height="115" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="128" cy="103" rx="90" ry="9" fill="#365744" opacity=".10"/><path d="M36 32Q69 16 111 38V92Q70 72 36 87V32Z" fill="#fff" stroke="#c5a6e9" stroke-width="2"/><path d="M111 38Q151 17 190 31V86Q151 72 111 92V38Z" fill="#f0e4fc" stroke="#c5a6e9" stroke-width="2"/><path d="M111 38V92" stroke="#a96df0" stroke-width="2"/><path d="M51 44Q77 38 96 49M51 56Q76 50 96 61M51 68Q77 62 96 73M126 48Q151 38 176 42M126 60Q151 50 176 54M126 72Q151 62 176 66" stroke="#d5c0ef" stroke-width="2" stroke-linecap="round"/><path d="M157 5C148 -5 133 5 143 18L158 32L173 18C184 5 168 -5 157 5Z" fill="#8a4bd0"/><path d="M208 13L176 69Q174 73 179 75L184 77L219 22Q222 17 217 14Q212 10 208 13Z" fill="#2a2039"/><path d="M176 69L171 82L184 77" fill="#b987f4"/></svg></div><div class="eyebrow">YOUR PAGE</div><h1 class="page-title" style="margin-top:9px">What’s on your mind?</h1><p class="page-sub">Be honest. It’s just between us. ♡</p><div class="row"><div><label class="field-label" for="title">A title (optional)</label><input class="field" id="title" maxlength="90" placeholder="A thought I want to share"></div><div><label class="field-label" for="mood">How are you feeling?</label><select class="field" id="mood"><option>Reflective</option><option>Grateful</option><option>Hopeful</option><option>Uncertain</option><option>Hurt</option><option>Happy</option><option>Overwhelmed</option><option>Curious</option></select></div></div><label class="field-label" for="body">Your entry</label><textarea class="field" id="body" maxlength="6000" placeholder="I've been thinking about…"></textarea><p class="hint" id="draftNote">Your writing stays on this device in this prototype.</p><label class="field-label" for="promptChoice">Writing from a prompt? (optional)</label><select class="field" id="promptChoice"><option value="">No prompt today</option></select><div class="row" style="margin-top:15px"><button class="btn secondary" id="saveDraft">Save private draft</button><button class="btn primary" id="share">Share entry</button></div><p class="hint">Private drafts stay on this device. Shared entries in this prototype are also local to this browser.</p></div></section>
+<div class="layout"><section class="card"><div class="head"><div><h2 id="homeJournalTitle">Our Journal</h2><p class="sub" id="count">Your story, one entry at a time.</p></div><div style="display:flex;gap:8px;align-items:center"><button class="tiny" data-view="reader">Read journal</button><button class="tiny" id="allHistory">View all →</button></div></div><div id="recent"></div></section><aside class="card"><div class="head"><div><h2>Today’s Prompt</h2><p class="sub">No perfect answers needed.</p></div><span style="font-size:22px;color:#9c5ee5">✧</span></div><div class="prompt"><div class="eyebrow">A gentle prompt</div><p id="dailyPrompt"></p><button class="btn secondary" id="usePrompt">Write about this</button></div><p class="hint" style="margin-top:15px">No streaks. No rush to reply. Just space to listen.</p></aside></div></section>
+<section class="view" id="reader">
+  <div class="reader-toolbar">
+    <button class="tiny" data-view="home">← Back to journal</button>
+    <button class="tiny" id="readerTextSize" type="button" aria-label="Increase text size">A+</button>
+  </div>
+  <header class="reader-heading">
+    <div class="eyebrow">YOUR JOURNAL, ALL IN ONE PLACE</div>
+    <h1>Our story.</h1>
+    <p class="page-sub">A quiet place to read everything you've written together.</p>
+    <input class="field reader-search" id="readerSearch" type="search" placeholder="Search entries or words…" aria-label="Search journal entries">
+    <div class="reader-meta" id="readerCount" aria-live="polite"></div>
+  </header>
+  <div id="readerEntries" class="reader-entries"></div>
+</section>
+<section class="view" id="write"><div class="card"><div class="write-illustration" aria-hidden="true"><svg viewBox="0 0 260 120" width="250" height="115" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="128" cy="103" rx="90" ry="9" fill="#365744" opacity=".10"/><path d="M36 32Q69 16 111 38V92Q70 72 36 87V32Z" fill="#fff" stroke="#c5a6e9" stroke-width="2"/><path d="M111 38Q151 17 190 31V86Q151 72 111 92V38Z" fill="#f0e4fc" stroke="#c5a6e9" stroke-width="2"/><path d="M111 38V92" stroke="#a96df0" stroke-width="2"/><path d="M51 44Q77 38 96 49M51 56Q76 50 96 61M51 68Q77 62 96 73M126 48Q151 38 176 42M126 60Q151 50 176 54M126 72Q151 62 176 66" stroke="#d5c0ef" stroke-width="2" stroke-linecap="round"/><path d="M157 5C148 -5 133 5 143 18L158 32L173 18C184 5 168 -5 157 5Z" fill="#8a4bd0"/><path d="M208 13L176 69Q174 73 179 75L184 77L219 22Q222 17 217 14Q212 10 208 13Z" fill="#2a2039"/><path d="M176 69L171 82L184 77" fill="#b987f4"/></svg></div><div class="eyebrow">YOUR PAGE</div><h1 class="page-title" style="margin-top:9px">What’s on your mind?</h1><p class="page-sub">Be honest. It’s just between us. ♡</p><div class="row"><div><label class="field-label" for="title">A title (optional)</label><input class="field" id="title" maxlength="90" placeholder="A thought I want to share"></div><div><label class="field-label" for="mood">How are you feeling?</label><select class="field" id="mood"><option>Reflective</option><option>Grateful</option><option>Hopeful</option><option>Uncertain</option><option>Hurt</option><option>Happy</option><option>Overwhelmed</option><option>Curious</option></select></div></div><label class="field-label" for="body">Your entry</label><textarea class="field" id="body" maxlength="6000" placeholder="I've been thinking about…"></textarea><p class="hint" id="draftNote">Private drafts stay on this device. Shared entries sync to your journal.</p><label class="field-label" for="entryImages">Attach images (optional)</label><input class="field" id="entryImages" type="file" accept="image/jpeg,image/png,image/webp" multiple><p class="hint">Images are resized and compressed before upload. Choose images up to 12 MB each; smaller previews help your journal load faster.</p><label class="field-label" for="promptChoice">Writing from a prompt? (optional)</label><select class="field" id="promptChoice"><option value="">No prompt today</option></select><div class="row" style="margin-top:15px"><button class="btn secondary" id="saveDraft">Save private draft</button><button class="btn primary" id="share">Share entry</button></div><p class="hint">Private drafts stay on this device. Shared entries and images are stored securely in your shared journal.</p></div></section>
 <section class="view" id="history"><h1 class="page-title">Our History</h1><p class="page-sub">A record of the things you've taken time to share.</p><div class="card"><div class="segmented" id="filters"><button class="active" data-filter="all">Both</button><button data-filter="mine">Mine</button><button data-filter="partner">My person's</button></div><div class="timeline" id="historyList"></div></div></section>
 <section class="view" id="prompts"><h1 class="page-title">Thoughtful Prompts</h1><p class="page-sub">Choose a question, take your time, and write what feels true.</p><div class="card" id="promptList"></div></section>
 <section class="view" id="reflect"><h1 class="page-title">What I heard you say</h1><p class="page-sub">Check your understanding before responding. Asking is better than assuming.</p><div class="card"><div id="target"></div><label class="field-label" for="reflection">What I understood from your entry</label><textarea class="field" id="reflection" maxlength="2500" placeholder="I think you're saying that…"></textarea><label class="field-label" for="question">A gentle question (optional)</label><input class="field" id="question" class="field" maxlength="240" placeholder="Did I understand you correctly when…"><button class="btn primary" id="saveReflection" style="width:100%;margin-top:15px">Save reflection</button><p class="hint">This is a reflection, not a verdict. The writer can clarify.</p></div></section>
 <section class="view" id="profile"><h1 class="page-title">Your journal settings</h1><p class="page-sub">Make this space feel like yours, together.</p><div class="card"><div class="settings-menu"><button class="setting-link" data-view="profile-details"><span>◉</span><span><b>Journal Settings</b><small>Names and writing preferences</small></span><i>›</i></button><button class="setting-link" data-view="privacy"><span>♙</span><span><b>Privacy &amp; Security</b><small>Local storage and privacy choices</small></span><i>›</i></button><button class="setting-link" data-view="notifications"><span>♧</span><span><b>Notifications</b><small>Reminder preferences</small></span><i>›</i></button><button class="setting-link" data-view="about"><span>ⓘ</span><span><b>About OurJournal</b><small>Product details</small></span><i>›</i></button><button class="setting-link" id="logoutBtn"><span>↪</span><span><b>Log Out</b><small>Exit this local preview</small></span><i>›</i></button></div><div id="profileDetails"><h2>Who is writing?</h2><p class="sub">Switch sides to test the prototype on one device.</p><div class="segmented" id="writerSwitch" style="margin-top:13px"><button class="active" data-writer="You">You</button><button data-writer="Your person">Your person</button></div><label class="field-label" for="yourName">Your display name</label><input class="field" id="yourName" maxlength="40" placeholder="Your name"><label class="field-label" for="partnerName">Your person's display name</label><input class="field" id="partnerName" maxlength="40" placeholder="Their name"><button class="btn primary" id="saveProfile" style="margin-top:13px">Save preferences</button><hr style="border:0;border-top:1px solid var(--line);margin:20px 0"><h2>Privacy and your data</h2><p class="hint">This prototype stores entries in this browser only. It does not yet sync between separate devices or accounts. Avoid sensitive personal writing until secure cloud sync is implemented.</p><button class="btn secondary" id="export">Export journal data</button> <button class="tiny" id="clear">Clear local journal</button><div class="notice">Prototype mode: a real shared journal needs authenticated accounts, private invitations, server-side access rules, and cloud sync.</div></div></div></section>
-<section class="view" id="thread"><button class="tiny" data-view="history">← Back to history</button><h1 class="page-title">Our Journal</h1><p class="page-sub">A thoughtful conversation, one entry at a time.</p><div class="card"><div id="threadEntry"></div><label class="field-label" for="replyBody">Write a response</label><textarea class="field" id="replyBody" maxlength="2500" placeholder="I hear you. I want you to know…"></textarea><button class="btn primary" id="sendReply" style="width:100%;margin-top:12px">Add a reply</button><p class="hint">Replies are stored on this device in this prototype.</p></div></section>
+<section class="view" id="thread"><button class="tiny" data-view="history">← Back to history</button><h1 class="page-title">Our Journal</h1><p class="page-sub">A thoughtful conversation, one entry at a time.</p><div class="card"><div id="threadEntry"></div><label class="field-label" for="replyBody">Write a response</label><textarea class="field" id="replyBody" maxlength="2500" placeholder="I hear you. I want you to know…"></textarea><button class="btn primary" id="sendReply" style="width:100%;margin-top:12px">Add a reply</button><p class="hint">Replies are saved to the shared journal and appear for both members.</p></div></section>
 <section class="view" id="privacy"><button class="tiny" data-view="profile">← Settings</button><h1 class="page-title">Privacy &amp; Security</h1><p class="page-sub">Understand what stays private and how your journal is stored.</p><div class="card"><h2>Your writing, your choice</h2><p class="sub">Private drafts stay in this browser. Shared entries are also local to this device in this preview; they are not sent to another person.</p><div class="notice">This prototype does not yet provide authenticated accounts, encryption in transit to a journal backend, cross-device sync, or verified partner-only access. Do not store highly sensitive information here yet.</div><label class="field-label">Local privacy options</label><label class="setting-row"><span><b>Ask before clearing journal</b><small>Keep the confirmation prompt enabled.</small></span><input id="confirmClear" type="checkbox" checked></label><label class="setting-row"><span><b>Hide writing previews</b><small>Use shorter excerpts on the home screen.</small></span><input id="hidePreviews" type="checkbox"></label><button class="btn primary" id="savePrivacy" style="margin-top:15px">Save privacy preferences</button></div></section>
 <section class="view" id="notifications"><button class="tiny" data-view="profile">← Settings</button><h1 class="page-title">Notifications</h1><p class="page-sub">Choose what this device should remind you about.</p><div class="card"><label class="setting-row"><span><b>Daily writing reminder</b><small>A gentle nudge to make time to write.</small></span><input id="dailyReminder" type="checkbox"></label><label class="setting-row"><span><b>Partner replies</b><small>Notify when a response arrives.</small></span><input id="replyNotifications" type="checkbox"></label><label class="setting-row"><span><b>Thoughtful prompt</b><small>Show a fresh prompt on your home screen.</small></span><input id="promptNotifications" type="checkbox" checked></label><p class="hint">These are saved preferences only. Push notifications are not connected in this prototype.</p><button class="btn primary" id="saveNotifications" style="width:100%">Save preferences</button></div></section>
 <section class="view" id="about"><button class="tiny" data-view="profile">← Settings</button><div class="card" style="text-align:center;padding:30px 22px"><div class="mark" style="margin:0 auto 16px;width:54px;height:54px;font-size:34px;border-radius:16px">♡</div><h1 class="page-title">OurJournal</h1><p class="page-sub" style="margin-left:auto;margin-right:auto">Two hearts. One story.</p><p class="sub">Write. Understand. Grow.</p><hr style="border:0;border-top:1px solid var(--line);margin:22px 0"><p class="hint">Made for listening, not keeping score.</p><p class="hint">OurJournal by SphereLearn · Early prototype</p><a href="https://spherelearn.name.ng/" class="tiny">About SphereLearn ↗</a></div></section>
 <div class="footer">Made for listening, not keeping score.<br>OurJournal by SphereLearn · Early prototype</div>
 <nav class="tabs" aria-label="Main navigation"><button class="tab active" data-view="home"><span>⌂</span>Home</button><button class="tab" data-view="prompts"><span>✧</span>Prompts</button><button class="tab" data-view="history"><span>◷</span>History</button><button class="tab" data-view="profile"><span>◉</span>Profile</button></nav>
 </main><div class="modalback" id="modal"><div class="modal"><button id="closeModal" class="btn secondary" style="float:right;padding:5px 10px">×</button><div class="eyebrow">Two people, one journal</div><h2 style="margin-top:10px">Invite your person</h2><p style="font-size:13px;line-height:1.6;color:var(--muted)">Private invitations are planned for the secure shared-account release. This preview does not create a live invitation.</p><label class="field-label">Proposed website</label><input class="field" value="ourjournal.spherelearn.name.ng" readonly><button id="copyAddress" class="btn primary" style="width:100%;margin-top:13px">Copy website address</button></div></div><div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-var PROMPTS=["What is something you wish I understood about you?","When did you feel most appreciated recently?","What have you wanted to tell me but haven't found the words for?","What helps you feel safe during a difficult conversation?","What is one small thing I do that matters to you?","What memory of us do you return to?","When you feel overwhelmed, what support helps most?","What would you like us to learn about each other?","What does being listened to feel like for you?","What are you grateful for about us today?"];var KEY="ourjournal-prototype-v1";var state={entries:[],draft:"",writer:"You",yourName:"You",partnerName:"Your person",filter:"all",reflecting:null,settings:{dailyReminder:false,replyNotifications:false,promptNotifications:true,hidePreviews:false,confirmClear:true}};try{state=Object.assign(state,JSON.parse(localStorage.getItem(KEY)||"{}"))}catch(e){}function $(id){return document.getElementById(id)}function esc(s){return String(s||"").replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}function name(w){return w==="You"?(state.yourName||"You"):(state.partnerName||"Your person")}function initial(w){return (name(w).trim()[0]||"?").toUpperCase()}function save(){localStorage.setItem(KEY,JSON.stringify(state))}function toast(t){$("toast").textContent=t;$("toast").classList.add("show");setTimeout(function(){$("toast").classList.remove("show")},2500)}function go(v){if(v==="profile-details")v="profile";document.body.classList.toggle("welcome-mode",v==="welcome");document.querySelectorAll(".view").forEach(function(x){x.classList.toggle("active",x.id===v)});document.querySelectorAll(".tab").forEach(function(x){x.classList.toggle("active",v!=="welcome"&&x.dataset.view===v)});if(v==="history")renderHistory();if(v==="prompts")renderPrompts();if(v==="reflect")renderReflection();if(v==="thread")renderThread();window.scrollTo({top:0,behavior:"smooth"})}function date(d){return new Date(d).toLocaleString(undefined,{month:"short",day:"numeric",year:"numeric",hour:"numeric",minute:"2-digit"})}function entryHTML(e){var w=e.writer||"You";var refs=(e.reflections||[]).map(function(r){return '<div style="margin-top:12px;padding:12px;background:#e9d8fb;border-radius:12px"><div class="meta">'+esc(name(r.writer))+' · reflection</div><p style="font:14px/1.55 Georgia,serif;white-space:pre-wrap">'+esc(r.body)+'</p>'+(r.question?'<p class="hint">Question: '+esc(r.question)+'</p>':'')+'</div>'}).join("");return '<article class="entry"><div class="entry-top"><div class="dot '+(w==="Your person"?"partner":"")+'">'+esc(initial(w))+'</div><div class="meta">'+esc(name(w))+'<small>'+esc(date(e.createdAt))+' · '+esc(e.mood||"Reflective")+'</small></div></div>'+(e.title?'<h3 style="font-size:14px;margin:0 0 8px">'+esc(e.title)+'</h3>':'')+'<div class="entry-body">'+esc(e.body)+'</div>'+(e.prompt?'<p class="hint">Prompt: '+esc(e.prompt)+'</p>':'')+refs+'<div class="entry-foot"><button class="tiny" data-open="'+e.id+'">View entry →</button><button class="tiny" data-reflect="'+e.id+'">↳ Reflect & respond</button><button class="tiny" data-save="'+e.id+'">'+(e.saved?"♥ Saved":"♡ Save")+'</button></div></article>'}function renderHome(){var es=state.entries.slice().sort(function(a,b){return new Date(b.createdAt)-new Date(a.createdAt)});$("count").textContent=es.length+" shared "+(es.length===1?"entry":"entries")+" so far";$("recent").innerHTML=es.length?es.slice(0,3).map(entryHTML).join(""):'<div class="empty"><div style="font-size:34px">♡</div><b>Your first page is waiting.</b><p>Start with one honest thought.</p><button class="btn primary" id="emptyStart">Write your first entry</button></div>';var ix=Math.floor(Date.now()/86400000)%PROMPTS.length;$("dailyPrompt").textContent=PROMPTS[ix]}function renderHistory(){var es=state.entries.slice().sort(function(a,b){return new Date(b.createdAt)-new Date(a.createdAt)}).filter(function(e){return state.filter==="all"||(state.filter==="mine"?e.writer===state.writer:e.writer!==(state.writer))});$("historyList").innerHTML=es.length?es.map(entryHTML).join(""):'<div class="empty"><div style="font-size:32px">◷</div><b>No entries in this view yet.</b><p>Shared reflections will appear here.</p></div>';document.querySelectorAll("#filters button").forEach(function(b){b.classList.toggle("active",b.dataset.filter===state.filter)})}function renderPrompts(){$("promptList").innerHTML=PROMPTS.map(function(p,i){return '<div class="prompt"><div class="eyebrow">Prompt '+(i+1)+'</div><p>'+esc(p)+'</p><button class="btn secondary" data-prompt="'+i+'">Write about this ↗</button></div>'}).join("")}function renderThread(){var e=state.entries.find(function(x){return x.id===state.threading});$("threadEntry").innerHTML=e?entryHTML(e):'<div class="empty">Entry not found.</div>';if(e){$("threadEntry").querySelectorAll("[data-open]").forEach(function(b){b.remove()});$("threadEntry").querySelectorAll("[data-reflect]").forEach(function(b){b.remove()});$("threadEntry").querySelectorAll("[data-save]").forEach(function(b){b.remove()});var replies=(e.replies||[]).map(function(r){return '<div class="thread-reply"><div class="meta">'+esc(name(r.writer))+'<small>'+esc(date(r.createdAt))+'</small></div><p>'+esc(r.body)+'</p></div>'}).join("");$("threadEntry").insertAdjacentHTML("beforeend",replies)}}
-function renderReflection(){var e=state.entries.find(function(x){return x.id===state.reflecting});$("target").innerHTML=e?'<div class="entry"><div class="meta">'+esc(name(e.writer))+' wrote</div><p class="entry-body">'+esc(e.body)+'</p></div>':'<p class="hint">Choose an entry from history to reflect on.</p>'}function render(){renderHome();renderHistory();renderPrompts();$("profileBtn").textContent=initial(state.writer);if(state.avatar){$("avatarPreview").innerHTML='<img alt="Profile picture preview" src="'+state.avatar+'">';$("profileBtn").innerHTML='<img alt="" src="'+state.avatar+'" style="width:28px;height:28px;border-radius:50%;object-fit:cover;vertical-align:middle">'}$("yourName").value=state.yourName;$("partnerName").value=state.partnerName;document.querySelectorAll("#writerSwitch button").forEach(function(b){b.classList.toggle("active",b.dataset.writer===state.writer)});$("promptChoice").innerHTML='<option value="">No prompt today</option>'+PROMPTS.map(function(p){return '<option>'+esc(p)+'</option>'}).join("")}function startWrite(p){go("write");$("title").value="";$("body").value=state.draft||"";$("mood").value="Reflective";$("promptChoice").value=p||""}function write(shared){var body=$("body").value.trim();if(!body){toast("Write a thought before saving.");$("body").focus();return}if(!shared){state.draft=body;save();$("draftNote").textContent="Private draft saved on this device.";toast("Draft saved on this device.");return}state.entries.push({id:String(Date.now())+Math.random().toString(16).slice(2),writer:state.writer,title:$("title").value.trim(),body:body,mood:$("mood").value,prompt:$("promptChoice").value,createdAt:new Date().toISOString(),reflections:[],saved:false});state.draft="";save();$("body").value="";$("title").value="";render();go("home");toast("Entry saved to this device's journal.")}document.addEventListener("click",function(ev){var b=ev.target.closest("button");if(!b)return;if(b.dataset.view)go(b.dataset.view);if(b.id==="logoutBtn"){if(confirm("Leave this local preview? Your saved entries remain in this browser.")){go("home");toast("You are back at the home screen.")}}if(b.dataset.open){state.threading=b.dataset.open;renderThread();go("thread")}if(b.id==="start"||b.id==="emptyStart")startWrite("");if(b.id==="allHistory")go("history");if(b.id==="usePrompt")startWrite($("dailyPrompt").textContent);if(b.dataset.prompt!==undefined)startWrite(PROMPTS[Number(b.dataset.prompt)]);if(b.dataset.filter){state.filter=b.dataset.filter;renderHistory()}if(b.dataset.writer){state.writer=b.dataset.writer;save();render();toast("Writing as "+name(state.writer))}if(b.dataset.reflect){state.reflecting=b.dataset.reflect;$("reflection").value="";$("question").value="";go("reflect")}if(b.dataset.save){var en=state.entries.find(function(x){return x.id===b.dataset.save});if(en){en.saved=!en.saved;save();render()}}});$("share").onclick=function(){write(true)};$("saveDraft").onclick=function(){write(false)};$("saveReflection").onclick=function(){var e=state.entries.find(function(x){return x.id===state.reflecting});var body=$("reflection").value.trim();if(!e){toast("Choose an entry first.");return}if(!body){toast("Write what you understood first.");return}e.reflections=e.reflections||[];e.reflections.push({writer:state.writer,body:body,question:$("question").value.trim(),createdAt:new Date().toISOString()});save();render();go("history");toast("Reflection saved on this device.")};$("saveProfile").onclick=function(){state.yourName=$("yourName").value.trim()||"You";state.partnerName=$("partnerName").value.trim()||"Your person";save();render();toast("Preferences saved.")};$("profileBtn").onclick=function(){go("profile")};
+var PROMPTS=["What is something you wish I understood about you?","When did you feel most appreciated recently?","What have you wanted to tell me but haven't found the words for?","What helps you feel safe during a difficult conversation?","What is one small thing I do that matters to you?","What memory of us do you return to?","When you feel overwhelmed, what support helps most?","What would you like us to learn about each other?","What does being listened to feel like for you?","What are you grateful for about us today?"];var KEY="ourjournal-prototype-v1";var state={entries:[],draft:"",writer:"You",yourName:"You",partnerName:"Your person",filter:"all",reflecting:null,settings:{dailyReminder:false,replyNotifications:false,promptNotifications:true,hidePreviews:false,confirmClear:true}};try{state=Object.assign(state,JSON.parse(localStorage.getItem(KEY)||"{}"))}catch(e){}function $(id){return document.getElementById(id)}function esc(s){return String(s||"").replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}function name(w){return w==="You"?(state.yourName||"You"):(state.partnerName||"Your person")}function initial(w){return (name(w).trim()[0]||"?").toUpperCase()}function save(){localStorage.setItem(KEY,JSON.stringify(state))}function toast(t){$("toast").textContent=t;$("toast").classList.add("show");setTimeout(function(){$("toast").classList.remove("show")},2500)}function go(v){if(v==="profile-details")v="profile";document.body.classList.toggle("welcome-mode",v==="welcome");document.querySelectorAll(".view").forEach(function(x){x.classList.toggle("active",x.id===v)});document.querySelectorAll(".tab").forEach(function(x){x.classList.toggle("active",v!=="welcome"&&x.dataset.view===v)});if(v==="history")renderHistory();if(v==="prompts")renderPrompts();if(v==="reflect")renderReflection();if(v==="thread")renderThread();window.scrollTo({top:0,behavior:"smooth"})}function date(d){return new Date(d).toLocaleString(undefined,{month:"short",day:"numeric",year:"numeric",hour:"numeric",minute:"2-digit"})}function entryHTML(e){var w=e.writer||"You";var attachmentHTML=(e.attachments||[]).filter(a=>a.url).map(a=>'<div class="entry-attachment"><a href="'+esc(a.url)+'" target="_blank" rel="noopener noreferrer"><img src="'+esc(a.thumbUrl||a.url)+'" alt="'+esc(a.name||"Journal image")+'" loading="lazy" decoding="async"></a></div>').join("");var refs=(e.reflections||[]).map(function(r){return '<div style="margin-top:12px;padding:12px;background:#e9d8fb;border-radius:12px"><div class="meta">'+esc(name(r.writer))+' · reflection</div><p style="font:14px/1.55 Georgia,serif;white-space:pre-wrap">'+esc(r.body)+'</p>'+(r.question?'<p class="hint">Question: '+esc(r.question)+'</p>':'')+'</div>'}).join("");return '<article class="entry"><div class="entry-top"><div class="dot '+(w==="Your person"?"partner":"")+'">'+esc(initial(w))+'</div><div class="meta">'+esc(name(w))+'<small>'+esc(date(e.createdAt))+' · '+esc(e.mood||"Reflective")+'</small></div></div>'+(e.title?'<h3 style="font-size:14px;margin:0 0 8px">'+esc(e.title)+'</h3>':'')+'<div class="entry-body">'+esc(e.body)+'</div>'+(e.prompt?'<p class="hint">Prompt: '+esc(e.prompt)+'</p>':'')+attachmentHTML+refs+'<div class="entry-foot"><button class="tiny" data-open="'+e.id+'">View entry →</button><button class="tiny" data-reflect="'+e.id+'">↳ Reflect & respond</button><button class="tiny" data-save="'+e.id+'">'+(e.saved?"♥ Saved":"♡ Save")+'</button></div></article>'}function renderReader(){
+ var query=( $("readerSearch")?.value||"").trim().toLocaleLowerCase();
+ var es=state.entries.slice().sort(function(a,b){return new Date(a.createdAt)-new Date(b.createdAt)}).filter(function(e){return !query||[e.title,e.body,e.prompt,e.mood,name(e.writer)].some(function(v){return String(v||"").toLocaleLowerCase().includes(query)})});
+ $("readerCount").textContent=es.length+" "+(es.length===1?"entry":"entries")+(query?" matching your search":" · oldest to newest");
+ $("readerEntries").innerHTML=es.length?es.map(function(e){return '<article class="reader-entry"><time datetime="'+esc(e.createdAt||"")+'">'+esc(date(e.createdAt))+'</time>'+(e.title?'<h2>'+esc(e.title)+'</h2>':'')+'<div class="reader-writer">'+esc(name(e.writer))+(e.mood?' · '+esc(e.mood):'')+'</div><div class="reader-body">'+esc(e.body)+'</div>'+(e.prompt?'<div class="reader-mood">Prompt: '+esc(e.prompt)+'</div>':'')+((e.attachments||[]).length?'<div class="reader-images">'+e.attachments.filter(a=>a.url).map(a=>'<figure><a href="'+esc(a.url)+'" target="_blank" rel="noopener noreferrer"><img src="'+esc(a.thumbUrl||a.url)+'" alt="'+esc(a.name||"Journal image")+'" loading="lazy" decoding="async"></a><figcaption>'+esc(a.name||"Attached image")+'</figcaption></figure>').join("")+'</div>':'')+'</article>'}).join(""):'<div class="reader-empty">'+(query?'No entries match that search.':'Your journal is waiting for its first entry.')+'</div>';
+}
+function renderHome(){var es=state.entries.slice().sort(function(a,b){return new Date(b.createdAt)-new Date(a.createdAt)});$("count").textContent=es.length+" shared "+(es.length===1?"entry":"entries")+" so far";$("recent").innerHTML=es.length?es.slice(0,3).map(entryHTML).join(""):'<div class="empty"><div style="font-size:34px">♡</div><b>Your first page is waiting.</b><p>Start with one honest thought.</p><button class="btn primary" id="emptyStart">Write your first entry</button></div>';var ix=Math.floor(Date.now()/86400000)%PROMPTS.length;$("dailyPrompt").textContent=PROMPTS[ix]}function renderHistory(){var es=state.entries.slice().sort(function(a,b){return new Date(b.createdAt)-new Date(a.createdAt)}).filter(function(e){return state.filter==="all"||(state.filter==="mine"?e.writer===state.writer:e.writer!==(state.writer))});$("historyList").innerHTML=es.length?es.map(entryHTML).join(""):'<div class="empty"><div style="font-size:32px">◷</div><b>No entries in this view yet.</b><p>Shared reflections will appear here.</p></div>';document.querySelectorAll("#filters button").forEach(function(b){b.classList.toggle("active",b.dataset.filter===state.filter)})}function renderPrompts(){$("promptList").innerHTML=PROMPTS.map(function(p,i){return '<div class="prompt"><div class="eyebrow">Prompt '+(i+1)+'</div><p>'+esc(p)+'</p><button class="btn secondary" data-prompt="'+i+'">Write about this ↗</button></div>'}).join("")}function renderThread(){var e=state.entries.find(function(x){return x.id===state.threading});$("threadEntry").innerHTML=e?entryHTML(e):'<div class="empty">Entry not found.</div>';if(e){$("threadEntry").querySelectorAll("[data-open]").forEach(function(b){b.remove()});$("threadEntry").querySelectorAll("[data-reflect]").forEach(function(b){b.remove()});$("threadEntry").querySelectorAll("[data-save]").forEach(function(b){b.remove()});var replies=(e.replies||[]).map(function(r){return '<div class="thread-reply"><div class="meta">'+esc(name(r.writer))+'<small>'+esc(date(r.createdAt))+'</small></div><p>'+esc(r.body)+'</p></div>'}).join("");$("threadEntry").insertAdjacentHTML("beforeend",replies)}}
+function renderReflection(){var e=state.entries.find(function(x){return x.id===state.reflecting});$("target").innerHTML=e?'<div class="entry"><div class="meta">'+esc(name(e.writer))+' wrote</div><p class="entry-body">'+esc(e.body)+'</p></div>':'<p class="hint">Choose an entry from history to reflect on.</p>'}function render(){renderHome();renderHistory();renderReader();renderPrompts();$("profileBtn").textContent=initial(state.writer);if(state.avatar){$("avatarPreview").innerHTML='<img alt="Profile picture preview" src="'+state.avatar+'">';$("profileBtn").innerHTML='<img alt="" src="'+state.avatar+'" style="width:28px;height:28px;border-radius:50%;object-fit:cover;vertical-align:middle">'}$("yourName").value=state.yourName;$("partnerName").value=state.partnerName;document.querySelectorAll("#writerSwitch button").forEach(function(b){b.classList.toggle("active",b.dataset.writer===state.writer)});$("promptChoice").innerHTML='<option value="">No prompt today</option>'+PROMPTS.map(function(p){return '<option>'+esc(p)+'</option>'}).join("")}function startWrite(p){go("write");$("title").value="";$("body").value=state.draft||"";$("mood").value="Reflective";$("promptChoice").value=p||""}async function write(shared){var body=$("body").value.trim();if(!body){toast("Write a thought before saving.");$("body").focus();return}if(!shared){state.draft=body;save();$("draftNote").textContent="Private draft saved on this device.";toast("Draft saved on this device.");return}if(!ojUser||!ojActiveJournalId){toast("Sign in and open your shared journal before posting.");return}var btn=$("share");btn.disabled=true;btn.textContent="Sharing…";var uploaded=[];try{for(const f of Array.from($("entryImages").files||[])){if(!/^image\/(jpeg|png|webp)$/.test(f.type)||f.size>12*1024*1024)throw new Error("Use JPG, PNG, or WebP images up to 12 MB each.");const optimized=await ojCompressImage(f,1800,0.82);const thumb=await ojCompressImage(f,480,0.72);const base=ojActiveJournalId+"/"+ojUser.id+"/"+Date.now()+"-"+Math.random().toString(16).slice(2);const path=base+"-image."+optimized.extension;const thumbnailPath=base+"-thumb."+thumb.extension;const {error}=await ojSupabase.storage.from("journal-images").upload(path,optimized.blob,{contentType:optimized.type,upsert:false});if(error)throw error;const {error:thumbError}=await ojSupabase.storage.from("journal-images").upload(thumbnailPath,thumb.blob,{contentType:thumb.type,upsert:false});if(thumbError){await ojSupabase.storage.from("journal-images").remove([path]);throw thumbError;}uploaded.push({path,thumbnailPath,name:f.name,type:optimized.type,size:optimized.blob.size,originalSize:f.size});}const {error}=await ojSupabase.from("journal_entries").insert({journal_id:ojActiveJournalId,author_id:ojUser.id,title:$("title").value.trim(),body:body,mood:$("mood").value,prompt:$("promptChoice").value||null,attachments:uploaded}).select("id").single();if(error)throw error;state.draft="";save();$("body").value="";$("title").value="";$("entryImages").value="";await ojLoadJournalEntries();go("home");toast("Entry shared with your person.");}catch(e){console.error(e);toast(e.message||"Could not share this entry.");}finally{btn.disabled=false;btn.textContent="Share entry";}}document.addEventListener("click",function(ev){var b=ev.target.closest("button");if(!b)return;if(b.dataset.view)go(b.dataset.view);if(b.id==="logoutBtn"){if(confirm("Leave this local preview? Your saved entries remain in this browser.")){go("home");toast("You are back at the home screen.")}}if(b.dataset.open){state.threading=b.dataset.open;renderThread();go("thread")}if(b.id==="start"||b.id==="emptyStart")startWrite("");if(b.id==="allHistory")go("history");if(b.id==="usePrompt")startWrite($("dailyPrompt").textContent);if(b.dataset.prompt!==undefined)startWrite(PROMPTS[Number(b.dataset.prompt)]);if(b.dataset.filter){state.filter=b.dataset.filter;renderHistory()}if(b.dataset.writer){state.writer=b.dataset.writer;save();render();toast("Writing as "+name(state.writer))}if(b.dataset.reflect){state.reflecting=b.dataset.reflect;$("reflection").value="";$("question").value="";go("reflect")}if(b.dataset.save){var en=state.entries.find(function(x){return x.id===b.dataset.save});if(en){en.saved=!en.saved;save();render()}}});$("readerSearch").addEventListener("input",renderReader);
+let readerFontSize=17;
+$("readerTextSize").onclick=function(){readerFontSize=readerFontSize>=23?15:readerFontSize+2;document.documentElement.style.setProperty("--reader-font-size",readerFontSize+"px");$("readerTextSize").textContent=readerFontSize>=23?"A−":"A+";};
+$("share").onclick=function(){write(true)};$("saveDraft").onclick=function(){write(false)};$("saveReflection").onclick=async function(){var e=state.entries.find(function(x){return x.id===state.reflecting});var body=$("reflection").value.trim();if(!e){toast("Choose an entry first.");return}if(!body){toast("Write what you understood first.");return}try{const {error}=await ojSupabase.rpc("add_journal_entry_reflection",{p_entry_id:e.id,p_body:body,p_question:$("question").value.trim()||null});if(error)throw error;await ojLoadJournalEntries();render();go("history");toast("Reflection shared with your person.");}catch(err){console.error(err);toast(err.message||"Could not save reflection.");}};$("saveProfile").onclick=function(){state.yourName=$("yourName").value.trim()||"You";state.partnerName=$("partnerName").value.trim()||"Your person";save();render();toast("Preferences saved.")};$("profileBtn").onclick=function(){go("profile")};
 function loadSettings(){var x=state.settings||{};["dailyReminder","replyNotifications","promptNotifications","hidePreviews","confirmClear"].forEach(function(id){if($(id))$(id).checked=!!x[id]});}
 $("savePrivacy").onclick=function(){state.settings=state.settings||{};state.settings.hidePreviews=$("hidePreviews").checked;state.settings.confirmClear=$("confirmClear").checked;save();toast("Privacy preferences saved on this device.")};
 $("saveNotifications").onclick=function(){state.settings=state.settings||{};state.settings.dailyReminder=$("dailyReminder").checked;state.settings.replyNotifications=$("replyNotifications").checked;state.settings.promptNotifications=$("promptNotifications").checked;save();toast("Notification preferences saved on this device.")};
-$("sendReply").onclick=function(){var e=state.entries.find(function(x){return x.id===state.threading});var body=$("replyBody").value.trim();if(!e){toast("Choose an entry first.");return}if(!body){toast("Write a response first.");$("replyBody").focus();return}e.replies=e.replies||[];e.replies.push({writer:state.writer,body:body,createdAt:new Date().toISOString()});$("replyBody").value="";save();renderThread();toast("Response saved on this device.")};$("inviteBtn").onclick=function(){$("modal").classList.add("open")};$("closeModal").onclick=function(){$("modal").classList.remove("open")};$("modal").onclick=function(e){if(e.target.id==="modal")$("modal").classList.remove("open")};$("copyAddress").onclick=function(){if(navigator.clipboard){navigator.clipboard.writeText("https://ourjournal.spherelearn.name.ng").then(function(){toast("Website address copied.")}).catch(function(){toast("ourjournal.spherelearn.name.ng")})}else toast("ourjournal.spherelearn.name.ng")};$("export").onclick=function(){var blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});var url=URL.createObjectURL(blob);var a=document.createElement("a");a.href=url;a.download="ourjournal-export.json";a.click();URL.revokeObjectURL(url)};$("clear").onclick=function(){if((!state.settings||state.settings.confirmClear!==false)?confirm("Clear all OurJournal entries and drafts in this browser? This cannot be undone."):true){localStorage.removeItem(KEY);state={entries:[],draft:"",writer:"You",yourName:"You",partnerName:"Your person",filter:"all",reflecting:null};render();go("home");toast("Local journal cleared.")}};render();loadSettings();if(localStorage.getItem("ourjournal-started-v1")==="1"||state.entries.length)go("home");else go("welcome");$("getStarted").onclick=function(){go("onboarding");$("onboardProfile").classList.add("active");$("onboardConnect").classList.remove("active");$("progressOne").classList.add("done");$("progressTwo").classList.remove("done");$("onboardName").value=state.yourName||"";if(new URLSearchParams(location.search).has("invite")){$("inviteLinkPreview").value=location.href;$("inviteLinkHint").textContent="An invite parameter was detected, but it cannot be validated or accepted until secure accounts are connected."}};$("signInBtn").onclick=function(){go("onboarding");$("onboardProfile").classList.remove("active");$("onboardConnect").classList.add("active");$("progressOne").classList.add("done");$("progressTwo").classList.add("done");toast("Sign-in is not connected yet. This is a local preview.")};$("onboardNext").onclick=function(){var n=$("onboardName").value.trim();state.yourName=n||"You";state.writer=state.yourName;save();render();$("onboardProfile").classList.remove("active");$("onboardConnect").classList.add("active");$("progressOne").classList.add("done");$("progressTwo").classList.add("done");window.scrollTo({top:0,behavior:"smooth"})};$("onboardSkip").onclick=function(){go("home");toast("Local preview opened. Account sign-in and invitations are not active yet.")};$("onboardBack").onclick=function(){$("onboardConnect").classList.remove("active");$("onboardProfile").classList.add("active");$("progressTwo").classList.remove("done")};$("onboardPreview").onclick=function(){go("home");toast("Local preview opened. No account or shared connection was created.")};$("onboardPhoto").onchange=function(ev){var f=ev.target.files&&ev.target.files[0];if(!f)return;if(!f.type.startsWith("image/")){toast("Choose an image file.");return}if(f.size>5*1024*1024){toast("Choose an image under 5 MB.");ev.target.value="";return}var reader=new FileReader();reader.onload=function(){var img=new Image();img.onload=function(){var canvas=document.createElement("canvas");var scale=Math.min(1,256/Math.max(img.width,img.height));canvas.width=Math.max(1,Math.round(img.width*scale));canvas.height=Math.max(1,Math.round(img.height*scale));canvas.getContext("2d").drawImage(img,0,0,canvas.width,canvas.height);var data=canvas.toDataURL("image/jpeg",.78);try{state.avatar=data;save();$("avatarPreview").innerHTML='<img alt="Profile picture preview" src="'+data+'">';$("profileBtn").innerHTML='<img alt="" src="'+data+'" style="width:28px;height:28px;border-radius:50%;object-fit:cover;vertical-align:middle">'}catch(e){toast("The picture could not be saved in this browser.")}};img.src=reader.result};reader.readAsDataURL(f)};if("serviceWorker"in navigator)window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){})});
-</script></body></html>
+$("sendReply").onclick=async function(){var e=state.entries.find(function(x){return x.id===state.threading});var body=$("replyBody").value.trim();if(!e){toast("Choose an entry first.");return}if(!body){toast("Write a response first.");$("replyBody").focus();return}try{const {error}=await ojSupabase.rpc("add_journal_entry_reply",{p_entry_id:e.id,p_body:body});if(error)throw error;$("replyBody").value="";await ojLoadJournalEntries();renderThread();toast("Response shared with your person.");}catch(err){console.error(err);toast(err.message||"Could not save the response.");}};$("inviteBtn").onclick=function(){$("modal").classList.add("open")};$("closeModal").onclick=function(){$("modal").classList.remove("open")};$("modal").onclick=function(e){if(e.target.id==="modal")$("modal").classList.remove("open")};$("copyAddress").onclick=function(){if(navigator.clipboard){navigator.clipboard.writeText("https://ourjournal.spherelearn.name.ng").then(function(){toast("Website address copied.")}).catch(function(){toast("ourjournal.spherelearn.name.ng")})}else toast("ourjournal.spherelearn.name.ng")};$("export").onclick=function(){var blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});var url=URL.createObjectURL(blob);var a=document.createElement("a");a.href=url;a.download="ourjournal-export.json";a.click();URL.revokeObjectURL(url)};$("clear").onclick=function(){if((!state.settings||state.settings.confirmClear!==false)?confirm("Clear all OurJournal entries and drafts in this browser? This cannot be undone."):true){localStorage.removeItem(KEY);state={entries:[],draft:"",writer:"You",yourName:"You",partnerName:"Your person",filter:"all",reflecting:null};render();go("home");toast("Local journal cleared.")}};render();loadSettings();if(localStorage.getItem("ourjournal-started-v1")==="1"||state.entries.length)go("home");else go("welcome");$("getStarted").onclick=function(){go("onboarding");$("onboardProfile").classList.add("active");$("onboardConnect").classList.remove("active");$("progressOne").classList.add("done");$("progressTwo").classList.remove("done");$("onboardName").value=state.yourName||"";if(new URLSearchParams(location.search).has("invite")){$("inviteLinkPreview").value=location.href;$("inviteLinkHint").textContent="An invite parameter was detected, but it cannot be validated or accepted until secure accounts are connected."}};$("signInBtn").onclick=function(){go("onboarding");$("onboardProfile").classList.remove("active");$("onboardConnect").classList.add("active");$("progressOne").classList.add("done");$("progressTwo").classList.add("done");toast("Sign-in is not connected yet. This is a local preview.")};$("onboardNext").onclick=function(){var n=$("onboardName").value.trim();state.yourName=n||"You";state.writer=state.yourName;save();render();$("onboardProfile").classList.remove("active");$("onboardConnect").classList.add("active");$("progressOne").classList.add("done");$("progressTwo").classList.add("done");window.scrollTo({top:0,behavior:"smooth"})};$("onboardSkip").onclick=function(){go("home");toast("Local preview opened. Account sign-in and invitations are not active yet.")};$("onboardBack").onclick=function(){$("onboardConnect").classList.remove("active");$("onboardProfile").classList.add("active");$("progressTwo").classList.remove("done")};$("onboardPreview").onclick=function(){go("home");toast("Local preview opened. No account or shared connection was created.")};$("onboardPhoto").onchange=function(ev){var f=ev.target.files&&ev.target.files[0];if(!f)return;if(!f.type.startsWith("image/")){toast("Choose an image file.");return}if(f.size>5*1024*1024){toast("Choose an image under 5 MB.");ev.target.value="";return}var reader=new FileReader();reader.onload=function(){var img=new Image();img.onload=function(){var canvas=document.createElement("canvas");var scale=Math.min(1,256/Math.max(img.width,img.height));canvas.width=Math.max(1,Math.round(img.width*scale));canvas.height=Math.max(1,Math.round(img.height*scale));canvas.getContext("2d").drawImage(img,0,0,canvas.width,canvas.height);var data=canvas.toDataURL("image/jpeg",.78);try{state.avatar=data;save();$("avatarPreview").innerHTML='<img alt="Profile picture preview" src="'+data+'">';$("profileBtn").innerHTML='<img alt="" src="'+data+'" style="width:28px;height:28px;border-radius:50%;object-fit:cover;vertical-align:middle">'}catch(e){toast("The picture could not be saved in this browser.")}};img.src=reader.result};reader.readAsDataURL(f)};
+
+/* Supabase-backed account and onboarding flow */
+const ojEmailCallbackParams = new URLSearchParams(location.search);
+const ojEmailCallbackHash = new URLSearchParams((location.hash||"").replace(/^#/,""));
+const ojEmailCallback = !!(ojEmailCallbackParams.has("code") || ojEmailCallbackParams.has("error") || ojEmailCallbackParams.get("type")==="signup" || ojEmailCallbackHash.get("type")==="signup" || ojEmailCallbackHash.has("access_token") || ojEmailCallbackHash.has("error"));
+const OJ_SUPABASE_URL = "https://qkgzfizenhysoyixmzng.supabase.co";
+const OJ_SUPABASE_KEY = "sb_publishable_DNTt9U4TjT0xS8NL4FEQZQ_TEVHFVun";
+const ojSupabase = window.supabase.createClient(OJ_SUPABASE_URL, OJ_SUPABASE_KEY, {
+  auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
+});
+let ojAuthMode = "signup";
+let ojUser = null;
+function ojMessage(id, message) { const el = $(id); if (el) el.textContent = message; }
+function ojSetAuthMode(mode) {
+  ojAuthMode = mode;
+  $("authNameFields").style.display = mode === "signup" ? "block" : "none";
+  $("authFirstName").required = mode === "signup"; $("authLastName").required = mode === "signup";
+  $("authHeading").textContent = mode === "signup" ? "Create your account." : "Welcome back.";
+  $("authIntro").textContent = mode === "signup" ? "Your profile and journal will be saved securely to your account." : "Sign in to continue setting up your profile and journal.";
+  $("authSubmit").textContent = mode === "signup" ? "Create account" : "Sign in";
+  $("authPassword").autocomplete = mode === "signup" ? "new-password" : "current-password";
+  $("authSwitch").textContent = mode === "signup" ? "Already have an account? Sign in" : "New to OurJournal? Create an account";
+  ojMessage("authHint", mode === "signup" ? "Use an email you can access to confirm your account." : "Use the email address and password for your account.");
+}
+async function ojLoadProfile(user) {
+  const { data, error } = await ojSupabase.from("profiles").select("*").eq("id", user.id).maybeSingle();
+  if (error) throw error;
+  if (!data) {
+    const meta = user.user_metadata || {};
+    const { error: insertError } = await ojSupabase.from("profiles").insert({
+      id: user.id,
+      display_name: meta.display_name || "",
+      first_name: meta.first_name || "",
+      last_name: meta.last_name || "",
+      status: "Getting to know myself",
+      bio: "",
+      onboarding_completed: false
+    });
+    if (insertError) throw insertError;
+    return null;
+  }
+  return data;
+}
+
+async function ojCompressImage(file, maxDimension = 1800, quality = 0.82) {
+  const objectUrl = URL.createObjectURL(file);
+  try {
+    const image = await new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = () => reject(new Error("This image could not be opened. Try another image."));
+      img.src = objectUrl;
+    });
+    const sourceWidth = image.naturalWidth || image.width;
+    const sourceHeight = image.naturalHeight || image.height;
+    const scale = Math.min(1, maxDimension / Math.max(sourceWidth, sourceHeight));
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.max(1, Math.round(sourceWidth * scale));
+    canvas.height = Math.max(1, Math.round(sourceHeight * scale));
+    const context = canvas.getContext("2d", { alpha: false });
+    if (!context) throw new Error("Image compression is not available on this device.");
+    context.drawImage(image, 0, 0, canvas.width, canvas.height);
+    const blob = await new Promise(resolve => canvas.toBlob(resolve, "image/webp", quality));
+    if (!blob) throw new Error("This image could not be compressed. Try another image.");
+    const type = blob.type || "image/jpeg";
+    const extension = type === "image/webp" ? "webp" : type === "image/png" ? "png" : "jpg";
+    return { blob, type, extension };
+  } finally {
+    URL.revokeObjectURL(objectUrl);
+  }
+}
+
+async function ojShowAvatar(path) {
+  if (!path || !ojUser) return;
+  const { data, error } = await ojSupabase.storage.from("profile-avatars").createSignedUrl(path, 3600);
+  if (error || !data?.signedUrl) return;
+  $("avatarPreview").innerHTML = '<img alt="Profile picture preview" src="' + esc(data.signedUrl) + '">';
+  $("profileBtn").innerHTML = '<img alt="" src="' + esc(data.signedUrl) + '" style="width:28px;height:28px;border-radius:50%;object-fit:cover;vertical-align:middle">';
+}
+$("onboardPhoto").onchange = async function(ev) {
+  const file = ev.target.files && ev.target.files[0];
+  if (!file) return;
+  if (!ojUser) { toast("Sign in before uploading a profile picture."); ev.target.value = ""; return; }
+  if (!["image/jpeg","image/png","image/webp"].includes(file.type) || file.size > 12 * 1024 * 1024) {
+    toast("Choose a JPG, PNG or WebP image under 12 MB."); ev.target.value = ""; return;
+  }
+  const input = ev.target;
+  input.disabled = true;
+  let path = "";
+  try {
+    const optimized = await ojCompressImage(file, 512, 0.78);
+    path = ojUser.id + "/" + Date.now() + "-avatar." + optimized.extension;
+    const { error: uploadError } = await ojSupabase.storage.from("profile-avatars").upload(path, optimized.blob, { upsert: false, contentType: optimized.type });
+    if (uploadError) throw uploadError;
+    const { error: profileError } = await ojSupabase.from("profiles").update({ avatar_path: path, updated_at: new Date().toISOString() }).eq("id", ojUser.id);
+    if (profileError) throw profileError;
+    await ojShowAvatar(path);
+    toast("Profile picture saved securely.");
+  } catch (err) {
+    console.error("Avatar upload failed", err);
+    toast("Profile picture upload failed. Try again.");
+  } finally { input.disabled = false; }
+};
+
+function ojStartOnboarding(profile) {
+  go("onboarding");
+  $("onboardProfile").classList.add("active");
+  $("onboardConnect").classList.remove("active");
+  $("progressOne").classList.add("done");
+  $("progressTwo").classList.remove("done");
+  $("onboardFirstName").value = profile?.first_name || ojUser?.user_metadata?.first_name || "";
+  $("onboardLastName").value = profile?.last_name || ojUser?.user_metadata?.last_name || "";
+  $("onboardName").value = profile?.display_name || "";
+  $("onboardStatus").value = profile?.status || "Getting to know myself";
+  $("onboardBio").value = profile?.bio || "";
+  $("journalTitle").value = "Our Journal";
+  ojMessage("profileSaveHint", "Your profile is saved securely to your account when you continue."); if (profile?.avatar_path) ojShowAvatar(profile.avatar_path);
+}
+async function ojEnterApp(user) {
+  ojUser = user;
+  try {
+    const profile = await ojLoadProfile(user);
+    if (profile?.onboarding_completed) {
+      ojProfileComplete = true;
+      state.yourName = profile.display_name || [profile.first_name, profile.last_name].filter(Boolean).join(" ") || "You";
+      state.writer = state.yourName;
+      render();
+      await ojPreviewInvite();
+      let joinedId=null;
+      if (ojPendingInvite) joinedId=await ojAcceptPendingInvite();
+      await ojLoadActiveJournal(joinedId||null);
+      go("home");
+    } else {
+      ojProfileComplete = false;
+      await ojPreviewInvite();
+      ojStartOnboarding(profile);
+    }
+  } catch (err) {
+    console.error("Profile load failed", err);
+    toast("We couldn't load your profile. Please try again.");
+  }
+}
+$("getStarted").onclick = function() { ojSetAuthMode("signup"); go("auth"); $("authEmail").focus(); };
+$("signInBtn").onclick = function() { ojSetAuthMode("signin"); go("auth"); $("authEmail").focus(); };
+$("authSwitch").onclick = function() { ojSetAuthMode(ojAuthMode === "signup" ? "signin" : "signup"); };
+$("authBack").onclick = function() { go("welcome"); };
+$("authForm").addEventListener("submit", async function(ev) {
+  ev.preventDefault();
+  const email = $("authEmail").value.trim().toLowerCase();
+  const password = $("authPassword").value;
+  const firstName = $("authFirstName").value.trim();
+  const lastName = $("authLastName").value.trim();
+  const submit = $("authSubmit");
+  submit.disabled = true;
+  submit.textContent = ojAuthMode === "signup" ? "Creating account…" : "Signing in…";
+  try {
+    if (ojAuthMode === "signup") {
+      const { data, error } = await ojSupabase.auth.signUp({
+        email, password,
+        options: { emailRedirectTo: location.origin + location.pathname, data: { email, first_name: firstName, last_name: lastName, display_name: [firstName, lastName].filter(Boolean).join(" ") } }
+      });
+      if (error) throw error;
+      ojVerificationEmail=data.user?.email||email;
+      if(!data.user?.email_confirmed_at){ojSetVerificationGate(true,ojVerificationEmail);ojMessage("verifyHint","A confirmation email has been sent. Open its link to unlock your account.");}
+      else if(data.session){await ojEnterApp(data.user);}
+    } else {
+      const { data, error } = await ojSupabase.auth.signInWithPassword({ email, password });
+      if(error){if(/email not confirmed/i.test(error.message||"")){ojVerificationEmail=email;ojSetVerificationGate(true,email);ojMessage("verifyHint","Confirm your email before accessing OurJournal. Resend the confirmation email below.");return;}throw error;}
+      ojVerificationEmail=data.user?.email||email;
+      if(!data.user?.email_confirmed_at){ojSetVerificationGate(true,ojVerificationEmail);return;}
+      await ojEnterApp(data.user);
+    }
+  } catch (err) {
+    console.error("Authentication failed", err);
+    ojMessage("authHint", err.message || "We couldn't authenticate you. Check your details and try again.");
+    toast("Account action failed. Check the message below the form.");
+  } finally {
+    submit.disabled = false;
+    submit.textContent = ojAuthMode === "signup" ? "Create account" : "Sign in";
+  }
+});
+$("onboardNext").onclick = async function() {
+  if (!ojUser) { toast("Please sign in first."); go("auth"); return; }
+  const first = $("onboardFirstName").value.trim();
+  const last = $("onboardLastName").value.trim();
+  if (!first || !last) { toast("Enter your first and last name."); (!first ? $("onboardFirstName") : $("onboardLastName")).focus(); return; }
+  const display = $("onboardName").value.trim() || first;
+  const saveBtn = $("onboardNext");
+  saveBtn.disabled = true; saveBtn.textContent = "Saving profile…";
+  try {
+    const payload = {
+      id: ojUser.id,
+      first_name: first,
+      last_name: last,
+      display_name: display,
+      status: $("onboardStatus").value,
+      bio: $("onboardBio").value.trim(),
+      onboarding_completed: false,
+      updated_at: new Date().toISOString()
+    };
+    const { error } = await ojSupabase.from("profiles").upsert(payload, { onConflict: "id" });
+    if (error) throw error;
+    state.yourName = display; state.writer = display; save(); render();
+    $("onboardProfile").classList.remove("active");
+    $("onboardConnect").classList.add("active");
+    $("progressOne").classList.add("done"); $("progressTwo").classList.add("done");
+    window.scrollTo({top:0,behavior:"smooth"});
+  } catch (err) {
+    console.error("Profile save failed", err);
+    toast("Profile could not be saved. Check your connection and try again.");
+    ojMessage("profileSaveHint", err.message || "Profile save failed.");
+  } finally {
+    saveBtn.disabled = false; saveBtn.textContent = "Continue";
+  }
+};
+$("onboardSkip").onclick = function() { toast("Please complete your profile to continue."); };
+$("onboardBack").onclick = function() {
+  $("onboardConnect").classList.remove("active"); $("onboardProfile").classList.add("active"); $("progressTwo").classList.remove("done");
+};
+$("onboardPreview").onclick = async function() {
+  if (!ojUser) { toast("Please sign in first."); go("auth"); return; }
+  const btn = $("onboardPreview"); btn.disabled = true; btn.textContent = "Saving setup…";
+  try {
+    const { data: profile, error: profileError } = await ojSupabase.from("profiles").select("*").eq("id", ojUser.id).single();
+    if (profileError) throw profileError;
+    const title = $("journalTitle").value.trim() || "Our Journal";
+    const { data: memberships, error: membershipError } = await ojSupabase.from("journal_members").select("journal_id").eq("user_id", ojUser.id).limit(1);
+    if (membershipError) throw membershipError;
+    if ((!memberships || memberships.length === 0) && !ojPendingInvite) {
+      const { data: journal, error: journalError } = await ojSupabase.from("journals").insert({ title, created_by: ojUser.id }).select("id").single();
+      if (journalError) throw journalError;
+      const { error: joinError } = await ojSupabase.from("journal_members").insert({ journal_id: journal.id, user_id: ojUser.id, role: "owner" });
+      if (joinError) throw joinError;
+    } else if (memberships?.length && !ojPendingInvite) {
+      await ojSupabase.from("journals").update({title}).eq("id",memberships[0].journal_id).eq("created_by",ojUser.id).eq("title","Our Journal");
+    }
+    const { error: completeError } = await ojSupabase.from("profiles").update({ onboarding_completed: true, updated_at: new Date().toISOString() }).eq("id", ojUser.id);
+    if (completeError) throw completeError;
+    localStorage.setItem("ourjournal-started-v1", "1");
+    ojProfileComplete = true;
+    toast("Profile and journal setup saved.");
+    if (ojPendingInvite) { const joinedId=await ojAcceptPendingInvite(); await ojLoadActiveJournal(joinedId); } else { await ojLoadActiveJournal(); go("home"); }
+  } catch (err) {
+    console.error("Onboarding completion failed", err);
+    toast("We couldn't finish setup. Please retry.");
+    ojMessage("inviteLinkHint", err.message || "Setup failed.");
+  } finally {
+    btn.disabled = false; btn.textContent = "Save profile and continue";
+  }
+};
+$("logoutBtn").onclick = async function() {
+  const { error } = await ojSupabase.auth.signOut();
+  if (error) { toast("Could not sign out. Try again."); return; }
+  ojUser = null; go("welcome"); toast("You have signed out.");
+};
+function ojShowEmailCallback(success,message,user){
+  const layer=$("emailCallbackResult");if(!layer)return;
+  $("emailCallbackTitle").textContent=success?"Email confirmed successfully":"Email confirmation unsuccessful";
+  $("emailCallbackMessage").textContent=success?"OurJournal has verified your email with the server. You can now return to OurJournal to continue.":(message||"The server could not confirm this email link. It may have expired or already been used. Return to OurJournal and request a new confirmation email.");
+  $("emailCallbackContinue").hidden=!success;
+  $("emailCallbackContinue").onclick=async()=>{layer.hidden=true;if(user)await ojEnterApp(user);else go("auth");};
+  layer.hidden=false;
+}
+(async function ojRestoreSession() {
+  await ojPreviewInvite();
+  const { data: { session } } = await ojSupabase.auth.getSession();
+  const urlError=ojEmailCallbackParams.get("error_description")||ojEmailCallbackParams.get("error")||ojEmailCallbackHash.get("error_description")||ojEmailCallbackHash.get("error");
+  if(ojEmailCallback){
+    if(urlError){ojShowEmailCallback(false,decodeURIComponent(urlError.replace(/\+/g," ")));return;}
+    const {data:{user},error}=await ojSupabase.auth.getUser();
+    if(!error&&user?.email_confirmed_at){ojVerificationEmail=user.email||"";ojSetVerificationGate(false);ojShowEmailCallback(true,"",user);return;}
+    ojShowEmailCallback(false,error?.message||"The server has not confirmed this email address yet.");return;
+  }
+  if(session?.user){ojVerificationEmail=session.user.email||"";if(!session.user.email_confirmed_at)ojSetVerificationGate(true,ojVerificationEmail);else await ojEnterApp(session.user);}
+  else{ojUser=null;ojProfileComplete=false;go("welcome");}
+})();
+
+document.body.classList.add("auth-gate");
+let ojProfileComplete=false;
+let ojPendingInvite=new URLSearchParams(location.search).get("invite")||"";
+let ojActiveJournalId=null, ojActiveJournalTitle="Our Journal", ojPendingInviteTitle="";
+async function ojPreviewInvite(){if(!ojPendingInvite)return;try{const {data,error}=await ojSupabase.rpc("preview_journal_invitation",{p_token:ojPendingInvite});if(error)throw error;ojPendingInviteTitle=data?.[0]?.journal_title||"";const inviteText="You’ve been invited to "+ojPendingInviteTitle+".";["inviteRoomNotice","inviteWelcomeNotice","inviteAuthNotice"].forEach(id=>{const el=$(id);if(el&&ojPendingInviteTitle){el.hidden=false;el.textContent=inviteText;}});if(ojPendingInviteTitle){$("authIntro").textContent="Join "+ojPendingInviteTitle+" with your account. You’ll enter the same journal—no separate room needed.";}const title=$("onboardConnect")?.querySelector("h1");if(title&&ojPendingInviteTitle)title.textContent="You’ve been invited.";const copy=$("onboardConnect")?.querySelector(".onboard-copy");if(copy&&ojPendingInviteTitle)copy.textContent="Join "+ojPendingInviteTitle+" to share one journal. You do not need to create a separate room.";const choice=$("onboardConnect")?.querySelector(".invite-choice");if(choice&&ojPendingInviteTitle)choice.hidden=true;}catch(e){console.warn("Invitation preview unavailable",e);}}
+async function ojLoadJournalEntries(){if(!ojUser||!ojActiveJournalId)return;const {data:rows,error}=await ojSupabase.from("journal_entries").select("*").eq("journal_id",ojActiveJournalId).order("created_at",{ascending:true});if(error)throw error;const ids=[...new Set((rows||[]).map(r=>r.author_id))];let people={};if(ids.length){const {data:ps}=await ojSupabase.from("profiles").select("id,display_name,first_name,last_name").in("id",ids);(ps||[]).forEach(p=>people[p.id]=p.display_name||[p.first_name,p.last_name].filter(Boolean).join(" ")||"Member");}const partnerId=ids.find(id=>id!==ojUser.id);if(partnerId&&people[partnerId])state.partnerName=people[partnerId];state.entries=await Promise.all((rows||[]).map(async r=>{const at=[];for(const a of (r.attachments||[])){let url="",thumbUrl="";try{const {data}=await ojSupabase.storage.from("journal-images").createSignedUrl(a.path,3600);url=data?.signedUrl||"";if(a.thumbnailPath){const {data:thumb}=await ojSupabase.storage.from("journal-images").createSignedUrl(a.thumbnailPath,3600);thumbUrl=thumb?.signedUrl||"";}}catch(_){}at.push({...a,url,thumbUrl:thumbUrl||url});}return {id:r.id,authorId:r.author_id,writer:r.author_id===ojUser.id?"You":(people[r.author_id]||"Your person"),title:r.title||"",body:r.body,mood:r.mood||"Reflective",prompt:r.prompt||"",createdAt:r.created_at,reflections:(r.reflections||[]).map(x=>({...x,writer:x.writer===state.yourName?"You":"Your person"})),replies:(r.replies||[]).map(x=>({...x,writer:x.writer===state.yourName?"You":"Your person"})),saved:!!r.is_saved,attachments:at};}));render();}
+let ojRealtimeChannel=null;
+async function ojLoadActiveJournal(preferredId){if(!ojUser)return;let id=preferredId||ojActiveJournalId;if(!id){const {data:ms,error}=await ojSupabase.from("journal_members").select("journal_id,role").eq("user_id",ojUser.id);if(error)throw error;if(!ms?.length)throw new Error("No journal is linked to this account yet.");const own=ms.find(m=>m.role==="owner")||ms[0];id=own.journal_id;}const {data:j,error:je}=await ojSupabase.from("journals").select("id,title").eq("id",id).single();if(je)throw je;ojActiveJournalId=j.id;ojActiveJournalTitle=j.title||"Our Journal";document.querySelectorAll(".reader-heading h1, #homeJournalTitle, #thread .page-title").forEach(el=>el.textContent=ojActiveJournalTitle);await ojLoadJournalEntries();if(ojRealtimeChannel)ojSupabase.removeChannel(ojRealtimeChannel);ojRealtimeChannel=ojSupabase.channel("journal-"+ojActiveJournalId).on("postgres_changes",{event:"*",schema:"public",table:"journal_entries",filter:"journal_id=eq."+ojActiveJournalId},()=>{ojLoadJournalEntries().catch(e=>console.error("Journal refresh failed",e));}).subscribe();}
+function ojGate(view){
+ const pub=["welcome","auth","password-reset"];
+ if(!ojUser&&!pub.includes(view))return "auth";
+ if(ojUser&&!ojProfileComplete&&!pub.includes(view)&&view!=="onboarding")return "onboarding";
+ if(ojUser&&ojProfileComplete&&(view==="auth"||view==="welcome"))return "home";
+ return view;
+}
+const ojGoBeforeGate=go;
+go=function(view){const target=ojGate(view);ojGoBeforeGate(target);document.body.classList.toggle("auth-gate",["welcome","auth","password-reset","onboarding"].includes(target));};
+$("authBack").style.display="none";
+const forgot=document.createElement("button");forgot.type="button";forgot.id="forgotPasswordBtn";forgot.className="welcome-signin";forgot.textContent="Forgot password?";forgot.style.cssText="display:block;margin:12px auto 0";$("authForm").appendChild(forgot);
+forgot.onclick=()=>{ojSetResetMode(false);$("resetEmail").value=$("authEmail").value.trim();go("password-reset");};
+function ojSetResetMode(recovery){$("resetRequestForm").style.display=recovery?"none":"flex";$("resetPasswordForm").style.display=recovery?"flex":"none";$("resetHeading").textContent=recovery?"Choose a new password.":"Reset your password."; $("resetIntro").textContent=recovery?"Set a new password for your OurJournal account.":"Enter your account email and we will send a secure reset link."; }
+$("resetBack").onclick=()=>{ojSetAuthMode("signin");go("auth");};
+$("resetRequestForm").addEventListener("submit",async e=>{e.preventDefault();const b=$("resetRequestSubmit");b.disabled=true;b.textContent="Sending…";try{const {error}=await ojSupabase.auth.resetPasswordForEmail($("resetEmail").value.trim().toLowerCase(),{redirectTo:location.origin+location.pathname+"#password-reset"});if(error)throw error;ojMessage("resetRequestHint","If an account exists for that email, a password-reset link has been sent. Check your inbox.");}catch(err){console.error(err);ojMessage("resetRequestHint","We couldn't send the email. Check the address and try again.");}finally{b.disabled=false;b.textContent="Send reset link";}});
+$("resetPasswordForm").addEventListener("submit",async e=>{e.preventDefault();if($("resetNewPassword").value!==$("resetConfirmPassword").value){ojMessage("resetPasswordHint","The passwords do not match.");return;}const b=$("resetPasswordSubmit");b.disabled=true;try{const {error}=await ojSupabase.auth.updateUser({password:$("resetNewPassword").value});if(error)throw error;await ojSupabase.auth.signOut();ojUser=null;ojProfileComplete=false;ojSetAuthMode("signin");go("auth");toast("Password updated. Sign in with your new password.");}catch(err){console.error(err);ojMessage("resetPasswordHint",err.message||"Password update failed. Request a new reset link.");}finally{b.disabled=false;}});
+ojSupabase.auth.onAuthStateChange((event,session)=>{if(event==="PASSWORD_RECOVERY"){ojUser=session?.user||null;ojSetResetMode(true);go("password-reset");}else if(event==="SIGNED_OUT"){ojUser=null;ojProfileComplete=false;go("welcome");}});
+$("inviteBtn").onclick=async function(){if(!ojUser||!ojProfileComplete){go("auth");return;}try{if(!ojActiveJournalId)await ojLoadActiveJournal();const {data,error}=await ojSupabase.rpc("create_journal_invitation",{p_journal_id:ojActiveJournalId});if(error)throw error;const inv=data?.[0];if(!inv?.invite_token)throw new Error("No invitation token returned.");const u=new URL(location.href);u.searchParams.set("invite",inv.invite_token);u.hash="";const inviteUrl=u.toString();let copied=false;try{await navigator.clipboard.writeText(inviteUrl);copied=true;}catch(_){}window.prompt((copied?"Invitation link copied too. Save or share this link; it expires in 20 minutes and can be used once.":"Copy and share this invitation link. It expires in 20 minutes and can be used once."),inviteUrl);toast(copied?"Invitation link ready to share.":"Invitation link generated.");}catch(err){console.error(err);toast(err.message||"Could not create invitation.");}};
+async function ojAcceptPendingInvite(){if(!ojPendingInvite||!ojUser||!ojProfileComplete)return null;try{const {data,error}=await ojSupabase.rpc("accept_journal_invitation",{p_token:ojPendingInvite});if(error)throw error;const joinedId=data;ojPendingInvite="";const u=new URL(location.href);u.searchParams.delete("invite");history.replaceState({},document.title,u.pathname+u.search);toast("You joined "+(ojPendingInviteTitle||"the shared journal")+".");return joinedId;}catch(err){console.error(err);toast(err.message||"This invitation is invalid or expired.");throw err;}}
+
+
+
+// Mandatory email-confirmation gate: no close, back, or dismiss action.
+let ojVerificationRequired=false;
+let ojVerificationEmail="";
+function ojSetVerificationGate(required,email){
+ ojVerificationRequired=required;
+ if(email)ojVerificationEmail=email;
+ $("emailVerificationGate").hidden=!required;
+ document.body.classList.toggle("email-verification-required",required);
+ if(required){$("verifyAddress").textContent=ojVerificationEmail;document.body.classList.add("auth-gate");}
+}
+async function ojCheckEmailVerification(){
+ const {data,error}=await ojSupabase.auth.getUser();if(error)throw error;
+ const user=data?.user;
+ if(user?.email_confirmed_at){ojSetVerificationGate(false);ojUser=user;await ojEnterApp(user);return true;}
+ if(user){ojSetVerificationGate(true,user.email);return false;}
+ return false;
+}
+$("verifyResend").addEventListener("click",async()=>{
+ if(!ojVerificationEmail){ojMessage("verifyHint","Return to sign in and enter your email address first.");return;}
+ const b=$("verifyResend");b.disabled=true;b.textContent="Sending…";
+ try{const {error}=await ojSupabase.auth.resend({type:"signup",email:ojVerificationEmail,options:{emailRedirectTo:location.origin+location.pathname}});if(error)throw error;ojMessage("verifyHint","If your account is awaiting confirmation, a new email has been sent. Check your inbox and spam folder.");}
+ catch(err){console.error(err);ojMessage("verifyHint",err.message||"Could not resend the email. Please try again shortly.");}
+ finally{b.disabled=false;b.textContent="Resend confirmation email";}
+});
+$("verifyCheck").addEventListener("click",async()=>{
+ const b=$("verifyCheck");b.disabled=true;b.textContent="Checking…";
+ try{if(!await ojCheckEmailVerification())ojMessage("verifyHint","Your email is not confirmed yet. Open the confirmation link in your email, then check again.");}
+ catch(err){console.error(err);ojMessage("verifyHint","Could not check verification status. Try again.");}
+ finally{b.disabled=false;b.textContent="I've confirmed my email";}
+});
+const ojGoBeforeVerification=go;
+go=function(view){if(ojVerificationRequired){ojSetVerificationGate(true);return;}ojGoBeforeVerification(view);};
+const ojEnterBeforeVerification=ojEnterApp;
+ojEnterApp=async function(user){
+ if(!user?.email_confirmed_at){ojSetVerificationGate(true,user?.email||ojVerificationEmail);return;}
+ ojSetVerificationGate(false);return ojEnterBeforeVerification(user);
+};
+
+if("serviceWorker"in navigator)window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){})});
+</script><div id="emailCallbackResult" role="dialog" aria-modal="true" aria-labelledby="emailCallbackTitle" hidden><div class="verify-card"><div class="verify-mark" aria-hidden="true">✓</div><div class="onboard-kicker">ACCOUNT CONFIRMATION</div><h1 id="emailCallbackTitle">Checking your email…</h1><p id="emailCallbackMessage" aria-live="polite">Checking the confirmation result with the server.</p><button class="btn primary" id="emailCallbackContinue" type="button" hidden>Return to OurJournal</button><p class="verify-small">Once confirmation succeeds, return to the OurJournal tab to continue.</p></div></div><div id="emailVerificationGate" role="dialog" aria-modal="true" aria-labelledby="verifyTitle" hidden><div class="verify-card"><div class="verify-mark" aria-hidden="true">✉</div><div class="onboard-kicker">ONE LAST STEP</div><h1 id="verifyTitle">Verify your email</h1><p id="verifyCopy">We sent a confirmation link to your email address. Open that email and confirm your account to unlock OurJournal.</p><p class="verify-address" id="verifyAddress"></p><p class="hint" id="verifyHint" aria-live="polite">You cannot access the journal until your email is confirmed.</p><button class="btn primary" id="verifyResend" type="button">Resend confirmation email</button><button class="btn secondary" id="verifyCheck" type="button">I've confirmed my email</button><p class="verify-small">Check your spam or junk folder if the email is missing.</p></div></div></body></html>

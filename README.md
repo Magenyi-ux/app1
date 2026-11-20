@@ -54,16 +54,17 @@ Capacitor is configured for Android package `name.spherelearn.ourjournal`. Run `
 
 ## Journal library implementation (branch: `feat/journal-library-offline-editor`)
 
-This branch adds a multi-journal library, journal selection, entry search, a local autosaving editor draft, queued offline entry writes, cached journal entries, and app-shell caching through the existing `sw.js` service worker. Supabase client code is bundled with Vite so the app shell does not depend on loading the client from a CDN at runtime.
+This branch adds a multi-journal library with personal/shared types, journal selection, entry search, a local autosaving Notes-style editor draft, queued offline entry writes, cached journal entries, and app-shell caching through the existing `sw.js` service worker. Supabase client code is bundled with Vite so the app shell does not depend on loading the client from a CDN at runtime.
 
 ### Database migration required
 
-Before using the new journal-creation action in any deployed environment, apply `supabase/migrations/20261120180000_multiple_journals.sql` to the matching Supabase project. It adds the authenticated `create_journal(p_title)` RPC and updates invitation acceptance so an account can join another journal without losing existing journals. This migration has **not** been applied by this branch workflow.
+Before using the new journal-creation action in any deployed environment, apply `supabase/migrations/20261120180000_multiple_journals.sql` to the matching Supabase project. It adds the `journal_type` column, the authenticated `create_journal(p_title, p_type)` RPC, prevents personal journals from issuing invitations, and updates invitation acceptance so an account can join another journal without losing existing journals. This migration has **not** been applied by this branch workflow.
 
 ### Verification checklist
 
 - [ ] Build with `npm install` then `npm run build`.
 - [ ] Create two personal journals, switch between them, and verify entries remain scoped to the selected journal.
+- [ ] Verify personal journals cannot issue invitations; shared journals can invite by link or prepared email.
 - [ ] Create a shared journal, invite a second account, accept the invitation, and verify both accounts can access only their memberships.
 - [ ] Create a private entry and confirm it is absent from the other member's query results and UI.
 - [ ] Search by title and body text.

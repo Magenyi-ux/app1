@@ -1,11 +1,11 @@
 {
-  "name": "OurJournal — Two People, One Story",
-  "short_name": "OurJournal",
+  "name": "Thought & Feelings — Two People, One Story",
+  "short_name": "Thought & Feelings",
   "description": "A thoughtful journal for two people.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f7f4fb",
-  "theme_color": "#26163e",
+  "theme_color": "#F8F9FA",
   "orientation": "portrait",
   "icons": [
     {

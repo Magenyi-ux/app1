@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#F7F4ED"><meta name="description" content="Thought & Feelings — a thoughtful shared journal for two people, on your time."><link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icon.svg"><title>Thought & Feelings — Write. Understand. Grow.</title>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#F5F3F8"><meta name="description" content="Thought & Feelings — a quiet, private space to write, reflect, and understand yourself."><link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icon.svg"><title>Thought & Feelings — Write. Understand. Grow.</title>
 <style>
 :root{color-scheme:light;--paper:#F7F5EF;--surface:#FFFEFA;--surface-2:#F0EEE6;--ink:#252B26;--muted:#70766E;--line:#E5E2D9;--green:#355C4A;--green-hover:#294A3A;--sage:#E1E9DF;--sage-strong:#C8D8C6;--clay:#B96850;--clay-soft:#F3E4DC;--shadow:0 10px 35px rgba(35,45,36,.055);--radius:20px;--nav-width:230px}
 *{box-sizing:border-box}
@@ -43,10 +43,113 @@ body.welcome-mode .top,body.welcome-mode .tabs{display:none!important}body.welco
 @media(max-width:900px){:root{--nav-width:190px}.top{padding-right:20px;padding-left:calc(var(--nav-width) + 20px)}.shell{padding:30px 22px}.tabs{padding-left:10px;padding-right:10px}#home .layout{grid-template-columns:minmax(0,1.2fr) minmax(230px,.8fr)}}
 @media(max-width:680px){:root{--nav-width:0px}.top{height:66px;padding:0 14px;gap:8px}.brand{font-size:14px;gap:8px}.brand .mark{width:34px;height:34px;border-radius:11px;font-size:23px}.brand small{font-size:9px}.top>div:last-child{gap:5px!important}.top #inviteBtn{min-height:37px;padding:9px 11px;font-size:11px}.top #profileBtn{width:36px;min-height:36px}.top .download-link{display:none}.shell{margin:0;padding:24px 15px 112px;min-height:calc(100vh - 66px)}.welcome{margin:-66px -15px -112px;min-height:100dvh;padding:30px 23px calc(35px + env(safe-area-inset-bottom))}.welcome h1{font-size:54px}.welcome-art{height:150px;margin-bottom:17px}.welcome-symbol{font-size:82px}.welcome-orbit{width:194px;height:122px}.orbit-two{width:238px;height:144px}.hero{padding:26px 22px;border-radius:21px}.hero h1{font-size:clamp(39px,11vw,52px)}.hero p{font-size:13px}#home .layout{grid-template-columns:1fr;gap:14px}#home .prompt p{font-size:23px}.card{border-radius:17px;padding:18px}.page-title{font-size:35px}.page-sub{font-size:13px;margin-bottom:21px}.tabs{position:fixed;left:9px;right:9px;top:auto;bottom:calc(8px + env(safe-area-inset-bottom));width:auto;height:67px;padding:6px;display:flex;flex-direction:row;align-items:stretch;justify-content:space-around;gap:1px;border:1px solid rgba(225,224,214,.9);border-radius:19px;background:rgba(255,254,250,.96);backdrop-filter:blur(18px);box-shadow:0 8px 30px rgba(35,45,36,.12)}.tab{flex:1;min-width:0;min-height:0;max-width:none;justify-content:center;flex-direction:column;gap:3px;padding:6px 2px;border-radius:12px;font-size:9px}.tab span{width:auto;font-size:18px}.tab.active{border-color:transparent;background:var(--sage)}.footer{margin-top:25px}#write>.card{padding:20px 16px}#write textarea.field{min-height:230px}#write .editor-options{grid-template-columns:1fr;gap:0}#write .editor-actions{display:grid;grid-template-columns:1fr}#write .editor-actions .btn{width:100%}.row>*{flex-basis:100%}#journals .row .btn{flex-basis:100%}.journal-list{grid-template-columns:1fr}.onboard-actions .btn{flex-basis:100%}.auth-title,.onboard h1{font-size:38px}.setting-link{padding:12px}.profile-summary{padding:15px}.modal{padding:22px}.toast{bottom:88px}.entry-body{font-size:16px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.view.active{animation:none}}
+
+/* Research-led Quiet Violet design system: reflective editorial UI, not a generic dashboard */
+:root{
+ color-scheme:light;
+ --paper:#F5F3F8;
+ --surface:#FFFEFF;
+ --surface-2:#EFECF4;
+ --ink:#272431;
+ --muted:#777382;
+ --line:#E3DFEA;
+ --green:#7563A8;
+ --green-hover:#5F4D91;
+ --sage:#E9E3F5;
+ --sage-strong:#D8CDED;
+ --clay:#8A79B9;
+ --clay-soft:#F0EAF8;
+ --shadow:0 16px 42px rgba(49,39,75,.075);
+ --radius:22px;
+ --nav-width:232px;
+}
+html,body{background:var(--paper);color:var(--ink)}
+body{font-family:Inter,"DM Sans",ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:-.012em}
+::selection{background:#D9CEEF;color:#29223A}
+button,input,textarea,select{font:inherit}
+button{transition:background-color .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #A99AD2;outline-offset:3px}
+.top{background:rgba(255,254,255,.88);border-color:var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.brand{color:var(--ink)}
+.brand .mark,.auth-brand-mark{background:linear-gradient(145deg,#9D8BCB,#6D5A9F);color:#fff;box-shadow:0 8px 22px rgba(117,99,168,.23)}
+.brand small{color:var(--muted)}
+.download-link{border-color:var(--line);color:var(--ink);border-radius:999px}
+#inviteBtn,.tiny,.welcome-signin{color:var(--green)}
+#profileBtn{background:#E9E3F5;color:#5F4D91;border:1px solid #DCD2ED}
+.shell{background:transparent}
+.view{animation:viewArrive .22s ease both}
+@keyframes viewArrive{from{opacity:.65;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.welcome{min-height:min(760px,calc(100dvh - 100px));align-items:center;gap:clamp(28px,7vw,100px)}
+.welcome-art{background:radial-gradient(circle at 28% 25%,#C8B9E6 0,#9B8AC5 25%,#6E5C9B 62%,#3A344A 100%);border-radius:36px;box-shadow:0 28px 70px rgba(59,47,86,.2);overflow:hidden}
+.welcome-art:before{content:"";position:absolute;inset:0;background:linear-gradient(145deg,rgba(255,255,255,.18),transparent 48%,rgba(24,20,34,.2));pointer-events:none}
+.welcome-orbit{border-color:rgba(255,255,255,.28)}
+.welcome-symbol{color:#fff;text-shadow:0 8px 30px rgba(25,18,39,.24)}
+.welcome-copy .eyebrow,.eyebrow{color:#8271AD;letter-spacing:.15em;font-size:10px;font-weight:750}
+.welcome-copy h1{font-size:clamp(42px,6vw,68px);line-height:1.02;letter-spacing:-.055em;font-weight:650}
+.welcome-copy h1 span{color:var(--green)}
+.welcome-tagline{color:#756C87}
+.welcome-description{color:#716D7B;max-width:420px;line-height:1.8}
+.btn.primary{background:linear-gradient(135deg,#8170B5,#69559D);color:#fff;border:1px solid transparent;box-shadow:0 8px 20px rgba(105,85,157,.19);border-radius:14px}
+.btn.primary:hover{background:linear-gradient(135deg,#7462A8,#5E4A91);box-shadow:0 10px 26px rgba(105,85,157,.25);transform:translateY(-1px)}
+.btn.secondary,.tiny{background:#F0EDF5;border-color:#E3DDED;border-radius:12px}
+.hero{background:linear-gradient(125deg,#312A42 0%,#51436E 54%,#7866A6 100%);color:#F8F5FC;border:1px solid rgba(255,255,255,.1);border-radius:28px;box-shadow:0 22px 55px rgba(49,39,75,.16);position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-90px;top:-120px;border:1px solid rgba(255,255,255,.15);box-shadow:0 0 0 28px rgba(255,255,255,.035),0 0 0 58px rgba(255,255,255,.025);pointer-events:none}
+.hero .eyebrow{color:#C9BDE7}
+.hero h1{color:#fff;letter-spacing:-.045em}
+.hero p{color:#E0DAEB}
+.hero .btn.primary{background:#F4F0FB;color:#51406F;box-shadow:none}
+.card,.auth-card,.modal,.profile-summary,.entry,.prompt,.journal-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.card{padding:clamp(18px,3vw,28px)}
+.head h2,.page-title{letter-spacing:-.035em}
+.page-title{font-weight:650}
+.page-sub,.sub,.hint{color:var(--muted);line-height:1.65}
+.field,input.field,textarea.field,select.field{background:#FCFBFE;border:1px solid #DDD8E7;color:var(--ink);border-radius:13px;min-height:48px}
+textarea.field{line-height:1.8;padding:16px;resize:vertical}
+.field::placeholder{color:#9A95A5}
+.field:focus,input.field:focus,textarea.field:focus,select.field:focus{border-color:#9C8AC9;box-shadow:0 0 0 4px rgba(129,112,181,.12);outline:none}
+.editor-rule{background:linear-gradient(90deg,#C6B8E4,transparent)}
+.editor-meta,.save-indicator{color:var(--muted)}
+.tabs{background:rgba(255,254,255,.94);border-color:var(--line);box-shadow:0 8px 30px rgba(49,39,75,.06);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.tab{color:#777382;border-radius:14px}
+.tab.active,.tab[aria-current="page"]{background:#EDE7F7;color:#5D4B91;font-weight:700}
+.setting-link{border-radius:14px}
+.setting-link:hover,.entry:hover,.journal-card:hover{background:#F8F5FC;border-color:#D6CBEA}
+.modalback{background:rgba(30,25,42,.46);backdrop-filter:blur(5px)}
+.modal{box-shadow:0 24px 90px rgba(29,22,43,.24)}
+.toast{background:#322B42;color:#fff;border:1px solid rgba(255,255,255,.12);box-shadow:0 12px 35px rgba(29,22,43,.2)}
+a{color:#665394}
+hr,.divider{border-color:var(--line)}
+@media(max-width:760px){
+ .welcome{min-height:auto;gap:26px;padding-top:18px}
+ .welcome-art{min-height:190px;max-height:250px;border-radius:28px}
+ .welcome-copy h1{font-size:clamp(40px,12vw,56px)}
+ .hero{border-radius:24px}
+ .tabs{padding-bottom:max(8px,env(safe-area-inset-bottom));}
+ .card{border-radius:20px}
+}
+@media(prefers-color-scheme:dark){
+ :root{color-scheme:dark;--paper:#17151D;--surface:#211E29;--surface-2:#2A2534;--ink:#F0ECF6;--muted:#B3ACBF;--line:#393343;--green:#B8A7E2;--green-hover:#C9B9ED;--sage:#302940;--sage-strong:#403451;--clay:#B8A7E2;--clay-soft:#302940;--shadow:0 18px 42px rgba(0,0,0,.2)}
+ html,body{background:var(--paper);color:var(--ink)}
+ .top,.tabs{background:rgba(33,30,41,.92);border-color:var(--line)}
+ .brand,.page-title,.head h2{color:var(--ink)}
+ .card,.auth-card,.modal,.profile-summary,.entry,.prompt,.journal-card{background:var(--surface);border-color:var(--line)}
+ .field,input.field,textarea.field,select.field{background:#1D1A25;border-color:#494154;color:var(--ink)}
+ .field::placeholder{color:#8E879B}
+ .tab{color:#B3ACBF}.tab.active,.tab[aria-current="page"]{background:#3B304D;color:#D8CCF2}
+ .btn.secondary,.tiny{background:#302A3B;border-color:#494154;color:#D9D1E8}
+ .setting-link:hover,.entry:hover,.journal-card:hover{background:#2B2536;border-color:#5B4A78}
+ .welcome-copy h1 span{color:#B8A7E2}
+ .welcome-description,.page-sub,.sub,.hint{color:#B3ACBF}
+ .hero{background:linear-gradient(125deg,#262130 0%,#3A304C 54%,#51436E 100%)}
+ .hero .btn.primary{background:#EAE3F7;color:#3C3057}
+ .profile-summary-caption{color:#B3ACBF}
+}
+@media(prefers-reduced-motion:reduce){.view{animation:none!important}}
+
 </style></head><body>
 <header class="top"><div class="brand"><div class="mark">♡</div><div>Thought & Feelings<small>Write. Understand. Grow.</small></div></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><a class="download-link" href="https://github.com/Magenyi-ux/app1/actions/runs/44355463315" target="_blank" rel="noopener noreferrer" aria-label="Download Thought & Feelings for Android">Download Android ↓</a><button id="inviteBtn">Invite your person ↗</button><button id="profileBtn" aria-label="Profile">Y</button></div></header>
 <main class="shell">
-<section class="view welcome active" id="welcome"><div class="welcome-art" aria-hidden="true"><div class="welcome-orbit orbit-one"></div><div class="welcome-orbit orbit-two"></div><div class="welcome-symbol">♡</div></div><div class="welcome-copy"><div class="eyebrow">A quieter place to be understood</div><h1>Thought <span>&amp; Feelings</span></h1><p class="welcome-tagline">Write. Understand. Grow.</p><p class="welcome-description">A little space to understand yourself, and a thoughtful way to understand someone else.</p><button class="btn primary" id="getStarted">Create your space <span aria-hidden="true">↗</span></button><button class="welcome-signin" id="signInBtn">Already have an account? Sign in</button><p class="welcome-foot">Your thoughts belong to you. Share only what you choose.</p></div></section>
+<section class="view welcome active" id="welcome"><div class="welcome-art" aria-hidden="true"><div class="welcome-orbit orbit-one"></div><div class="welcome-orbit orbit-two"></div><div class="welcome-symbol">♡</div></div><div class="welcome-copy"><div class="eyebrow">A QUIETER PLACE TO LAND</div><h1>Make room for<br><span>what you feel.</span></h1><p class="welcome-tagline">Thought &amp; Feelings</p><p class="welcome-description">A private space to put your thoughts into words, notice what matters, and return to yourself at your own pace.</p><button class="btn primary" id="getStarted">Create your space <span aria-hidden="true">↗</span></button><button class="welcome-signin" id="signInBtn">Already have an account? Sign in</button><p class="welcome-foot">Your thoughts belong to you. Share only what you choose.</p></div></section>
 
 <section class="view" id="auth"><div class="auth-shell">
 <button class="tiny auth-back" id="authBack">← Back</button><div class="auth-brand-mark" aria-hidden="true">♡</div>
@@ -73,7 +176,7 @@ body.welcome-mode .top,body.welcome-mode .tabs{display:none!important}body.welco
 <div class="card"><label class="field-label" for="inviteShareLink">Invitation link</label><input class="field" id="inviteShareLink" readonly><button class="btn primary" id="copyInviteLink" type="button" style="width:100%;margin-top:12px">Copy invitation link</button><hr style="border:0;border-top:1px solid var(--line);margin:22px 0"><label class="field-label" for="inviteEmail">Partner's email (optional)</label><input class="field" id="inviteEmail" type="email" autocomplete="email" placeholder="partner@example.com"><button class="btn secondary" id="emailInvite" type="button" style="width:100%;margin-top:12px">Prepare email invitation</button><p class="hint">This opens your email app with the invitation ready; it does not send mail from our servers.</p><p class="auth-status" id="inviteStatus" role="status" aria-live="polite"></p></div>
 <div class="onboard-actions"><button class="btn primary" id="enterJournal" type="button">Continue to journal</button><button class="btn secondary" id="refreshInvite" type="button">Generate a fresh invitation</button></div></div></section>
 <section class="view" id="journals"><div class="head"><div><h1 class="page-title">Your journals</h1><p class="page-sub">Keep personal notes and shared journals in one place.</p></div><button class="btn primary" id="newJournalFocus">＋ New journal</button></div><div class="card"><label class="field-label" for="newJournalTitle">Create a journal</label><div class="row"><input class="field" id="newJournalTitle" maxlength="120" placeholder="e.g. My thoughts, Our story, Gratitude"><select class="field" id="newJournalType" aria-label="Journal type"><option value="personal">Personal journal</option><option value="shared">Shared journal</option></select><button class="btn primary" id="createLibraryJournal">Create journal</button></div><p class="hint" id="journalLibraryStatus">Personal and shared journals appear below. Entries are kept separate by journal.</p></div><div id="journalList" class="journal-list" style="margin-top:14px"></div></section>
-<section class="view" id="home"><div class="hero"><div class="eyebrow">YOUR SPACE · TAKE YOUR TIME</div><h1>A little room for<br>what's on your mind.</h1><p>Some thoughts need somewhere to land. Write freely, return when you're ready, and share only what feels right.</p><button class="btn primary" id="start">＋ &nbsp; Write an entry</button></div>
+<section class="view" id="home"><div class="hero"><div class="eyebrow">A MOMENT FOR YOURSELF</div><h1>You can start<br>where you are.</h1><p>No perfect words needed. Take a breath, write what is true for you, and leave the rest for another day.</p><button class="btn primary" id="start">＋ &nbsp; Write an entry</button></div>
 <div class="layout"><section class="card"><div class="head"><div><div class="eyebrow">YOUR JOURNAL</div><h2 style="margin-top:7px;font-size:18px">Recent reflections</h2><p class="sub" id="count">Your story, one entry at a time.</p></div><button class="tiny" id="allHistory">View history ↗</button></div><div id="recent"></div></section><aside class="card"><div class="head"><div><div class="eyebrow">A MOMENT TO REFLECT</div><h2 style="margin-top:7px;font-size:18px">Today's question</h2><p class="sub">No perfect answers needed.</p></div><span aria-hidden="true" style="display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--clay-soft);color:var(--clay);font-size:23px">✳</span></div><div class="prompt"><div class="eyebrow">A gentle prompt</div><p id="dailyPrompt"></p><button class="btn secondary" id="usePrompt">Write about this ↗</button></div><p class="hint">No streaks. No rush to reply. Just space to listen.</p></aside></div></section>
 <section class="view" id="write"><div class="card"><div class="eyebrow">YOUR PAGE</div><h1 class="page-title" style="margin-top:9px">A place to put it all.</h1><p class="page-sub">Write honestly. Take your time. Come back whenever you're ready.</p><div class="editor-meta"><span id="editorDate">Your journal entry</span><span class="save-indicator" id="editorSaveLabel">Drafts save on this device</span></div><label class="field-label" for="title">Give this thought a title (optional)</label><input class="field" id="title" maxlength="90" placeholder="A day worth remembering"><div class="editor-rule"></div><label class="field-label editor-body-label" for="body">Start wherever you are</label><textarea class="field" id="body" maxlength="6000" placeholder="I've been thinking about…"></textarea><p class="hint" id="draftNote">Private drafts stay on this device until you save an entry.</p><p class="autosave-status" id="autosaveStatus" role="status" aria-live="polite"></p><div class="editor-options"><div><label class="field-label" for="mood">How are you feeling?</label><select class="field" id="mood"><option>Reflective</option><option>Grateful</option><option>Hopeful</option><option>Uncertain</option><option>Hurt</option><option>Happy</option><option>Overwhelmed</option><option>Curious</option></select></div><div><label class="field-label" for="entryVisibility">Who can read this entry?</label><select class="field" id="entryVisibility"><option value="shared">Shared with both of us</option><option value="private">Private — only me</option></select></div></div><p class="hint">Private entries are only visible to you.</p><label class="field-label" for="promptChoice">Add a writing prompt (optional)</label><select class="field" id="promptChoice"><option value="">No prompt today</option></select><div class="editor-actions"><button class="btn secondary" id="saveDraft">Save private draft</button><button class="btn primary" id="share">Save entry</button></div></div></section>
 <section class="view" id="history"><h1 class="page-title">Our History</h1><p class="page-sub">A record of the things you've taken time to share.</p><div class="card"><label class="field-label" for="entrySearch">Search entries</label><input class="field" id="entrySearch" type="search" placeholder="Search titles and writing…"><div class="segmented" id="filters"><button class="active" data-filter="all">Both</button><button data-filter="mine">Mine</button><button data-filter="partner">My person's</button></div><div class="timeline" id="historyList"></div></div></section>

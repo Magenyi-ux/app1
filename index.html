@@ -443,4 +443,4 @@ if(!navigator.onLine){var cached=readJSON(userScopedKey(OFFLINE_CACHE_KEY),null)
 
 if(!supabaseClient){go("welcome");console.warn("Missing VITE_SUPABASE_URL or VITE_SUPABASE_PUBLISHABLE_KEY.")}else{loadCurrentProfileAndContinue().catch(function(e){console.error(e);go("welcome");toast(friendlyError(e))})}
 
-</script></body></html>
+</script><script src="/push-notifications.js" defer></script></body></html>

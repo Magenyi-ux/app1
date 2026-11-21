@@ -73,3 +73,17 @@ Before using the new journal-creation action in any deployed environment, apply 
 - [ ] Restore connectivity and verify queued entries sync once, without duplicate entries.
 - [ ] Test invite expiry, reused invite links, and account sign-out.
 - [ ] Perform end-to-end tests with two real accounts before production deployment.
+
+
+## Web push notifications (setup required)
+
+The app now includes an opt-in device notification panel and a service worker handler for notifications while the PWA is backgrounded or closed. The user must enable browser permission on each device. Web Push is not supported by every browser/device combination.
+
+Before this can deliver notifications, configure the Supabase project:
+
+1. Apply `supabase/migrations/20261121123000_push_subscriptions.sql` after the notification inbox migration.
+2. Generate a VAPID key pair using a trusted Web Push key generator or the `web-push` package. Store **only** the public key in `VAPID_PUBLIC_KEY`; store the private key in Supabase Edge Function secrets as `VAPID_PRIVATE_KEY`. Set `VAPID_SUBJECT` to a valid `mailto:` contact. Never place the private key in Vite/frontend variables.
+3. Deploy `supabase/functions/push-notifications/index.ts` as the `push-notifications` Edge Function with JWT verification enabled. Confirm the standard `SUPABASE_URL`, `SUPABASE_ANON_KEY`, and `SUPABASE_SERVICE_ROLE_KEY` Edge Function secrets are available.
+4. Build and test on HTTPS. Sign in, open Profile/Settings, enable notifications, then use “Send test notification”. Verify the notification arrives with the app backgrounded.
+
+The current Edge Function supports secure subscription registration and a self-test. Automated push delivery for journal invitations, replies, reflections, and reminders must be connected to their trusted server-side event handlers before those events will send device notifications. The app does not send private journal text in push previews. Do not deploy until the migration, Edge Function secrets, and end-to-end tests are complete.

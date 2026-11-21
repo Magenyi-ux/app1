@@ -277,6 +277,63 @@ body.onboarding-mode .onboard,body.invite-mode .onboard{max-width:520px;padding-
 #write .editor-actions{display:flex;gap:10px;margin-top:22px}#write .editor-actions button{min-height:48px;border-radius:13px}#write #saveDraft{flex:1}#write #share{flex:1.25}
 #write .hint#draftNote{padding:10px 12px;background:var(--warm);border-radius:10px;margin:12px 0 0}#write .autosave-status{min-height:18px;margin:8px 0 12px}
 @media(max-width:520px){#write .card{padding:20px 17px;border-radius:20px}#write .editor-options{grid-template-columns:1fr;gap:4px}#write .editor-actions{position:sticky;bottom:8px;padding:8px;background:var(--paper);border:1px solid var(--line);border-radius:16px;z-index:4}#write #saveDraft,#write #share{font-size:13px;padding:12px 9px}}
+
+/* Visual consistency and contrast pass */
+:root{
+ color-scheme:dark;
+ --paper:#120E20; --white:#221C3E; --ink:#F7F5FC; --muted:#C0B9D1;
+ --line:#51456D; --warm:#2D264D; --deep:#171222;
+ --green:#A98AF5; --green-hover:#8B68EB; --green-soft:#342856;
+}
+body,html{background:var(--paper);color:var(--ink)}
+.top{background:rgba(18,14,32,.96);color:var(--ink);border-color:var(--line)}
+.top button,.top .download-link{background:#2B2342;color:var(--ink);border-color:var(--line)}
+.top .download-link{background:var(--green);color:#1A1230;border-color:var(--green)}
+.brand small,.sub,.hint,.page-sub,.meta small,.setting-row small,.setting-link small{color:var(--muted)}
+.secondary,.field,.setting-link{background:#211A35;color:var(--ink);border-color:var(--line)}
+.secondary:hover,.top button:hover,.setting-link:hover{background:#342856;border-color:#8F78C4}
+.field::placeholder{color:#B5ADC8;opacity:1}
+textarea.field{background:#211A35;color:var(--ink);border-color:var(--line)}
+.field:disabled,.field[disabled]{background:#29223A;color:#B5ADC8;opacity:1}
+.entry,#home .layout .card:first-child .entry,#history .entry,#reflect .entry{
+ background:#211A35;color:var(--ink);border-color:var(--line)
+}
+.entry-foot{border-color:var(--line)}
+.dot.partner{background:#3A2B53;color:#D8C4FF}
+.prompt,#prompts .prompt{background:#29213F;color:var(--ink);border-color:var(--line)}
+.prompt p,#prompts .prompt p{color:var(--ink)}
+.notice{background:#29213F;border-color:#51456D;color:#E6DDF5}
+.tabs{background:#1B152B;border-color:var(--line);box-shadow:0 4px 18px rgba(0,0,0,.25)}
+.tab{color:#C0B9D1}
+.tab.active{background:#342856;color:#E4D7FF}
+.segmented{background:#211A35;border:1px solid var(--line)}
+.segmented button{color:#C0B9D1}
+.segmented button.active{background:#49376C;color:#FFFFFF;box-shadow:none}
+.stat{background:#29213F}
+.stat b{color:#C6B1FF}
+.stat span{color:var(--muted)}
+#write .card,#reflect .card,#profile .card,#history .card,#prompts .card{
+ background:var(--white);color:var(--ink);border-color:var(--line)
+}
+#reflect .card{background:#1B152B;color:var(--ink);border-color:var(--line)}
+#reflect .entry{background:#211A35;color:var(--ink)}
+#reflect .field-label{color:#E4D7FF}
+#reflect textarea.field,#reflect input.field{background:#211A35;color:var(--ink);border-color:var(--line)}
+#reflect .hint{color:var(--muted)}
+.thread-reply{background:#29213F;color:var(--ink)}
+.modalback{background:rgba(8,5,15,.72)}
+.modal{background:#211A35;color:var(--ink);border-color:var(--line)}
+.toast{background:#F7F5FC;color:#1A1428;border:1px solid #D8D0E8;box-shadow:0 8px 28px rgba(0,0,0,.3)}
+.email-confirm-icon{background:#342856;color:#D9C7FF}
+.confirm-email-address{color:var(--ink)}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline-color:#D1BCFF}
+.field:focus{border-color:#BFA8FF;box-shadow:0 0 0 3px rgba(191,168,255,.2)}
+.entry:hover,.prompt:hover{border-color:#8F78C4}
+.empty{color:var(--muted)}
+.empty b{color:var(--ink)}
+.setting-link>span:first-child{background:#342856;color:#D9C7FF}
+@media(hover:none){.entry:hover,.prompt:hover,.setting-link:hover{transform:none;box-shadow:none}}
+
 </style></head><body>
 <header class="top"><div class="brand"><div class="mark">♡</div><div>Thought & Feelings<small>Write. Understand. Grow.</small></div></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><a class="download-link" href="https://github.com/Magenyi-ux/app1/actions/runs/44355463315" target="_blank" rel="noopener noreferrer" aria-label="Download Thought & Feelings for Android">Download Android ↓</a><button id="inviteBtn">Invite your person ↗</button><button id="profileBtn" aria-label="Profile">Y</button></div></header>
 <main class="shell">

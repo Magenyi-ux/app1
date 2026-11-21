@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#F8F9FA"><meta name="description" content="Thought & Feelings — a thoughtful shared journal for two people, on your time."><link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icon.svg"><title>Thought & Feelings — Write. Understand. Grow.</title>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#F7F4ED"><meta name="description" content="Thought & Feelings — a thoughtful shared journal for two people, on your time."><link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icon.svg"><title>Thought & Feelings — Write. Understand. Grow.</title>
 <style>
-:root{color-scheme:dark;--green:#7B51F5;--green-hover:#6337E8;--green-soft:#342856;--paper:#120E20;--white:#221C3E;--ink:#FFFFFF;--muted:#A09CB3;--line:#3B315C;--warm:#2D264D;--deep:#171222;--shadow:0 1px 2px rgba(0,0,0,.18)}
+:root{color-scheme:light;--green:#355C4A;--green-hover:#284737;--green-soft:#DCE6DA;--paper:#F7F4ED;--white:#FFFFFF;--ink:#252923;--muted:#6B7068;--line:#E5E0D6;--warm:#EFE8DC;--deep:#252923;--shadow:0 2px 12px rgba(37,41,35,.045)}
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;background:var(--paper);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:-.12px}
 button,input,textarea,select{font:inherit}button{cursor:pointer;transition:background .16s ease,border-color .16s ease,color .16s ease,transform .16s ease}button:active{transform:translateY(1px)}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid #b987f4;outline-offset:3px}
@@ -269,6 +269,67 @@ body.onboarding-mode .onboard,body.invite-mode .onboard{max-width:520px;padding-
 #write .editor-actions{display:flex;gap:10px;margin-top:22px}#write .editor-actions button{min-height:48px;border-radius:13px}#write #saveDraft{flex:1}#write #share{flex:1.25}
 #write .hint#draftNote{padding:10px 12px;background:var(--warm);border-radius:10px;margin:12px 0 0}#write .autosave-status{min-height:18px;margin:8px 0 12px}
 @media(max-width:520px){#write .card{padding:20px 17px;border-radius:20px}#write .editor-options{grid-template-columns:1fr;gap:4px}#write .editor-actions{position:sticky;bottom:8px;padding:8px;background:var(--paper);border:1px solid var(--line);border-radius:16px;z-index:4}#write #saveDraft,#write #share{font-size:13px;padding:12px 9px}}
+
+/* Thought & Feelings — warm editorial design system */
+:root{--terracotta:#B96850;--sage:#DCE6DA;--radius-card:18px}
+html,body{background:var(--paper);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:-.15px}
+button,input,textarea,select{font:inherit}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+.top{background:rgba(247,244,237,.94);color:var(--ink);border-bottom:1px solid var(--line)}
+.brand{color:var(--ink);font-weight:700;letter-spacing:-.6px}
+.mark{background:var(--green);border-radius:12px;color:#fff}
+.brand small{color:var(--muted)}
+.top button,.top .download-link{background:var(--white);color:var(--ink);border-color:var(--line);border-radius:999px}
+.top .download-link,.top button.primary{background:var(--green);border-color:var(--green);color:#fff}
+.top .download-link:hover,.primary:hover{background:var(--green-hover);border-color:var(--green-hover)}
+.shell{padding-top:clamp(22px,4vw,42px)}
+.hero{padding:18px 0 30px}
+.eyebrow,.hero .eyebrow{color:var(--green);letter-spacing:.12em;text-transform:uppercase;font-size:10px}
+.hero h1,.page-title,.welcome h1{font-family:Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:-1.4px}
+.hero h1{font-size:clamp(40px,6.2vw,68px);line-height:1.02;max-width:720px}
+.hero p,.page-sub{color:var(--muted);line-height:1.8}
+.btn{border-radius:999px;min-height:46px;padding:12px 19px;font-weight:650}
+.primary{background:var(--green);color:#fff;box-shadow:none}
+.secondary{background:var(--white);border:1px solid var(--line);color:var(--ink)}
+.secondary:hover,.top button:hover{background:var(--green-soft);border-color:#b8c8b8}
+.layout{gap:20px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius-card);padding:clamp(17px,3vw,25px);box-shadow:var(--shadow)}
+.head h2,.card h2{color:var(--ink)}
+.sub,.hint{color:var(--muted)}
+.entry{background:#FBFAF6;border:1px solid var(--line);border-radius:14px;box-shadow:none}
+.entry-body{font:17px/1.8 Georgia,"Times New Roman",serif;color:var(--ink)}
+.entry-foot{border-color:var(--line)}
+.dot{background:var(--sage);color:var(--green)}
+.dot.partner{background:#F1DDD5;color:#8D4D3A}
+.tiny{color:var(--green)}
+.tiny:hover{color:var(--green-hover)}
+.prompt{background:var(--sage);border:1px solid #C9D8C7;color:var(--ink);border-radius:16px;padding:clamp(17px,3vw,23px)}
+.prompt p{font:clamp(18px,2vw,21px)/1.55 Georgia,"Times New Roman",serif;color:var(--ink)}
+.prompt .eyebrow{color:var(--green)}
+.field,textarea.field{background:#FBFAF6;border:1px solid #D9D8CE;color:var(--ink);border-radius:12px}
+.field::placeholder{color:#858A81}
+.segmented{background:#EEECE4}
+.tabs{background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 28px rgba(37,41,35,.08);padding:7px}
+.tab{border-radius:12px;color:var(--muted)}
+.tab.active{background:var(--sage);color:var(--green)}
+.welcome{background:radial-gradient(ellipse at 80% 15%,#E7EDE2 0%,#F7F4ED 45%,#F2E9DE 100%);color:var(--ink)}
+.welcome-art{margin-bottom:18px}
+.welcome-symbol{font-size:84px;color:var(--green);text-shadow:none;filter:none}
+.welcome-orbit{border-color:rgba(53,92,74,.22);background:linear-gradient(135deg,rgba(53,92,74,.09),rgba(185,104,80,.035))}
+.orbit-two{border-color:rgba(185,104,80,.2)}
+.welcome .eyebrow{color:var(--terracotta);letter-spacing:.14em}
+.welcome h1{color:var(--ink);font-size:clamp(44px,10vw,62px)}
+.welcome h1 span{color:var(--green)}
+.welcome-tagline{color:#4D554C}
+.welcome-description{color:#62685F;line-height:1.8}
+.welcome .primary{background:var(--green);border-color:var(--green);color:#fff;min-height:50px}
+.welcome .primary:hover{background:var(--green-hover)}
+.welcome-signin{color:var(--green)}
+.welcome-foot{color:#7B8077}
+@keyframes welcome-heart{0%,100%{transform:rotate(-12deg) scale(1);filter:none}50%{transform:rotate(-5deg) scale(1.04);filter:drop-shadow(0 5px 14px rgba(53,92,74,.14))}}
+@media(max-width:640px){.shell{padding-left:17px;padding-right:17px}.layout{grid-template-columns:1fr}.hero h1{font-size:clamp(39px,11vw,54px)}.card{border-radius:16px}.tabs{width:100%;justify-content:space-around}.tab{min-width:0;padding:9px 10px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
 </style></head><body>
 <header class="top"><div class="brand"><div class="mark">♡</div><div>Thought & Feelings<small>Write. Understand. Grow.</small></div></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><a class="download-link" href="https://github.com/Magenyi-ux/app1/actions/runs/44355463315" target="_blank" rel="noopener noreferrer" aria-label="Download Thought & Feelings for Android">Download Android ↓</a><button id="inviteBtn">Invite your person ↗</button><button id="profileBtn" aria-label="Profile">Y</button></div></header>
 <main class="shell">

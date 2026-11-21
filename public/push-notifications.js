@@ -1,9 +1,10 @@
 (function(){
   "use strict";
   const FUNCTION_NAME="push-notifications";
-  const SUPABASE_URL=(()=>{try{return window.supabaseClient&&window.supabaseClient.supabaseUrl||""}catch(_){return ""}})();
-  function currentUser(){try{return window.currentUser||null}catch(_){return null}}
-  function client(){try{return window.supabaseClient||null}catch(_){return null}}
+  function context(){try{return typeof window.tfNotificationsContext==="function"?window.tfNotificationsContext():{}}catch(_){return {}}}
+  function currentUser(){return context().currentUser||null}
+  function client(){return context().supabaseClient||null}
+  function supabaseUrl(){const sb=client();return sb&&sb.supabaseUrl||""}
   function byId(id){return document.getElementById(id)}
   function announce(message){if(typeof window.toast==="function")window.toast(message);else alert(message)}
   function b64ToBytes(value){const padded=value+"=".repeat((4-value.length%4)%4);const raw=atob(padded.replace(/-/g,"+").replace(/_/g,"/"));return Uint8Array.from(raw,c=>c.charCodeAt(0))}
@@ -12,7 +13,7 @@
     if(!sb||!user)throw new Error("Sign in to manage notifications.");
     const {data:{session}}=await sb.auth.getSession();
     if(!session)throw new Error("Your session has expired. Sign in again.");
-    const response=await fetch(SUPABASE_URL+"/functions/v1/"+FUNCTION_NAME,{
+    const response=await fetch(supabaseUrl()+"/functions/v1/"+FUNCTION_NAME,{
       method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+session.access_token,"apikey":sb.supabaseKey||""},
       body:JSON.stringify({action,...(extra||{})})
     });

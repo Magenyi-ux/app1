@@ -146,6 +146,29 @@ hr,.divider{border-color:var(--line)}
 }
 @media(prefers-reduced-motion:reduce){.view{animation:none!important}}
 
+
+/* Primary Android navigation: five stable destinations, with writing easy to reach */
+.tabs{gap:6px}
+.tab{position:relative;min-width:0;user-select:none;-webkit-tap-highlight-color:transparent}
+.tab span:first-child{flex:0 0 24px}
+.tab .tab-label{display:inline;white-space:nowrap}
+.tab:active{transform:scale(.97)}
+.tab.tab-write{background:linear-gradient(145deg,#8A78BC,#6B579F);color:#fff;box-shadow:0 7px 18px rgba(105,85,157,.22)}
+.tab.tab-write:hover{background:linear-gradient(145deg,#7A68AD,#5E4A91)}
+.tab.tab-write.active{background:linear-gradient(145deg,#8A78BC,#6B579F);color:#fff;border-color:transparent}
+@media(max-width:760px){
+ .tabs{left:8px;right:8px;bottom:calc(7px + env(safe-area-inset-bottom));height:70px;padding:6px 5px;gap:2px;border:1px solid var(--line);border-radius:22px;display:flex;flex-direction:row;align-items:stretch;justify-content:space-around}
+ .tab{flex:1;min-width:0;min-height:0;padding:7px 1px;gap:3px;flex-direction:column;justify-content:center;align-items:center;border-radius:15px;font-size:10px;line-height:1.1}
+ .tab span:first-child{flex:0 0 auto;width:auto;font-size:19px;line-height:1.1}
+ .tab .tab-label{font-size:9px;letter-spacing:-.015em}
+ .tab.tab-write{margin:1px 2px;border-radius:16px}
+ .shell{padding-bottom:118px}
+}
+@media(min-width:761px){
+ .tabs{align-items:stretch}
+ .tab.tab-write{margin-top:8px;margin-bottom:8px}
+}
+
 </style></head><body>
 <header class="top"><div class="brand"><div class="mark">♡</div><div>Thought & Feelings<small>Write. Understand. Grow.</small></div></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><a class="download-link" href="https://github.com/Magenyi-ux/app1/actions/runs/44355463315" target="_blank" rel="noopener noreferrer" aria-label="Download Thought & Feelings for Android">Download Android ↓</a><button id="inviteBtn">Invite your person ↗</button><button id="profileBtn" aria-label="Profile">Y</button></div></header>
 <main class="shell">
@@ -188,7 +211,7 @@ hr,.divider{border-color:var(--line)}
 <section class="view" id="notifications"><button class="tiny" data-view="profile">← Settings</button><h1 class="page-title">Notifications</h1><p class="page-sub">Choose what this device should remind you about.</p><div class="card"><label class="setting-row"><span><b>Daily writing reminder</b><small>A gentle nudge to make time to write.</small></span><input id="dailyReminder" type="checkbox"></label><label class="setting-row"><span><b>Partner replies</b><small>Notify when a response arrives.</small></span><input id="replyNotifications" type="checkbox"></label><label class="setting-row"><span><b>Thoughtful prompt</b><small>Show a fresh prompt on your home screen.</small></span><input id="promptNotifications" type="checkbox" checked></label><p class="hint">These are saved preferences only. Push notifications are not connected in this prototype.</p><button class="btn primary" id="saveNotifications" style="width:100%">Save preferences</button></div></section>
 <section class="view" id="about"><button class="tiny" data-view="profile">← Settings</button><div class="card" style="text-align:center;padding:30px 22px"><div class="mark" style="margin:0 auto 16px;width:54px;height:54px;font-size:34px;border-radius:16px">♡</div><h1 class="page-title">Thought & Feelings</h1><p class="page-sub" style="margin-left:auto;margin-right:auto">A space for honest thoughts and shared understanding.</p><p class="sub">Write. Understand. Grow.</p><hr style="border:0;border-top:1px solid var(--line);margin:22px 0"><p class="hint">Made for listening, not keeping score.</p><p class="hint">Thought & Feelings by SphereLearn · Early prototype</p><a href="https://spherelearn.name.ng/" class="tiny">About SphereLearn ↗</a></div></section>
 <div class="footer">Made for listening, not keeping score.<br>Thought & Feelings by SphereLearn · Early prototype</div>
-<nav class="tabs" aria-label="Main navigation"><button class="tab" data-view="journals"><span aria-hidden="true">▤</span>Journals</button><button class="tab active" data-view="home"><span aria-hidden="true">⌂</span>Home</button><button class="tab" data-view="prompts"><span aria-hidden="true">✳</span>Prompts</button><button class="tab" data-view="history"><span aria-hidden="true">◷</span>History</button><button class="tab" data-view="profile"><span aria-hidden="true">◉</span>Settings</button></nav>
+<nav class="tabs" aria-label="Main navigation"><button class="tab active" data-view="home"><span aria-hidden="true">⌂</span><span class="tab-label">Home</span></button><button class="tab" data-view="journals"><span aria-hidden="true">▤</span><span class="tab-label">Journals</span></button><button class="tab tab-write" data-view="write" aria-label="Write a journal entry"><span aria-hidden="true">＋</span><span class="tab-label">Write</span></button><button class="tab" data-view="history"><span aria-hidden="true">◷</span><span class="tab-label">History</span></button><button class="tab" data-view="prompts"><span aria-hidden="true">✧</span><span class="tab-label">Reflect</span></button></nav>
 </main><div class="modalback" id="modal"><div class="modal"><button id="closeModal" class="btn secondary" style="float:right;padding:5px 10px">×</button><div class="eyebrow">Thought & Feelings invitation</div><h2 style="margin-top:10px">Invite your person</h2><p style="font-size:13px;line-height:1.6;color:var(--muted)">Private invitations are planned for the secure shared-account release. This preview does not create a live invitation.</p><label class="field-label">Proposed website</label><input class="field" value="tf.spherelearn.name.ng" readonly><button id="copyAddress" class="btn primary" style="width:100%;margin-top:13px">Copy website address</button></div></div><div id="toast" class="toast" role="status" aria-live="polite"></div>
 <script type="module">
 import { createClient } from "@supabase/supabase-js";
